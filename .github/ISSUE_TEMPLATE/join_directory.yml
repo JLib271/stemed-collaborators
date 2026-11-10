@@ -28,7 +28,7 @@ body:
   id: username
   attributes:
     label: Your STEMEd+ Commons username
-    description: The username on your STEMEd+ Commons account (not your email address).
+    description: The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/
     placeholder: e.g. mlopez
   validations:
     required: true
@@ -36,7 +36,7 @@ body:
   id: commons_profile
   attributes:
     label: Link to your STEMEd+ Commons profile
-    placeholder: https://...
+    placeholder: https://stemedplus.profile.hcommons.org/members/yourname/
   validations:
     required: true
 - type: input

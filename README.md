@@ -49,9 +49,10 @@ form. She will confirm with you on STEMEd+ Commons and add you.
   run `python -m stemed_collaborators.forms --write` to regenerate the issue forms (a test checks they match).
 - Disciplines come from the list shared across STEMEd+ Commons, kept in
   [HuMeta](https://github.com/JLib271/HuMeta) (`standard/humeta/stemedplus_disciplines.json`).
-- `config/site.json`: `message_url_template` can be set to a direct "compose a message" link, with
-  `{username}` where the username goes, once Knowledge Commons has a stable one. While it is empty,
-  "Message on Commons" opens the person's profile.
+- `config/site.json`: `message_url_template` is the "compose a message" link on STEMEd+ Commons, with
+  `{username}` where the person's username goes. `members/me/` stands for whoever is signed in, so the link
+  works for any sender (people who are not signed in are asked to sign in first). Empty it to make
+  "Message on Commons" open the person's profile instead.
 
 ## Run it locally
 

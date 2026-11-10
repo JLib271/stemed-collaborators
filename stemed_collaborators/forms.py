@@ -79,9 +79,9 @@ def join_form() -> dict:
                 "**Updating your profile?** Fill in the whole form again; the new answers replace the old ones. "
                 "Profiles are shown for one year after they are last confirmed, so send this form once a year to stay listed.")}},
             _input("name", True, placeholder="e.g. Maria Lopez"),
-            _input("username", True, description="The username on your STEMEd+ Commons account (not your email address).",
+            _input("username", True, description="The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/",
                    placeholder="e.g. mlopez"),
-            _input("commons_profile", True, placeholder="https://..."),
+            _input("commons_profile", True, placeholder="https://stemedplus.profile.hcommons.org/members/yourname/"),
             _input("pronouns", False, placeholder="e.g. she/her"),
             {"type": "dropdown", "id": "career_stage",
              "attributes": {"label": LABELS["career_stage"], "options": VOCAB["career_stages"]},
