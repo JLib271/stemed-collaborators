@@ -35,7 +35,7 @@ LABELS: Dict[str, str] = {
     "methods": "Methods you work with (choose at least one)",
     "topics": "Topics you work on (optional)",
     "offers": "What you can offer others (choose at least one)",
-    "seeking": "What you are looking for (choose at least one)",
+    "seeking": "What you are looking for (optional)",
     "about": "A few sentences about your work",
     "orcid": "ORCID iD (optional)",
     "consent": "Consent",
@@ -92,6 +92,10 @@ def join_form() -> dict:
             _checkboxes("methods", VOCAB["methods"]),
             _input("topics", False, description="Separate topics with commas.",
                    placeholder="e.g. sense of belonging, organic chemistry labs, teaching assistants"),
+            {"type": "markdown", "attributes": {"value": (
+                "**What you can offer and what you are looking for** use the same list, so people can find "
+                "two-way matches. Please fill in both. If you only want to offer help right now, leave "
+                "\"What you are looking for\" blank.")}},
             _checkboxes("offers", VOCAB["collaboration"]),
             _checkboxes("seeking", VOCAB["collaboration"]),
             {"type": "textarea", "id": "about",
@@ -202,7 +206,6 @@ def profile_from_issue(body: str, today: dt.date, previous: dict = None) -> Tupl
         "disciplines": _ticked(s.get(LABELS["disciplines"], "")),
         "methods": _ticked(s.get(LABELS["methods"], "")),
         "offers": _ticked(s.get(LABELS["offers"], "")),
-        "seeking": _ticked(s.get(LABELS["seeking"], "")),
         "about": " ".join(get("about").split()),
         "listed": (previous or {}).get("listed") or today,
         "confirmed": today,
@@ -210,6 +213,9 @@ def profile_from_issue(body: str, today: dt.date, previous: dict = None) -> Tupl
     for key in ("pronouns", "institution", "orcid"):
         if get(key):
             data[key] = get(key)
+    seeking = _ticked(s.get(LABELS["seeking"], ""))
+    if seeking:
+        data["seeking"] = seeking
     types = _ticked(s.get(LABELS["institution_types"], ""))
     if types:
         data["institution_types"] = types

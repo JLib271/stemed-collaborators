@@ -85,6 +85,15 @@ class FormsTest(unittest.TestCase):
         self.assertNotIn("pronouns", data)
         self.assertEqual(data["confirmed"], TODAY)
 
+    def test_offering_only(self):
+        blank = "\n".join(f"- [ ] {o}" for o in profiles.VOCAB["collaboration"])
+        username, data, problems = forms.profile_from_issue(filled_form(seeking=blank), TODAY)
+        self.assertEqual(problems, [])
+        self.assertNotIn("seeking", data)
+        self.assertEqual(profiles.to_record(username, data, TODAY)["seeking"], [])
+        _, _, problems = forms.profile_from_issue(filled_form(offers=blank), TODAY)
+        self.assertTrue(any("offers" in p for p in problems))
+
     def test_consent_required(self):
         _, _, problems = forms.profile_from_issue(filled_form(consent="- [X] " + forms.CONSENT[0]), TODAY)
         self.assertTrue(any("consent" in p for p in problems))

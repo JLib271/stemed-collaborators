@@ -25,7 +25,7 @@ COMMONS_HOSTS = ("hcommons.org", "stemedplus.org")
 ORCID = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$")
 
 REQUIRED = ("name", "username", "commons_profile", "career_stage", "disciplines", "methods",
-            "offers", "seeking", "about", "confirmed")
+            "offers", "about", "confirmed")
 LISTS = {
     "disciplines": list(DISCIPLINES),
     "methods": VOCAB["methods"],
@@ -33,7 +33,7 @@ LISTS = {
     "seeking": VOCAB["collaboration"],
     "institution_types": VOCAB["institution_types"],
 }
-OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed")
+OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed", "seeking")
 
 
 def is_commons_url(url: str) -> bool:
@@ -115,7 +115,7 @@ def to_record(slug: str, data: dict, today: dt.date) -> dict:
         "methods": data["methods"],
         "topics": [t.strip() for t in (data.get("topics") or [])],
         "offers": data["offers"],
-        "seeking": data["seeking"],
+        "seeking": data.get("seeking") or [],
         "about": data["about"].strip(),
         "orcid": data.get("orcid") or "",
         "listed": (data.get("listed") or confirmed).isoformat(),

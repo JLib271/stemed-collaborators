@@ -124,6 +124,10 @@ body:
     label: Topics you work on (optional)
     description: Separate topics with commas.
     placeholder: e.g. sense of belonging, organic chemistry labs, teaching assistants
+- type: markdown
+  attributes:
+    value: '**What you can offer and what you are looking for** use the same list, so people can find two-way matches. Please
+      fill in both. If you only want to offer help right now, leave "What you are looking for" blank.'
 - type: checkboxes
   id: offers
   attributes:
@@ -143,7 +147,7 @@ body:
 - type: checkboxes
   id: seeking
   attributes:
-    label: What you are looking for (choose at least one)
+    label: What you are looking for (optional)
     options:
     - label: Co-PI or grant partner
     - label: Methods partner

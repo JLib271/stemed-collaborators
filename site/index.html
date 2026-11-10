@@ -24,7 +24,7 @@
   .finder { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 20px 0 8px; }
   .finder h2 { font-size: 1.1rem; margin: 0 0 4px; } .finder .hint { color: var(--muted); font-size: .88rem; margin: 0 0 12px; }
   .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .controls .wide { grid-column: span 3; }
+  .controls .span2 { grid-column: span 2; }
   .controls .group { grid-column: 1 / -1; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 700; margin: 6px 0 -4px; border-top: 1px solid var(--line); padding-top: 10px; }
   .controls .group:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
   label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
@@ -61,7 +61,7 @@
   footer p { margin: 6px 0; }
   [hidden] { display: none !important; }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  @media (max-width: 860px) { .controls { grid-template-columns: 1fr; } .controls .wide { grid-column: auto; } }
+  @media (max-width: 860px) { .controls { grid-template-columns: 1fr; } .controls .span2 { grid-column: auto; } }
 </style>
 <link rel="stylesheet" href="stemedplus-theme.css">
 </head>
@@ -85,16 +85,16 @@
     <h2 id="finder-h">Find a collaborator</h2>
     <p class="hint">Say what you need. People who match the most come first, with the reasons shown on each card.</p>
     <div class="controls">
-      <div class="group">What you need</div>
-      <div><label for="need">I'm looking for</label><select id="need"><option value="">Any kind of collaboration</option></select></div>
+      <div class="group">Collaboration: fill in both to find two-way matches</div>
+      <div><label for="need">I'm looking for</label><select id="need"><option value="">Anything</option></select></div>
+      <div><label for="offer">I can offer</label><select id="offer"><option value="">Nothing specific</option></select></div>
+      <div class="group">Expertise</div>
       <div><label for="method">With experience in</label><select id="method"><option value="">Any method</option></select></div>
-      <div><label for="q">Topic or keyword</label><input id="q" type="search" placeholder="e.g. belonging, chemistry labs, AI" autocomplete="off"></div>
+      <div class="span2"><label for="q">Topic or keyword</label><input id="q" type="search" placeholder="e.g. belonging, chemistry labs, AI" autocomplete="off"></div>
       <div class="group">Who (narrows the list)</div>
       <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All disciplines</option></select></div>
       <div><label for="stage">Career stage</label><select id="stage"><option value="">Any career stage</option></select></div>
       <div><label for="itype">Institution type</label><select id="itype"><option value="">Any institution type</option></select></div>
-      <div class="group">Optional: what you bring</div>
-      <div class="wide"><label for="offer">I can offer (shows people who are looking for this)</label><select id="offer"><option value="">Skip</option></select></div>
     </div>
   </section>
   <div class="bar">
@@ -109,7 +109,7 @@
     <h2 id="how-h">How it works</h2>
     <ol>
       <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
-      <li><strong>Search by what you need.</strong> Pick the kind of collaboration and the methods or topics you need. Each card says why the person matches. If you also say what you can offer, people looking for that are marked as a two-way match.</li>
+      <li><strong>Search by what you need and what you offer.</strong> "I'm looking for" and "I can offer" use the same list. Each card says why the person matches, and people who offer what you need and are looking for what you offer are marked as a two-way match.</li>
       <li><strong>Reach out on STEMEd+ Commons.</strong> "Message on Commons" opens a new private message to the person on STEMEd+ Commons (sign in first if you are asked). "Copy a message starter" puts a short, editable introduction on your clipboard.</li>
       <li><strong>Profiles stay current.</strong> A profile is shown for one year after it was last confirmed. To stay listed, send the "Update my profile" form, even with no changes.</li>
     </ol>
@@ -154,14 +154,14 @@
     if (c.discipline && p.disciplines.indexOf(c.discipline) === -1) return null;
     if (c.stage && p.career_stage !== c.stage) return null;
     if (c.itype && p.institution_types.indexOf(c.itype) === -1) return null;
-    var why = [], you = [], s = 0, mutual = false;
+    var why = [], you = [], s = 0, mutual = false, needHit = false;
     function lc(v) { return v.charAt(0).toLowerCase() + v.slice(1); }
-    if (c.need && p.offers.indexOf(c.need) !== -1) { s += 4; why.push('can be a ' + lc(c.need)); you.push('listed yourself as a possible ' + lc(c.need)); }
+    if (c.need && p.offers.indexOf(c.need) !== -1) { s += 4; needHit = true; why.push('can be a ' + lc(c.need)); you.push('listed yourself as a possible ' + lc(c.need)); }
     if (c.method && p.methods.indexOf(c.method) !== -1) { s += 3; why.push('works with ' + c.method.toLowerCase()); you.push('work with ' + c.method.toLowerCase()); }
     var hits = keywordHits(p, c.q);
     if (hits.length) { s += 2 * hits.length; why.push('mentions ' + hits.map(function (h) { return '“' + h + '”'; }).join(', ')); you.push('work on ' + c.q.trim()); }
     if (c.offer && p.seeking.indexOf(c.offer) !== -1) { s += 2; mutual = true; why.push('is looking for a ' + lc(c.offer) + ', which you offer'); you.push('are looking for a ' + lc(c.offer)); }
-    return { p: p, s: s, why: why, you: you, mutual: mutual && why.length > 1, hits: hits };
+    return { p: p, s: s, why: why, you: you, mutual: mutual && needHit, hits: hits };
   }
 
   function facts(dl, term, values) {
@@ -202,7 +202,7 @@
     li.appendChild(node('p', 'about', p.about));
     var dl = node('dl', 'facts');
     facts(dl, 'Can offer', p.offers);
-    facts(dl, 'Looking for', p.seeking);
+    if (p.seeking.length) facts(dl, 'Looking for', p.seeking); else facts(dl, 'Looking for', ['Not looking for anything right now; offering only']);
     facts(dl, 'Methods', p.methods);
     facts(dl, 'Topics', p.topics);
     li.appendChild(dl);
