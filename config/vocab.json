@@ -1,0 +1,55 @@
+{
+  "career_stages": [
+    "Graduate student",
+    "Postdoc",
+    "Early-career faculty or researcher",
+    "Mid-career faculty or researcher",
+    "Senior faculty or researcher",
+    "Staff or practitioner",
+    "Teacher (K-12)",
+    "Other"
+  ],
+  "institution_types": [
+    "Minority-serving institution (HSI, HBCU, TCU, AANAPISI, or other MSI)",
+    "Primarily undergraduate institution",
+    "Community or technical college",
+    "Research university",
+    "K-12 school or district",
+    "Nonprofit, museum, or informal learning",
+    "Government or industry",
+    "Outside the US",
+    "Independent scholar"
+  ],
+  "methods": [
+    "Interviews and focus groups",
+    "Qualitative analysis",
+    "Ethnography and observation",
+    "Discourse and video analysis",
+    "Surveys",
+    "Instrument development and psychometrics",
+    "Statistical modeling",
+    "Experimental and quasi-experimental design",
+    "Mixed methods",
+    "Design-based research",
+    "Learning analytics and educational data mining",
+    "Network analysis",
+    "Systematic reviews and meta-analysis",
+    "Program evaluation",
+    "Critical and community-engaged methods",
+    "Curriculum and course design",
+    "Computational and AI methods"
+  ],
+  "collaboration": [
+    "Co-PI or grant partner",
+    "Methods partner",
+    "Discipline content expert",
+    "Study site or data partner",
+    "Co-author on a paper",
+    "Proposal or paper reader",
+    "Writing or accountability partner",
+    "Mentor",
+    "Mentee",
+    "Conference session partner",
+    "Teaching or curriculum partner"
+  ]
+}

@@ -1,0 +1,61 @@
+name: Add, update, or remove a profile
+
+# A maintainer adds the "approved" label to a "Join or update" or "Remove my profile" issue
+# (after confirming with the person on STEMEd+ Commons). This workflow changes profiles/,
+# replies on the issue, closes it, and starts "Check and publish".
+# Only people with triage access or more can add labels, so only maintainers can trigger it.
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: intake
+  cancel-in-progress: false
+
+jobs:
+  intake:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Read the form
+        id: read
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
+        run: python -m stemed_collaborators.intake --result "$RUNNER_TEMP/reply.md"
+      - name: Commit the change
+        if: steps.read.outputs.changed == 'true'
+        env:
+          USERNAME: ${{ steps.read.outputs.username }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          python -m stemed_collaborators --validate
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A profiles
+          git commit -m "Profile ${USERNAME} (from #${ISSUE})"
+          git push
+      - name: Reply on the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          CHANGED: ${{ steps.read.outputs.changed }}
+        run: |
+          gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/reply.md"
+          if [ "$CHANGED" = "true" ]; then
+            gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY"
+            gh workflow run update.yml --repo "$GITHUB_REPOSITORY" --ref main
+          else
+            gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --remove-label approved
+          fi

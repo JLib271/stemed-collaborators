@@ -1,0 +1,15 @@
+# Fictional person, used only by the tests.
+name: Ben Sampleton
+username: test-ben
+commons_profile: https://stemedplus.hcommons.org/members/test-ben/
+career_stage: Mid-career faculty or researcher
+institution: Example College
+institution_types: [Primarily undergraduate institution]
+disciplines: [Chemistry, Science Education]
+methods: [Surveys, Instrument development and psychometrics, Statistical modeling]
+topics: [belonging, assessment]
+offers: [Mentor, Methods partner, Co-PI or grant partner]
+seeking: [Study site or data partner, Proposal or paper reader]
+about: I build and validate survey instruments for chemistry education and am happy to mentor early-career researchers.
+orcid: 0000-0002-1825-0097
+confirmed: 2026-03-01

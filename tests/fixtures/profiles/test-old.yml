@@ -1,0 +1,11 @@
+# Fictional person whose profile has lapsed, used only by the tests.
+name: Old Example
+username: test-old
+commons_profile: https://hcommons.org/members/test-old/
+career_stage: Postdoc
+disciplines: [Physics]
+methods: [Mixed methods]
+offers: [Co-author on a paper]
+seeking: [Co-PI or grant partner]
+about: Lapsed profile.
+confirmed: 2025-06-01

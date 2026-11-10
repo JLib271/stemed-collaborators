@@ -1,0 +1,16 @@
+# Fictional person, used only by the tests.
+name: Ana Testperson
+username: test-ana
+commons_profile: https://hcommons.org/members/test-ana/
+pronouns: she/her
+career_stage: Graduate student
+institution: Example State University
+institution_types: ["Minority-serving institution (HSI, HBCU, TCU, AANAPISI, or other MSI)", Research university]
+disciplines: [Chemistry]
+methods: [Interviews and focus groups, Qualitative analysis]
+topics: [sense of belonging, organic chemistry labs]
+offers: [Proposal or paper reader, Writing or accountability partner]
+seeking: [Mentor, Methods partner]
+about: I study how students in organic chemistry labs come to feel they belong, using interviews with first-generation students.
+listed: 2026-09-01
+confirmed: 2026-09-01

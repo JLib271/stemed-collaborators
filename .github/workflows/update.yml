@@ -1,0 +1,65 @@
+name: Check and publish
+
+# Every day: refresh the shared disciplines, run the tests, check the profiles in profiles/,
+# and publish the site to GitHub Pages (profiles not confirmed for a year drop off).
+# Pull requests only run the checks. Turn on once: Settings -> Pages -> Source: GitHub Actions.
+
+on:
+  schedule:
+    - cron: "23 10 * * *"
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Refresh shared disciplines from HuMeta
+        run: python -m stemed_collaborators.stemedplus_disciplines --refresh
+      - name: Run tests
+        run: python -m unittest discover -s tests -t . -v
+      - name: Check the profiles in profiles/
+        run: python -m stemed_collaborators --validate
+
+  publish:
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+      - name: Refresh shared disciplines from HuMeta
+        run: python -m stemed_collaborators.stemedplus_disciplines --refresh
+      - name: Build the site
+        run: python -m stemed_collaborators --out output
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: output
+      - id: deployment
+        uses: actions/deploy-pages@v5
