@@ -160,7 +160,7 @@ def plan(entries, today: dt.date) -> List[dict]:
 
 
 def _write(folder: Path, slug: str, data: dict) -> None:
-    (folder / f"{slug}.yml").write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=100),
+    (folder / f"{slug}.yml").write_text(profiles.dump(data),
                                         encoding="utf-8")
 
 

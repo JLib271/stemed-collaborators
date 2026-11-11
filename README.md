@@ -1,6 +1,7 @@
 # STEMEd+ Collaborators
 
-Find people to work with in STEM+ education research, and reach them through STEMEd+ Commons:
+Find people to work with across STEM+ education research and practice (researchers, K-12 teachers, college
+instructors, and informal educators), and reach them through STEMEd+ Commons:
 **https://jlib271.github.io/stemed-collaborators/**
 
 STEMEd+ Collaborators is part of [STEMEd+ Commons](https://stemedplus.hcommons.org/), with

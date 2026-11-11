@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STEMEd+ Collaborators</title>
-<meta name="description" content="Find people to work with in STEM+ education research: co-PIs, methods partners, study sites, writing groups, and mentors. Everyone listed asked to be here, and you contact them through STEMEd+ Commons.">
+<meta name="description" content="Find people to work with across STEM+ education research and practice: researchers, K-12 teachers, college instructors, and informal educators. Look for co-PIs, research-practice partners, study sites, mentors, and writing partners. Everyone listed asked to be here, and you contact them through STEMEd+ Commons.">
 <style>
   :root { --ink:#1d2433; --muted:#5b6475; --line:#dde2ea; --bg:#f7f8fa; --card:#fff; --accent:#1f5f8b; --soft:#e6f0f7; --softline:#c9dcea;
           --mid:#7a4f00; --midbg:#fdf3dc; --ok:#1f6b3a; --okbg:#e7f4ec; }
@@ -83,14 +83,14 @@
 <main class="wrap">
   <section class="finder" role="search" aria-labelledby="finder-h">
     <h2 id="finder-h">Find a collaborator</h2>
-    <p class="hint">Say what you need. People who match the most come first, with the reasons shown on each card.</p>
+    <p class="hint">For research and practice alike: researchers, teachers, instructors, and informal educators. Say what you need; people who match the most come first, with the reasons shown on each card.</p>
     <div class="controls">
       <div class="group">Collaboration: fill in both to find two-way matches</div>
       <div><label for="need">I'm looking for</label><select id="need"><option value="">Anything</option></select></div>
       <div><label for="offer">I can offer</label><select id="offer"><option value="">Nothing specific</option></select></div>
-      <div class="group">Expertise</div>
-      <div><label for="method">With experience in</label><select id="method"><option value="">Any method</option></select></div>
-      <div class="span2"><label for="q">Topic or keyword</label><input id="q" type="search" placeholder="e.g. belonging, chemistry labs, AI" autocomplete="off"></div>
+      <div class="group">Expertise (research methods and practice)</div>
+      <div><label for="method">With experience in</label><select id="method"><option value="">Any method or expertise</option></select></div>
+      <div class="span2"><label for="q">Topic or keyword</label><input id="q" type="search" placeholder="e.g. belonging, chemistry labs, middle school, museums" autocomplete="off"></div>
       <div class="group">Who (narrows the list)</div>
       <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All disciplines</option></select></div>
       <div><label for="stage">Career stage</label><select id="stage"><option value="">Any career stage</option></select></div>
@@ -203,7 +203,7 @@
     var dl = node('dl', 'facts');
     facts(dl, 'Can offer', p.offers);
     if (p.seeking.length) facts(dl, 'Looking for', p.seeking); else facts(dl, 'Looking for', ['Not looking for anything right now; offering only']);
-    facts(dl, 'Methods', p.methods);
+    facts(dl, 'Expertise', p.methods);
     facts(dl, 'Topics', p.topics);
     li.appendChild(dl);
     var t = node('div', 'tags');

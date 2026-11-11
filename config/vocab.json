@@ -5,8 +5,11 @@
     "Early-career faculty or researcher",
     "Mid-career faculty or researcher",
     "Senior faculty or researcher",
-    "Staff or practitioner",
     "Teacher (K-12)",
+    "College instructor or lecturer",
+    "Informal educator (museum, nature center, after-school, or outreach)",
+    "Education leader or administrator",
+    "Staff or practitioner",
     "Other"
   ],
   "institution_types": [
@@ -37,7 +40,11 @@
     "Program evaluation",
     "Critical and community-engaged methods",
     "Curriculum and course design",
-    "Computational and AI methods"
+    "Computational and AI methods",
+    "Classroom teaching practice",
+    "Informal and out-of-school learning",
+    "Outreach and public engagement",
+    "Professional learning design"
   ],
   "collaboration": [
     "Co-PI or grant partner",
@@ -50,6 +57,11 @@
     "Mentor",
     "Mentee",
     "Conference session partner",
+    "Research-practice partner",
+    "Researcher for a classroom or program",
+    "Practitioner partner for a research project",
+    "Broader impacts or outreach partner",
+    "Professional learning or workshop facilitator",
     "Teaching or curriculum partner"
   ]
 }

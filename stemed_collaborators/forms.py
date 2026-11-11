@@ -32,7 +32,7 @@ LABELS: Dict[str, str] = {
     "institution": "Institution or organization (optional)",
     "institution_types": "Institution type (optional, choose any)",
     "disciplines": "Disciplines (choose at least one)",
-    "methods": "Methods you work with (choose at least one)",
+    "methods": "Methods and expertise (choose at least one)",
     "topics": "Topics you work on (optional)",
     "offers": "What you can offer others (choose at least one)",
     "seeking": "What you are looking for (optional)",
@@ -68,7 +68,7 @@ def _input(fid: str, required: bool, **attrs) -> dict:
 def join_form() -> dict:
     return {
         "name": "Join or update the directory",
-        "description": "List yourself in STEMEd+ Collaborators so people can find you and message you on STEMEd+ Commons.",
+        "description": "Researchers, teachers, instructors, and informal educators: list yourself so people can find you and message you on STEMEd+ Commons.",
         "title": "Join: ",
         "labels": ["directory: join"],
         "body": [
@@ -101,7 +101,7 @@ def join_form() -> dict:
             _checkboxes("seeking", VOCAB["collaboration"]),
             {"type": "textarea", "id": "about",
              "attributes": {"label": LABELS["about"],
-                            "description": f"Up to {profiles.ABOUT_MAX} characters. What you study, and what kind of collaboration you want.",
+                            "description": f"Up to {profiles.ABOUT_MAX} characters. What you study, teach, or lead, and what kind of collaboration you want.",
                             "placeholder": "I study how first-generation students ..."},
              "validations": {"required": True}},
             _input("orcid", False, placeholder="0000-0002-1825-0097"),
@@ -249,7 +249,7 @@ _LABEL_KEYS = {_norm_label(v): k for k, v in LABELS.items()}
 _LABEL_KEYS.update({"name": "name", "username": "username", "commons username": "username",
                     "commons profile": "commons_profile", "profile link": "commons_profile",
                     "pronouns": "pronouns", "institution": "institution", "institution type": "institution_types",
-                    "disciplines": "disciplines", "methods": "methods", "topics": "topics",
+                    "disciplines": "disciplines", "methods": "methods", "methods and expertise": "methods", "methods you work with": "methods", "expertise": "methods", "topics": "topics",
                     "what i can offer": "offers", "can offer": "offers", "what i am looking for": "seeking",
                     "looking for": "seeking", "about": "about", "about your work": "about", "orcid": "orcid",
                     "orcid id": "orcid", "consent": "consent"})
@@ -413,7 +413,7 @@ def website_form_spec() -> str:
     add(10, "topics", "single line of text", False, "Separate topics with commas.")
     add(11, "offers", "checkboxes (at least one)", True, "Same list as the next question. Please fill in both.", VOCAB["collaboration"])
     add(12, "seeking", "checkboxes (choose any)", False, "Leave blank if you only want to offer help right now.", VOCAB["collaboration"])
-    add(13, "about", f"paragraph text, up to {profiles.ABOUT_MAX} characters", True, "What you study, and what kind of collaboration you want.")
+    add(13, "about", f"paragraph text, up to {profiles.ABOUT_MAX} characters", True, "What you study, teach, or lead, and what kind of collaboration you want.")
     add(14, "orcid", "single line of text", False, "e.g. 0000-0002-1825-0097")
     add(15, "consent", "checkboxes (all three required)", True, options=CONSENT)
     out.append("Above the form, say: everything you enter is public; your email address is never shown; a maintainer")

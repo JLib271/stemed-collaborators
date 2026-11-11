@@ -43,8 +43,11 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Early-career faculty or researcher
     - Mid-career faculty or researcher
     - Senior faculty or researcher
-    - Staff or practitioner
     - Teacher (K-12)
+    - College instructor or lecturer
+    - Informal educator (museum, nature center, after-school, or outreach)
+    - Education leader or administrator
+    - Staff or practitioner
     - Other
 
 ## 6. Institution or organization (optional)
@@ -86,7 +89,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Science & Health Communication
     - Science Education
 
-## 9. Methods you work with (choose at least one)
+## 9. Methods and expertise (choose at least one)
 
 - Type: checkboxes (at least one)
 - Required: yes
@@ -108,6 +111,10 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Critical and community-engaged methods
     - Curriculum and course design
     - Computational and AI methods
+    - Classroom teaching practice
+    - Informal and out-of-school learning
+    - Outreach and public engagement
+    - Professional learning design
 
 ## 10. Topics you work on (optional)
 
@@ -131,6 +138,11 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Mentor
     - Mentee
     - Conference session partner
+    - Research-practice partner
+    - Researcher for a classroom or program
+    - Practitioner partner for a research project
+    - Broader impacts or outreach partner
+    - Professional learning or workshop facilitator
     - Teaching or curriculum partner
 
 ## 12. What you are looking for (optional)
@@ -149,13 +161,18 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Mentor
     - Mentee
     - Conference session partner
+    - Research-practice partner
+    - Researcher for a classroom or program
+    - Practitioner partner for a research project
+    - Broader impacts or outreach partner
+    - Professional learning or workshop facilitator
     - Teaching or curriculum partner
 
 ## 13. A few sentences about your work
 
 - Type: paragraph text, up to 400 characters
 - Required: yes
-- Help text: What you study, and what kind of collaboration you want.
+- Help text: What you study, teach, or lead, and what kind of collaboration you want.
 
 ## 14. ORCID iD (optional)
 

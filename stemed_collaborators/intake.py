@@ -43,7 +43,7 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
         data = yaml.safe_load(path.read_text(encoding="utf-8"))
         data["confirmed"] = today
         data.pop("reminded", None)
-        path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=100), encoding="utf-8")
+        path.write_text(profiles.dump(data), encoding="utf-8")
         return True, username, (f"Thanks! The profile for `{username}` stays listed. We'll check in again around "
                                 f"{(today + dt.timedelta(days=profiles.REMIND_DAYS)).isoformat()}.")
     if kind == "join":
@@ -56,7 +56,7 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
             return False, username, ("This form could not be listed yet. Please edit the issue to fix the following, "
                                      "and a maintainer will approve it again:\n\n" + "\n".join(f"- {p}" for p in problems))
         folder.mkdir(parents=True, exist_ok=True)
-        text = yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=100)
+        text = profiles.dump(data)
         (folder / f"{username}.yml").write_text(text, encoding="utf-8")
         verb = "Updated" if previous else "Added"
         return True, username, (f"{verb} the profile for **{data['name']}** (`{username}`). It will appear on the site "

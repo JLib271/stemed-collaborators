@@ -104,6 +104,16 @@ def load(folder: Path = PROFILES) -> Tuple[List[Tuple[str, dict]], List[str]]:
     return entries, problems
 
 
+class _NoAliases(yaml.SafeDumper):
+    def ignore_aliases(self, data):
+        return True
+
+
+def dump(data: dict) -> str:
+    """A profile as YAML, without anchors (the same date used twice is written out twice)."""
+    return yaml.dump(data, Dumper=_NoAliases, sort_keys=False, allow_unicode=True, width=100)
+
+
 def to_record(slug: str, data: dict, today: dt.date) -> dict:
     confirmed: dt.date = data["confirmed"]
     expires = confirmed + dt.timedelta(days=CONFIRM_DAYS)
