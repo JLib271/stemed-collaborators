@@ -52,6 +52,7 @@ def first_message(p: dict, removal: dt.date) -> Dict[str, str]:
             f"Hi {first},\n\n"
             f"A year ago you listed yourself in STEMEd+ Collaborators ({SITE}), so people can find you for "
             "collaborations, mentoring, and writing partners.\n\n"
+            f"See who matches your profile now: {SITE}?me={p['username']}\n\n"
             "Would you like to stay listed? Just reply KEEP to this message. To change your answers, send the "
             f"join form again from {SITE}\n\n"
             f"If we don't hear from you, your profile will be removed on {_date(removal)}. "

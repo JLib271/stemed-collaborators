@@ -24,6 +24,11 @@
   .join p { margin: 4px 0; }
   .finder { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 20px 0 8px; }
   .finder h2 { font-size: 1.1rem; margin: 0 0 4px; } .finder .hint { color: var(--muted); font-size: .88rem; margin: 0 0 12px; }
+  .mine { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 14px; }
+  .mine label { font-size: .95rem; color: var(--ink); font-weight: 700; }
+  .me-inputs { display: flex; flex-wrap: wrap; gap: 8px; } .me-inputs input { flex: 1 1 260px; width: auto; } .me-inputs .btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+  .me-on { margin: 0; background: var(--okbg); color: var(--ok); border-radius: 8px; padding: 10px 12px; font-size: .95rem; }
+  .me-missing { margin: 8px 0 0; color: var(--mid); font-size: .9rem; }
   .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .controls .span2 { grid-column: span 2; }
   .controls .group { grid-column: 1 / -1; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 700; margin: 6px 0 -4px; border-top: 1px solid var(--line); padding-top: 10px; }
@@ -85,6 +90,17 @@
 <div class="wrap"><div class="join" role="note"><p><strong>You contact people through STEMEd+ Commons</strong>, so their email addresses are never shown here. Join STEMEd+ Commons free and sign in before you send a message. You can sign in with GitHub, Google, ORCID, or your institution.</p><p><a href="https://stemedplus.hcommons.org/" target="_blank" rel="noopener noreferrer">Visit STEMEd+ Commons<span class="vh"> (opens in a new tab)</span></a> · <a href="https://support.hcommons.org/profiles/login-and-registration/" target="_blank" rel="noopener noreferrer">How to join<span class="vh"> (opens in a new tab)</span></a></p></div></div>
 <main class="wrap">
   <section class="finder" role="search" aria-labelledby="finder-h">
+    <div class="mine">
+      <form id="me-form" class="me-row">
+        <div id="me-off" class="me-off">
+          <label for="me">Already listed? Show my matches</label>
+          <div class="me-inputs"><input id="me" type="text" placeholder="Your STEMEd+ Commons username, e.g. libarkin" autocomplete="username"><button type="submit" class="btn">Show my matches</button></div>
+          <p class="hint" style="margin: 6px 0 0">Ranks everyone against your whole profile: what you are looking for, what you offer, your disciplines, and your topics.</p>
+        </div>
+      </form>
+      <p id="me-on" class="me-on" hidden>Showing matches for <strong id="me-name"></strong>, from everything in your profile. Use the boxes below to narrow them. · <button type="button" class="link" id="me-stop">Stop showing my matches</button></p>
+      <p id="me-missing" class="me-missing" hidden>No profile found for “<span id="me-missing-id"></span>”. Your username is the part after /members/ in your STEMEd+ Commons profile link.</p>
+    </div>
     <h2 id="finder-h">Find a collaborator</h2>
     <p class="hint">For research and practice alike: researchers, teachers, instructors, and informal educators. Say what you need; people who match the most come first, with the reasons shown on each card.</p>
     <div class="controls">
@@ -113,6 +129,7 @@
     <h2 id="how-h">How it works</h2>
     <ol>
       <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form, on STEMEd+ Commons or on GitHub. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
+      <li><strong>Already listed? See your matches.</strong> Type your STEMEd+ Commons username in "Show my matches" and everyone is ranked against your whole profile. Bookmark the link to come back to it.</li>
       <li><strong>Search by what you need and what you offer.</strong> "I'm looking for" and "I can offer" use the same list. Each card says why the person matches, and people who offer what you need and are looking for what you offer are marked as a two-way match.</li>
       <li><strong>Reach out on STEMEd+ Commons.</strong> "Message on STEMEd+ Commons" opens a new private message to the person there (sign in first if you are asked). "Copy a message starter" puts a short, editable introduction on your clipboard.</li>
       <li><strong>Profiles stay current.</strong> Once a year, everyone gets a private message on STEMEd+ Commons asking whether to stay listed. Reply KEEP and you stay for another year. If there is no reply, a last reminder follows two months later, and the profile is removed three months after the first message. You can rejoin any time.</li>
@@ -130,7 +147,7 @@
 <script>
 (function () {
   'use strict';
-  var state = { d: null, showRest: false, at: '' };
+  var state = { d: null, showRest: false, at: '', me: null, meId: '' };
   function el(id) { return document.getElementById(id); }
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function ext(a) { a.target = '_blank'; a.rel = 'noopener noreferrer'; a.appendChild(node('span', 'vh', ' (opens in a new tab)')); return a; }
@@ -155,6 +172,7 @@
 
   // Score one person against the search. "Who" filters exclude; "what you need" ranks.
   function score(p, c) {
+    if (state.me && p.id === state.me.id) return null;
     if (state.at && norm(p.institution).replace(/\s+/g, ' ').indexOf(norm(state.at).replace(/\s+/g, ' ')) === -1) return null;
     if (c.discipline && p.disciplines.indexOf(c.discipline) === -1) return null;
     if (c.stage && p.career_stage !== c.stage) return null;
@@ -166,7 +184,22 @@
     var hits = keywordHits(p, c.q);
     if (hits.length) { s += 2 * hits.length; why.push('mentions ' + hits.map(function (h) { return '“' + h + '”'; }).join(', ')); you.push('work on ' + c.q.trim()); }
     if (c.offer && p.seeking.indexOf(c.offer) !== -1) { s += 2; mutual = true; why.push('is looking for a ' + lc(c.offer) + ', which you offer'); you.push('are looking for a ' + lc(c.offer)); }
-    return { p: p, s: s, why: why, you: you, mutual: mutual && needHit, hits: hits };
+    var give = [], get = [];
+    if (state.me) {
+      var me = state.me;
+      me.seeking.forEach(function (x) { if (p.offers.indexOf(x) !== -1) { s += 4; give.push(x); } });
+      me.offers.forEach(function (x) { if (p.seeking.indexOf(x) !== -1) { s += 3; get.push(x); } });
+      function a(x) { return 'a ' + lc(x); }
+      function list(xs) { return xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' or ' + xs[xs.length - 1]; }
+      if (give.length) { why.push('can be ' + list(give.map(a)) + ' (you are looking for this)'); you.push('can be ' + list(give.map(a)) + ', which I am looking for'); }
+      if (get.length) { why.push('is looking for ' + list(get.map(a)) + ' (you offer this)'); you.push('are looking for ' + list(get.map(a)) + ', which I can offer'); }
+      var both = p.disciplines.filter(function (x) { return me.disciplines.indexOf(x) !== -1; });
+      if (both.length && (give.length || get.length)) { s += both.length; why.push('also in ' + both.join(', ')); }
+      var mine = me.topics.map(norm), shared = p.topics.filter(function (t) { return mine.indexOf(norm(t)) !== -1; });
+      if (shared.length) { s += 2 * shared.length; why.push('also works on ' + shared.join(', ')); you.push('also work on ' + shared.join(', ')); }
+      if (give.length && get.length) { mutual = true; needHit = true; }
+    }
+    return { p: p, s: s, why: why, you: you, mutual: mutual && needHit, hits: hits, give: give, get: get };
   }
 
   function facts(dl, term, values) {
@@ -175,12 +208,15 @@
   }
 
   function starter(p, c, m) {
-    var lines = ['Hi ' + p.name.split(' ')[0] + ',', ''];
+    var first = p.name.split(' ')[0];
+    if (/^(dr|prof|professor)\.?$/i.test(first)) first = p.name;
+    var lines = ['Hi ' + first + ',', ''];
     var reason = m.you.length ? 'I found you in the STEMEd+ Collaborators directory: you ' + m.you.join(', and you ') + '.' :
       'I found you in the STEMEd+ Collaborators directory.';
     lines.push(reason);
     lines.push('I am [your name, role, institution], and I am working on [one sentence about your project].');
     if (c.need) lines.push('I am hoping to find a ' + c.need.charAt(0).toLowerCase() + c.need.slice(1) + (c.method ? ' with experience in ' + c.method.toLowerCase() : '') + '.');
+    if (m.get && m.get.length && !c.offer) lines.push('I would be glad to help as ' + m.get.map(function (x) { return 'a ' + x.charAt(0).toLowerCase() + x.slice(1); }).join(' or ') + '.');
     if (c.offer && p.seeking.indexOf(c.offer) !== -1) lines.push('I would also be glad to be a ' + c.offer.charAt(0).toLowerCase() + c.offer.slice(1) + ' for you.');
     lines.push('Would you be open to a 20-minute call in the next few weeks to see whether there is a fit?', '', 'Thank you,', '[your name]');
     return lines.join('\n');
@@ -230,7 +266,7 @@
 
   function render() {
     var c = current(), people = state.d.people;
-    var ranking = !!(c.need || c.method || c.q || c.offer);
+    var ranking = !!(c.need || c.method || c.q || c.offer || state.me);
     var scored = people.map(function (p) { return score(p, c); }).filter(Boolean);
     scored.sort(function (a, b) { return b.s - a.s || (b.mutual - a.mutual) || a.p.name.localeCompare(b.p.name); });
     var hits = ranking ? scored.filter(function (m) { return m.s > 0; }) : scored;
@@ -247,16 +283,24 @@
     hits.forEach(function (m) { box.appendChild(card(m, c)); });
     rest.forEach(function (m) { restBox.appendChild(card(m, c)); });
     var n = people.length;
-    el('count').textContent = !n ? '' : ranking
+    el('count').textContent = !n ? '' : state.me && !(c.need || c.method || c.q || c.offer)
+      ? hits.length + ' of ' + (n - 1) + ' people match your profile'
+      : ranking
       ? hits.length + ' of ' + n + ' people match what you need'
       : scored.length + ' of ' + n + ' people';
     el('others-box').hidden = !rest.length;
     el('others').textContent = (state.showRest ? 'Hide ' : 'Show ') + rest.length + ' other ' + (rest.length === 1 ? 'person' : 'people') + ' who fit your "who" choices';
     restBox.hidden = !rest.length || !state.showRest;
+    el('me-on').hidden = !state.me;
+    el('me-off').hidden = !!state.me;
+    if (state.me) el('me-name').textContent = state.me.name;
+    el('me-missing').hidden = !(state.meId && !state.me);
+    el('me-missing-id').textContent = state.meId;
     el('at-box').hidden = !state.at;
     el('at-name').textContent = state.at;
     var params = new URLSearchParams();
     if (state.at) params.set('at', state.at);
+    if (state.meId) params.set('me', state.meId);
     FIELDS.forEach(function (f) { if (c[f]) params.set(f, c[f]); });
     var qs = params.toString();
     history.replaceState(null, '', qs ? '?' + qs : location.pathname);
@@ -283,6 +327,17 @@
     var params = new URLSearchParams(location.search);
     FIELDS.forEach(function (f) { if (params.get(f)) el(f).value = params.get(f); });
     state.at = (params.get('at') || '').trim();
+    function setMe(id) {
+      state.meId = (id || '').trim().replace(/^@/, '').toLowerCase();
+      state.me = null;
+      d.people.forEach(function (p) { if (p.id.toLowerCase() === state.meId) state.me = p; });
+      state.showRest = false;
+      render();
+    }
+    el('me-form').addEventListener('submit', function (e) { e.preventDefault(); setMe(el('me').value); });
+    el('me-stop').addEventListener('click', function () { el('me').value = ''; setMe(''); });
+    if (params.get('me')) { el('me').value = params.get('me'); state.meId = params.get('me').trim().toLowerCase();
+      d.people.forEach(function (p) { if (p.id.toLowerCase() === state.meId) state.me = p; }); }
     el('at-clear').addEventListener('click', function () { state.at = ''; render(); });
     FIELDS.forEach(function (f) { el(f).addEventListener(f === 'q' ? 'input' : 'change', render); });
     el('others').addEventListener('click', function () { state.showRest = !state.showRest; render(); });

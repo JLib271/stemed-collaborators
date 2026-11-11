@@ -60,7 +60,9 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
         (folder / f"{username}.yml").write_text(text, encoding="utf-8")
         verb = "Updated" if previous else "Added"
         return True, username, (f"{verb} the profile for **{data['name']}** (`{username}`). It will appear on the site "
-                                "at the next build (within a few minutes). Once a year we'll send a message on STEMEd+ Commons "
+                                f"at the next build (within a few minutes). Then see who matches your profile: "
+                                f"https://jlib271.github.io/stemed-collaborators/?me={username} (bookmark it). "
+                                "Once a year we'll send a message on STEMEd+ Commons "
                                 "asking whether to keep it; reply KEEP to stay listed.")
     return False, "", "This issue is not a join, update, keep, or remove form, so nothing was changed."
 
