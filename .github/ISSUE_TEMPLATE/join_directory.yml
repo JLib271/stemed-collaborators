@@ -67,6 +67,7 @@ body:
   id: institution
   attributes:
     label: Institution or organization (optional)
+    description: Its full name, not an abbreviation, so people can find you from STEMEd+ Graduate Programs.
     placeholder: e.g. University of Texas Rio Grande Valley
 - type: checkboxes
   id: institution_types

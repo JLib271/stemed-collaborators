@@ -87,7 +87,7 @@ def join_form() -> dict:
             {"type": "dropdown", "id": "career_stage",
              "attributes": {"label": LABELS["career_stage"], "options": VOCAB["career_stages"]},
              "validations": {"required": True}},
-            _input("institution", False, placeholder="e.g. University of Texas Rio Grande Valley"),
+            _input("institution", False, description="Its full name, not an abbreviation, so people can find you from STEMEd+ Graduate Programs.", placeholder="e.g. University of Texas Rio Grande Valley"),
             _checkboxes("institution_types", VOCAB["institution_types"]),
             _checkboxes("disciplines", list(DISCIPLINES)),
             _checkboxes("methods", VOCAB["methods"]),
@@ -406,7 +406,7 @@ def website_form_spec() -> str:
     add(3, "commons_profile", "website address (URL)", True, "e.g. https://stemedplus.profile.hcommons.org/members/yourname/")
     add(4, "pronouns", "single line of text", False)
     add(5, "career_stage", "dropdown or radio buttons (choose one)", True, options=VOCAB["career_stages"])
-    add(6, "institution", "single line of text", False)
+    add(6, "institution", "single line of text", False, "Its full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.")
     add(7, "institution_types", "checkboxes (choose any)", False, options=VOCAB["institution_types"])
     add(8, "disciplines", "checkboxes (at least one)", True, options=list(DISCIPLINES))
     add(9, "methods", "checkboxes (at least one)", True, options=VOCAB["methods"])

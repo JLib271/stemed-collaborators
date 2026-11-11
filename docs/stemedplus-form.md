@@ -54,6 +54,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
 
 - Type: single line of text
 - Required: no
+- Help text: Its full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.
 
 ## 7. Institution type (optional, choose any)
 
