@@ -5,5 +5,6 @@
   "site_url": "https://jlib271.github.io/stemed-collaborators/",
   "commons_home": "https://stemedplus.hcommons.org/",
   "message_url_template": "https://stemedplus.org/members/me/messages/compose/?r={username}",
-  "contact_email_note": "No GitHub account? Email the maintainer (address in the README) and we will add you."
+  "contact_email_note": "No GitHub account? Join with the form on STEMEd+ Commons instead.",
+  "join_form_url": ""
 }

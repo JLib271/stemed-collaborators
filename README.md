@@ -39,14 +39,24 @@ Create these labels once (Issues → Labels): `approved`, `directory: join`, `di
 
 ## Join without a GitHub account
 
-Email the maintainer, Julie Libarkin, at the address on her STEMEd+ Commons profile with the answers to the
-form. She will confirm with you on STEMEd+ Commons and add you.
+People without a GitHub account use the form on stemedplus.org, which emails each submission to the
+maintainer. To list them:
+
+1. Open a new issue with the **Add someone from the STEMEd+ form (maintainers)** template.
+2. Paste the whole notification email, add the person's name to the title, and submit.
+3. Confirm with them on STEMEd+ Commons and add the **approved** label, as for any join form.
+
+The intake reads the email by its field names, so the stemedplus.org form must use the names and choices in
+[docs/stemedplus-form.md](docs/stemedplus-form.md) (generated from `config/vocab.json`). Once the form is live,
+put its address in `config/site.json` as `join_form_url`: "Join the directory" then opens it, with
+"Join with GitHub" beside it.
 
 ## Files
 
 - `profiles/*.yml`: one file per person, named by Commons username.
 - `config/vocab.json`: career stages, institution types, methods, and kinds of collaboration. After changing it,
-  run `python -m stemed_collaborators.forms --write` to regenerate the issue forms (a test checks they match).
+  run `python -m stemed_collaborators.forms --write` to regenerate the issue forms and
+  `docs/stemedplus-form.md` (a test checks they match), and update the stemedplus.org form to match.
 - Disciplines come from the list shared across STEMEd+ Commons, kept in
   [HuMeta](https://github.com/JLib271/HuMeta) (`standard/humeta/stemedplus_disciplines.json`).
 - `config/site.json`: `message_url_template` is the "compose a message" link on STEMEd+ Commons, with

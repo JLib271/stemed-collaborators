@@ -68,6 +68,45 @@ class FormsTest(unittest.TestCase):
             on_disk = (root / name).read_text(encoding="utf-8").split("\n", 1)[1]
             self.assertEqual(on_disk, text, f"{name} is out of date: run python -m stemed_collaborators.forms --write")
 
+    def test_website_spec_up_to_date(self):
+        self.assertEqual(forms.SPEC.read_text(encoding="utf-8"), forms.website_form_spec(),
+                         "run python -m stemed_collaborators.forms --write")
+
+    def test_pasted_website_email(self):
+        email = "\n".join([
+            "New submission from STEMEd+ Collaborators", "",
+            "Your name as you want it shown: Dana Pastewell",
+            "Your STEMEd+ Commons username: dpaste",
+            "Link to your STEMEd+ Commons profile",
+            "https://stemedplus.profile.hcommons.org/members/dpaste/",
+            "Pronouns: they/them",
+            "Career stage: Postdoc",
+            "Institution type",
+            "Minority-serving institution (HSI, HBCU, TCU, AANAPISI, or other MSI)",
+            "Community or technical college",
+            "Disciplines: Physics, Learning Science",
+            "Methods you work with: Mixed methods, Design-based research",
+            "Topics you work on: lab courses, belonging",
+            "What you can offer others: Methods partner",
+            "What you are looking for:",
+            "About: I study",
+            "two-year physics labs.",
+            "Consent: " + ", ".join(forms.CONSENT),
+        ])
+        body = f"### {forms.PASTE_LABEL}\n\n```text\n{email}\n```"
+        self.assertEqual(forms.form_kind(body, []), "join")
+        self.assertEqual(forms.username_from_issue(body), "dpaste")
+        username, data, problems = forms.profile_from_issue(body, TODAY)
+        self.assertEqual(problems, [])
+        self.assertEqual(data["institution_types"], profiles.VOCAB["institution_types"][0:1] + ["Community or technical college"])
+        self.assertEqual(data["disciplines"], ["Learning Science", "Physics"] if forms.DISCIPLINES.index("Learning Science") < forms.DISCIPLINES.index("Physics") else ["Physics", "Learning Science"])
+        self.assertEqual(data["methods"], ["Mixed methods", "Design-based research"])
+        self.assertEqual(data["topics"], ["lab courses", "belonging"])
+        self.assertNotIn("seeking", data)
+        self.assertEqual(data["about"], "I study two-year physics labs.")
+        _, _, problems = forms.profile_from_paste(email.replace(forms.CONSENT[2], ""), TODAY)
+        self.assertTrue(any("consent" in p for p in problems))
+
     def test_option_labels_have_no_markdown_trouble(self):
         for opts in (profiles.VOCAB["methods"], profiles.VOCAB["collaboration"], profiles.VOCAB["institution_types"]):
             for o in opts:

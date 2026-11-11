@@ -108,7 +108,7 @@
   <section class="how" id="how" aria-labelledby="how-h">
     <h2 id="how-h">How it works</h2>
     <ol>
-      <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
+      <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form, on STEMEd+ Commons or on GitHub. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
       <li><strong>Search by what you need and what you offer.</strong> "I'm looking for" and "I can offer" use the same list. Each card says why the person matches, and people who offer what you need and are looking for what you offer are marked as a two-way match.</li>
       <li><strong>Reach out on STEMEd+ Commons.</strong> "Message on Commons" opens a new private message to the person on STEMEd+ Commons (sign in first if you are asked). "Copy a message starter" puts a short, editable introduction on your clipboard.</li>
       <li><strong>Profiles stay current.</strong> A profile is shown for one year after it was last confirmed. To stay listed, send the "Update my profile" form, even with no changes.</li>
@@ -255,8 +255,14 @@
   function init(d) {
     state.d = d;
     el('tagline').textContent = d.site.tagline;
-    el('join-btn').href = issueUrl('join_directory.yml', 'Join: ');
-    el('update-btn').href = issueUrl('join_directory.yml', 'Update: ');
+    el('join-btn').href = d.site.join_form_url || issueUrl('join_directory.yml', 'Join: ');
+    if (d.site.join_form_url) {
+      var gh = link(issueUrl('join_directory.yml', 'Join: '), 'Join with GitHub', 'btn secondary');
+      el('join-btn').parentNode.insertBefore(gh, el('join-btn').nextSibling);
+    } else {
+      el('nogithub').hidden = true;
+    }
+    el('update-btn').href = d.site.join_form_url || issueUrl('join_directory.yml', 'Update: ');
     el('remove-btn').href = issueUrl('remove_profile.yml', 'Remove: ');
     el('repo-link').href = d.site.repo_url;
     el('nogithub').textContent = d.site.contact_email_note;
