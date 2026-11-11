@@ -210,7 +210,7 @@ def run(today: dt.date, commons: Optional[Commons], folder: Path = profiles.PROF
         else:
             why = "could not find them on Commons" if commons else "messages are not set up"
             lines.append(f"- Due: {'last' if step == 'final' else 'first'} reminder for `{slug}` ({data['name']}), "
-                         f"{why}. [Message on Commons]({COMPOSE.format(username=slug)}); when they reply, "
+                         f"{why}. [Message on STEMEd+ Commons]({COMPOSE.format(username=slug)}); when they reply, "
                          f"use the [Keep my profile]({REPO}/issues/new?template=keep_profile.yml) form for them.")
     return lines
 

@@ -20,8 +20,8 @@ STEMEd+ Collaborators is part of [STEMEd+ Commons](https://stemedplus.hcommons.o
 - **Search by need.** The page ranks people by what the searcher needs (kind of collaboration, method, topic)
   and narrows by who (discipline, career stage, institution type). Each card says why the person matches. If the
   searcher also says what they can offer, people looking for that are marked as a two-way match.
-- **Contact through Commons.** "Message on Commons" opens the person's Commons profile, where signed-in members
-  can send a private message. "Copy a message starter" copies a short, editable introduction.
+- **Contact through Commons.** "Message on STEMEd+ Commons" opens a new private message to the person (sign in
+  first if asked). "Copy a message starter" copies a short, editable introduction.
 - **Kept current.** Every day, [the yearly check](.github/workflows/reminders.yml) messages people on STEMEd+
   Commons 12 months after they last confirmed ("reply KEEP to stay listed"), sends a last reminder at 14 months,
   and removes the profile at 15 months. A KEEP reply, the [Keep my profile](https://github.com/JLib271/stemed-collaborators/issues/new?template=keep_profile.yml)
@@ -80,7 +80,7 @@ put its address in `config/site.json` as `join_form_url`: "Join the directory" t
 - `config/site.json`: `message_url_template` is the "compose a message" link on STEMEd+ Commons, with
   `{username}` where the person's username goes. `members/me/` stands for whoever is signed in, so the link
   works for any sender (people who are not signed in are asked to sign in first). Empty it to make
-  "Message on Commons" open the person's profile instead.
+  "Message on STEMEd+ Commons" open the person's profile instead.
 
 ## Run it locally
 
