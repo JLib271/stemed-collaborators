@@ -17,6 +17,7 @@
   header p { margin: 0; color: var(--muted); max-width: 72ch; }
   .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .btn { display: inline-block; padding: 8px 14px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+  header p.grad { margin-top: 12px; font-size: .95rem; }
   .btn.secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
   a { color: var(--accent); }
   .join { background: var(--soft); border: 1px solid var(--softline); border-radius: 8px; padding: 10px 14px; font-size: .93rem; margin: 14px 0 0; }
@@ -32,6 +33,7 @@
   input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
   .bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin: 10px 0 12px; }
   #count { color: var(--muted); font-size: .9rem; margin: 0; }
+  .at { margin: 10px 0 0; background: var(--soft); border: 1px solid var(--softline); border-radius: 8px; padding: 8px 12px; font-size: .92rem; }
   button.link { font: inherit; font-size: .9rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
   ol.list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
   ol.list > li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; }
@@ -77,6 +79,7 @@
       <a class="btn secondary" id="remove-btn" href="#">Remove my profile</a>
       <a class="btn secondary" href="#how">How it works</a>
     </div>
+    <p class="grad">Looking for a graduate program? See <a href="https://jlib271.github.io/stem-ed-research-programs/">Graduate Programs</a>.</p>
   </div>
 </header>
 <div class="wrap"><div class="join" role="note"><p><strong>You contact people through STEMEd+ Commons</strong>, so their email addresses are never shown here. Join STEMEd+ Commons free and sign in before you send a message. You can sign in with GitHub, Google, ORCID, or your institution.</p><p><a href="https://stemedplus.hcommons.org/" target="_blank" rel="noopener noreferrer">Visit STEMEd+ Commons<span class="vh"> (opens in a new tab)</span></a> · <a href="https://support.hcommons.org/profiles/login-and-registration/" target="_blank" rel="noopener noreferrer">How to join<span class="vh"> (opens in a new tab)</span></a></p></div></div>
@@ -97,6 +100,7 @@
       <div><label for="itype">Institution type</label><select id="itype"><option value="">Any institution type</option></select></div>
     </div>
   </section>
+  <p class="at" id="at-box" hidden>Showing people at <strong id="at-name"></strong> · <button type="button" class="link" id="at-clear">Show everyone</button></p>
   <div class="bar">
     <p id="count" aria-live="polite"></p>
     <span><button type="button" class="link" id="share">Copy link to this search</button> · <button type="button" class="link" id="reset">Clear</button></span>
@@ -126,7 +130,7 @@
 <script>
 (function () {
   'use strict';
-  var state = { d: null, showRest: false };
+  var state = { d: null, showRest: false, at: '' };
   function el(id) { return document.getElementById(id); }
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function ext(a) { a.target = '_blank'; a.rel = 'noopener noreferrer'; a.appendChild(node('span', 'vh', ' (opens in a new tab)')); return a; }
@@ -151,6 +155,7 @@
 
   // Score one person against the search. "Who" filters exclude; "what you need" ranks.
   function score(p, c) {
+    if (state.at && norm(p.institution).replace(/\s+/g, ' ').indexOf(norm(state.at).replace(/\s+/g, ' ')) === -1) return null;
     if (c.discipline && p.disciplines.indexOf(c.discipline) === -1) return null;
     if (c.stage && p.career_stage !== c.stage) return null;
     if (c.itype && p.institution_types.indexOf(c.itype) === -1) return null;
@@ -234,6 +239,8 @@
     box.textContent = ''; restBox.textContent = '';
     if (!people.length) {
       box.appendChild(node('li', 'empty', 'No one is listed yet. Be the first: use "Join the directory" above.'));
+    } else if (!hits.length && state.at && !scored.length) {
+      box.appendChild(node('li', 'empty', 'No one from ' + state.at + ' has joined yet. Know someone there? Send them this directory.'));
     } else if (!hits.length) {
       box.appendChild(node('li', 'empty', ranking ? 'No one matches what you need yet. Try fewer choices, or look at the other people below.' : 'No one matches these choices. Try fewer.'));
     }
@@ -246,7 +253,10 @@
     el('others-box').hidden = !rest.length;
     el('others').textContent = (state.showRest ? 'Hide ' : 'Show ') + rest.length + ' other ' + (rest.length === 1 ? 'person' : 'people') + ' who fit your "who" choices';
     restBox.hidden = !rest.length || !state.showRest;
+    el('at-box').hidden = !state.at;
+    el('at-name').textContent = state.at;
     var params = new URLSearchParams();
+    if (state.at) params.set('at', state.at);
     FIELDS.forEach(function (f) { if (c[f]) params.set(f, c[f]); });
     var qs = params.toString();
     history.replaceState(null, '', qs ? '?' + qs : location.pathname);
@@ -272,9 +282,11 @@
     fill('stage', d.vocab.career_stages); fill('itype', d.vocab.institution_types);
     var params = new URLSearchParams(location.search);
     FIELDS.forEach(function (f) { if (params.get(f)) el(f).value = params.get(f); });
+    state.at = (params.get('at') || '').trim();
+    el('at-clear').addEventListener('click', function () { state.at = ''; render(); });
     FIELDS.forEach(function (f) { el(f).addEventListener(f === 'q' ? 'input' : 'change', render); });
     el('others').addEventListener('click', function () { state.showRest = !state.showRest; render(); });
-    el('reset').addEventListener('click', function () { FIELDS.forEach(function (f) { el(f).value = ''; }); state.showRest = false; render(); });
+    el('reset').addEventListener('click', function () { FIELDS.forEach(function (f) { el(f).value = ''; }); state.showRest = false; state.at = ''; render(); });
     el('share').addEventListener('click', function () {
       var b = el('share');
       (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(
