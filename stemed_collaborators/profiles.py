@@ -2,7 +2,7 @@
 
 Every profile is a person who asked to be listed (through the "Join the directory" form)
 and was approved by a maintainer. A profile that has not been confirmed for
-CONFIRM_DAYS is left off the site until the person confirms it again.
+CONFIRM_DAYS is left off the site, and the daily reminder job removes it (see reminders.py).
 """
 import datetime as dt
 import json
@@ -17,8 +17,10 @@ from .disciplines import DISCIPLINES
 ROOT = Path(__file__).resolve().parent.parent
 PROFILES = ROOT / "profiles"
 VOCAB = json.loads((ROOT / "config" / "vocab.json").read_text(encoding="utf-8"))
-CONFIRM_DAYS = 365
-REMIND_DAYS = 30          # flag profiles this close to expiring
+# The yearly check: a Commons message at 12 months, a last reminder at 14, removal at 15.
+REMIND_DAYS = 365
+FINAL_DAYS = 425
+CONFIRM_DAYS = 455        # shown this long after the last confirmation, then removed
 ABOUT_MAX = 400
 USERNAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,59}$")
 COMMONS_HOSTS = ("hcommons.org", "stemedplus.org")
@@ -33,7 +35,7 @@ LISTS = {
     "seeking": VOCAB["collaboration"],
     "institution_types": VOCAB["institution_types"],
 }
-OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed", "seeking")
+OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed", "seeking", "reminded")
 
 
 def is_commons_url(url: str) -> bool:
@@ -77,6 +79,9 @@ def check(data: dict, slug: str) -> List[str]:
         out.append(f"{slug}: about is longer than {ABOUT_MAX} characters")
     if data.get("orcid") and not ORCID.match(str(data["orcid"])):
         out.append(f"{slug}: orcid should look like 0000-0002-1825-0097")
+    rem = data.get("reminded")
+    if rem is not None and (not isinstance(rem, list) or not all(isinstance(d, dt.date) for d in rem)):
+        out.append(f"{slug}: reminded must be a list of dates")
     for key in ("confirmed", "listed"):
         if data.get(key) is not None and not isinstance(data[key], dt.date):
             out.append(f"{slug}: {key} must be a date (YYYY-MM-DD)")
@@ -122,5 +127,5 @@ def to_record(slug: str, data: dict, today: dt.date) -> dict:
         "confirmed": confirmed.isoformat(),
         "expires": expires.isoformat(),
         "active": today <= expires,
-        "expiring_soon": today <= expires <= today + dt.timedelta(days=REMIND_DAYS),
+        "expiring_soon": today >= confirmed + dt.timedelta(days=REMIND_DAYS) and today <= expires,
     }

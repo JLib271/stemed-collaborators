@@ -181,3 +181,90 @@ class IntakeTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FakeCommons:
+    """Stands in for the STEMEd+ Commons API."""
+
+    def __init__(self, ids, keeps=None):
+        self.ids, self.keeps, self.sent = ids, keeps or {}, []
+
+    def user_id(self, username):
+        return self.ids.get(username)
+
+    def send(self, username, subject, message):
+        if username not in self.ids:
+            return False
+        self.sent.append((username, subject))
+        return True
+
+    def keep_replies(self, since):
+        return {uid: d for uid, d in self.keeps.items() if d >= since}
+
+
+class RemindersTest(unittest.TestCase):
+    def setUp(self):
+        import shutil
+        self.tmp = tempfile.TemporaryDirectory()
+        self.folder = Path(self.tmp.name)
+        for f in FIX.glob("*.yml"):
+            shutil.copy(f, self.folder)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def load(self, slug):
+        return yaml.safe_load((self.folder / f"{slug}.yml").read_text())
+
+    def test_schedule(self):
+        from stemed_collaborators import reminders
+        ana_confirmed = self.load("test-ana")["confirmed"]
+        fake = FakeCommons({"test-ana": 1, "test-ben": 2, "test-old": 3})
+        day = lambda n: ana_confirmed + dt.timedelta(days=n)  # noqa: E731
+        reminders.run(day(364), fake, self.folder)
+        self.assertNotIn("test-ana", [u for u, _ in fake.sent])
+        reminders.run(day(365), fake, self.folder)
+        self.assertIn(("test-ana", "Keep your STEMEd+ Collaborators profile?"), fake.sent)
+        self.assertEqual(self.load("test-ana")["reminded"], [day(365)])
+        n = len(fake.sent)
+        reminders.run(day(366), fake, self.folder)            # no second first-reminder
+        self.assertEqual([u for u, _ in fake.sent[n:]].count("test-ana"), 0)
+        reminders.run(day(425), fake, self.folder)
+        self.assertEqual(fake.sent[-1][1] if fake.sent[-1][0] == "test-ana" else
+                         [s for u, s in fake.sent if u == "test-ana"][-1], "Last reminder: your STEMEd+ Collaborators profile")
+        reminders.run(day(455), fake, self.folder)
+        self.assertFalse((self.folder / "test-ana.yml").exists())
+        self.assertIn(("test-ana", "Your STEMEd+ Collaborators profile was removed"), fake.sent)
+
+    def test_keep_reply_renews(self):
+        from stemed_collaborators import reminders
+        confirmed = self.load("test-ana")["confirmed"]
+        day = lambda n: confirmed + dt.timedelta(days=n)  # noqa: E731
+        fake = FakeCommons({"test-ana": 1})
+        reminders.run(day(365), fake, self.folder)
+        fake.keeps = {1: day(370)}
+        lines = reminders.run(day(371), fake, self.folder)
+        data = self.load("test-ana")
+        self.assertEqual(data["confirmed"], day(371))
+        self.assertNotIn("reminded", data)
+        self.assertTrue(any("Renewed `test-ana`" in l for l in lines))
+
+    def test_without_commons_lists_people_and_still_removes(self):
+        from stemed_collaborators import reminders
+        old = self.load("test-old")["confirmed"]
+        lines = reminders.run(old + dt.timedelta(days=455), None, self.folder)
+        self.assertFalse((self.folder / "test-old.yml").exists())
+        self.assertTrue(any("Removed `test-old`" in l and "members/me/messages/compose/?r=test-old" in l for l in lines))
+        lines = reminders.run(self.load("test-ana")["confirmed"] + dt.timedelta(days=365), None, self.folder)
+        self.assertTrue(any("first reminder for `test-ana`" in l and "messages are not set up" in l for l in lines))
+
+    def test_keep_form(self):
+        body = f"### {forms.LABELS['username']}\n\ntest-ben\n\n### {forms.KEEP_NOTE}\n\n_No response_"
+        self.assertEqual(forms.form_kind(body, []), "keep")
+        data = self.load("test-ben"); data["reminded"] = [TODAY]
+        (self.folder / "test-ben.yml").write_text(yaml.safe_dump(data))
+        changed, _, reply = intake.handle(body, ["directory: keep"], TODAY, self.folder)
+        self.assertTrue(changed, reply)
+        data = self.load("test-ben")
+        self.assertEqual(data["confirmed"], TODAY)
+        self.assertNotIn("reminded", data)

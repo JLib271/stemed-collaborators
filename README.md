@@ -21,8 +21,11 @@ STEMEd+ Collaborators is part of [STEMEd+ Commons](https://stemedplus.hcommons.o
   searcher also says what they can offer, people looking for that are marked as a two-way match.
 - **Contact through Commons.** "Message on Commons" opens the person's Commons profile, where signed-in members
   can send a private message. "Copy a message starter" copies a short, editable introduction.
-- **Kept current.** A profile is shown for one year after it was last confirmed. Sending the form again renews it.
-  Lapsed profiles stay in `profiles/` but are left off the site; only their count is published.
+- **Kept current.** Every day, [the yearly check](.github/workflows/reminders.yml) messages people on STEMEd+
+  Commons 12 months after they last confirmed ("reply KEEP to stay listed"), sends a last reminder at 14 months,
+  and removes the profile at 15 months. A KEEP reply, the [Keep my profile](https://github.com/JLib271/stemed-collaborators/issues/new?template=keep_profile.yml)
+  form, or sending the join form again renews it for a year. Anything that needs a person is posted on the
+  "Yearly profile check" issue.
 
 ## For maintainers: approving a form
 
@@ -36,6 +39,20 @@ STEMEd+ Collaborators is part of [STEMEd+ Commons](https://stemedplus.hcommons.o
 
 Create these labels once (Issues → Labels): `approved`, `directory: join`, `directory: remove`,
 `directory: report`. The intake also recognizes the forms without their labels.
+
+## Setting up the yearly messages
+
+Messages are sent, and KEEP replies read, through the STEMEd+ Commons API, signed in as one Commons account.
+A separate account (for example "STEMEd+ Collaborators") is best, so replies don't land in your own inbox.
+
+1. Sign in to stemedplus.org as that account, go to `wp-admin/profile.php`, and under **Application
+   Passwords** create one named "stemed-collaborators".
+2. In this repository, add two secrets (Settings -> Secrets and variables -> Actions):
+   `COMMONS_USER` (the account's username) and `COMMONS_APP_PASSWORD` (the password from step 1).
+3. Run **Yearly profile check** once from the Actions tab to test it.
+
+Until the secrets are set, nothing is sent: the "Yearly profile check" issue lists who is due, with a link that
+starts each message, and removals still happen at 15 months.
 
 ## Join without a GitHub account
 

@@ -34,6 +34,18 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
         path.unlink()
         return True, username, (f"Removed the profile for `{username}`. It will leave the site at the next build "
                                 "(within a few minutes).")
+    if kind == "keep":
+        username = forms.username_from_issue(body)
+        path = folder / f"{username}.yml"
+        if not username or not profiles.USERNAME.match(username) or not path.exists():
+            return False, username, (f"No profile was found for `{username or '(blank)'}`. If it was removed, "
+                                     "please send the join form again.")
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        data["confirmed"] = today
+        data.pop("reminded", None)
+        path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=100), encoding="utf-8")
+        return True, username, (f"Thanks! The profile for `{username}` stays listed. We'll check in again around "
+                                f"{(today + dt.timedelta(days=profiles.REMIND_DAYS)).isoformat()}.")
     if kind == "join":
         username = forms.username_from_issue(body)
         previous = None
@@ -48,10 +60,9 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
         (folder / f"{username}.yml").write_text(text, encoding="utf-8")
         verb = "Updated" if previous else "Added"
         return True, username, (f"{verb} the profile for **{data['name']}** (`{username}`). It will appear on the site "
-                                f"at the next build (within a few minutes) and stays listed until "
-                                f"{(today + dt.timedelta(days=profiles.CONFIRM_DAYS)).isoformat()}. "
-                                "Send the form again before then to stay listed.")
-    return False, "", "This issue is not a join, update, or remove form, so nothing was changed."
+                                "at the next build (within a few minutes). Once a year we'll send a message on STEMEd+ Commons "
+                                "asking whether to keep it; reply KEEP to stay listed.")
+    return False, "", "This issue is not a join, update, keep, or remove form, so nothing was changed."
 
 
 def main(argv=None) -> int:

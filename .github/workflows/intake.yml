@@ -7,7 +7,7 @@ name: Add, update, or remove a profile
 
 on:
   issues:
-    types: [labeled]
+    types: [labeled, opened]
 
 permissions:
   contents: write
@@ -20,7 +20,11 @@ concurrency:
 
 jobs:
   intake:
-    if: github.event.label.name == 'approved'
+    # Join, update, and remove forms wait for a maintainer's "approved" label. "Keep my profile" only
+    # renews an existing profile for a year, so it runs as soon as it is opened.
+    if: >-
+      (github.event.action == 'labeled' && github.event.label.name == 'approved') ||
+      (github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'directory: keep'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -57,5 +61,5 @@ jobs:
             gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY"
             gh workflow run update.yml --repo "$GITHUB_REPOSITORY" --ref main
           else
-            gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --remove-label approved
+            gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --remove-label approved || true
           fi

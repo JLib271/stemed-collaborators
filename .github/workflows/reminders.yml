@@ -1,0 +1,63 @@
+name: Yearly profile check
+
+# Every day: renew profiles whose owners replied KEEP on STEMEd+ Commons, send the 12-month and
+# 14-month reminders, and remove profiles not confirmed for 15 months (see stemed_collaborators/reminders.py).
+#
+# Messages are sent from the STEMEd+ Commons account in two repository secrets (Settings -> Secrets and
+# variables -> Actions): COMMONS_USER (its username) and COMMONS_APP_PASSWORD (an application password made
+# on that account's profile page in stemedplus.org/wp-admin). Without them nothing is sent, and the
+# "Yearly profile check" issue lists who to message by hand.
+
+on:
+  schedule:
+    - cron: "41 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: intake
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Renew, remind, and remove
+        env:
+          COMMONS_USER: ${{ secrets.COMMONS_USER }}
+          COMMONS_APP_PASSWORD: ${{ secrets.COMMONS_APP_PASSWORD }}
+        run: python -m stemed_collaborators.reminders --report "$RUNNER_TEMP/report.md"
+      - name: Save changes and republish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -n "$(git status --porcelain profiles)" ]; then
+            python -m stemed_collaborators --validate
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A profiles
+            git commit -m "Yearly profile check $(date -u +%F)"
+            git push
+            gh workflow run update.yml --repo "$GITHUB_REPOSITORY" --ref main
+          fi
+      - name: Post the report on the "Yearly profile check" issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -q "Nothing due today." "$RUNNER_TEMP/report.md"; then exit 0; fi
+          { echo "Report for $(date -u +%F):"; echo; cat "$RUNNER_TEMP/report.md"; } > "$RUNNER_TEMP/comment.md"
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search 'in:title "Yearly profile check"' --json number --jq '.[0].number')
+          if [ -z "$n" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "Yearly profile check" --body-file "$RUNNER_TEMP/comment.md"
+          else
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/comment.md"
+          fi

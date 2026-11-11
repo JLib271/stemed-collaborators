@@ -142,6 +142,26 @@ def report_form() -> dict:
     }
 
 
+KEEP_NOTE = "Anything else? (optional)"
+
+
+def keep_form() -> dict:
+    return {
+        "name": "Keep my profile",
+        "description": "Stay listed in STEMEd+ Collaborators for another year, with no changes.",
+        "title": "Keep: ",
+        "labels": ["directory: keep"],
+        "body": [
+            {"type": "markdown", "attributes": {"value": (
+                "Profiles are checked once a year. Send this to stay listed for another year with no changes. "
+                "(You can also just reply KEEP to the reminder message on STEMEd+ Commons.) To change your "
+                "answers, send the join form again instead.")}},
+            _input("username", True, placeholder="e.g. mlopez"),
+            {"type": "textarea", "id": "note", "attributes": {"label": KEEP_NOTE}},
+        ],
+    }
+
+
 def paste_form() -> dict:
     return {
         "name": "Add someone from the STEMEd+ form (maintainers)",
@@ -179,6 +199,7 @@ def render_forms() -> Dict[str, str]:
         "remove_profile.yml": dump(remove_form()),
         "report_profile.yml": dump(report_form()),
         "add_from_stemedplus_form.yml": dump(paste_form()),
+        "keep_profile.yml": dump(keep_form()),
         "config.yml": dump(config_form()),
     }
 
@@ -333,11 +354,15 @@ def form_kind(body: str, labels) -> str:
         return "remove"
     if "directory: join" in labels:
         return "join"
+    if "directory: keep" in labels:
+        return "keep"
     s = sections(body)
     if LABELS["consent"] in s or PASTE_LABEL in s:
         return "join"
     if REMOVE_NOTE in s and LABELS["username"] in s:
         return "remove"
+    if KEEP_NOTE in s and LABELS["username"] in s:
+        return "keep"
     return ""
 
 
