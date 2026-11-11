@@ -17,6 +17,9 @@
   header p { margin: 0; color: var(--muted); max-width: 72ch; }
   .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .btn { display: inline-block; padding: 8px 14px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+  /* Joining is rust, as on stemedplus.org; finding things stays green. */
+  .btn.join-cta { background: #993319; color: #fff; border: 1px solid #993319; }
+  .btn.secondary.join-cta { background: #fff; color: #993319; border: 1px solid #993319; }
   header p.grad { margin-top: 12px; font-size: .95rem; }
   .btn.secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
   a { color: var(--accent); }
@@ -79,7 +82,7 @@
     <h1 id="title">STEMEd+ Collaborators</h1>
     <p id="tagline"></p>
     <div class="links">
-      <a class="btn" id="join-btn" href="#">Join the directory</a>
+      <a class="btn join-cta" id="join-btn" href="#">Join the directory</a>
       <a class="btn secondary" id="update-btn" href="#">Update my profile</a>
       <a class="btn secondary" id="remove-btn" href="#">Remove my profile</a>
       <a class="btn secondary" href="#how">How it works</a>
@@ -311,7 +314,7 @@
     el('tagline').textContent = d.site.tagline;
     el('join-btn').href = d.site.join_form_url || issueUrl('join_directory.yml', 'Join: ');
     if (d.site.join_form_url) {
-      var gh = link(issueUrl('join_directory.yml', 'Join: '), 'Join with GitHub', 'btn secondary');
+      var gh = link(issueUrl('join_directory.yml', 'Join: '), 'Join with GitHub', 'btn secondary join-cta');
       el('join-btn').parentNode.insertBefore(gh, el('join-btn').nextSibling);
     } else {
       el('nogithub').hidden = true;
