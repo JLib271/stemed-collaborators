@@ -82,6 +82,12 @@ put its address in `config/site.json` as `join_form_url`: "Join the directory" t
   `docs/stemedplus-form.md` (a test checks they match), and update the stemedplus.org form to match.
 - Disciplines come from the list shared across STEMEd+ Commons, kept in
   [HuMeta](https://github.com/JLib271/HuMeta) (`standard/humeta/stemedplus_disciplines.json`).
+- **Teaching mentors and peer observers.** "Teaching mentor or peer observer" is one of the collaboration
+  choices, so people can offer it or look for it. The header's **Find a teaching mentor** button opens the page
+  with that need chosen (`?need=Teaching+mentor+or+peer+observer`). `teaching_circles` in `config/site.json`
+  lists teaching-circle groups on STEMEd+ Commons to link beside it; while it is empty, the page links to the
+  STEMEd+ Groups directory (`groups_url`). Draft group descriptions are in
+  [docs/teaching-circles.md](docs/teaching-circles.md).
 - `config/site.json`: `message_url_template` is the "compose a message" link on STEMEd+ Commons, with
   `{username}` where the person's username goes. `members/me/` stands for whoever is signed in, so the link
   works for any sender (people who are not signed in are asked to sign in first). Empty it to make

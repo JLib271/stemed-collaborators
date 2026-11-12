@@ -6,5 +6,8 @@
   "commons_home": "https://stemedplus.hcommons.org/",
   "message_url_template": "https://stemedplus.org/members/me/messages/compose/?r={username}",
   "contact_email_note": "No GitHub account? Join with the form on STEMEd+ Commons instead.",
-  "join_form_url": ""
+  "join_form_url": "",
+  "groups_url": "https://stemedplus.org/stemed-groups/",
+  "teaching_circles": [],
+  "_teaching_circles": "Teaching-circle groups on STEMEd+ Commons, shown beside 'Find a teaching mentor'. Add each as {\"name\": ..., \"url\": ...} once the group exists; while the list is empty, the page links to the STEMEd+ Groups directory."
 }

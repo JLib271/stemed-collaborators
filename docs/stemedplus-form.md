@@ -133,6 +133,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Writing or accountability partner
     - Mentor
     - Mentee
+    - Teaching mentor or peer observer
     - Conference session partner
     - Research-practice partner
     - Researcher for a classroom or program
@@ -156,6 +157,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Writing or accountability partner
     - Mentor
     - Mentee
+    - Teaching mentor or peer observer
     - Conference session partner
     - Research-practice partner
     - Researcher for a classroom or program

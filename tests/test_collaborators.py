@@ -335,3 +335,11 @@ class BackfillTest(unittest.TestCase):
             self.assertEqual(commons.backfill_photos(tmp, lookup), ["test-ana"])
             self.assertEqual(yaml.safe_load((Path(tmp) / "test-ana.yml").read_text())["photo"], photo)
             self.assertEqual(commons.backfill_photos(tmp, lookup), [])
+
+
+class TeachingMentorTests(unittest.TestCase):
+    def test_teaching_mentor_is_an_offer_and_seek_option(self):
+        self.assertIn("Teaching mentor or peer observer", profiles.VOCAB["collaboration"])
+        page = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("?need=Teaching+mentor+or+peer+observer", page)
+        self.assertIn("teaching_circles", page)

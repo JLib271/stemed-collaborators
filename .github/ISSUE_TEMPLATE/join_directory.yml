@@ -146,6 +146,7 @@ body:
     - label: Writing or accountability partner
     - label: Mentor
     - label: Mentee
+    - label: Teaching mentor or peer observer
     - label: Conference session partner
     - label: Research-practice partner
     - label: Researcher for a classroom or program
@@ -167,6 +168,7 @@ body:
     - label: Writing or accountability partner
     - label: Mentor
     - label: Mentee
+    - label: Teaching mentor or peer observer
     - label: Conference session partner
     - label: Research-practice partner
     - label: Researcher for a classroom or program

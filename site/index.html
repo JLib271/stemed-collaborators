@@ -25,6 +25,8 @@
   a { color: var(--accent); }
   .join { background: var(--soft); border: 1px solid var(--softline); border-radius: 8px; padding: 10px 14px; font-size: .93rem; margin: 14px 0 0; }
   .join p { margin: 4px 0; }
+  .circles { background: #fff; border: 1px solid #dde2ea; border-left: 4px solid #1d5b31; border-radius: 8px; padding: 10px 14px; margin: 14px 0 0; font-size: .93rem; }
+  .circles p { margin: 0; }
   .finder { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 20px 0 8px; }
   .finder h2 { font-size: 1.1rem; margin: 0 0 4px; } .finder .hint { color: var(--muted); font-size: .88rem; margin: 0 0 12px; }
   .mine { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 14px; }
@@ -87,6 +89,7 @@
       <a class="btn join-cta" id="join-btn" href="#">Join the directory</a>
       <a class="btn secondary" id="update-btn" href="#">Update my profile</a>
       <a class="btn secondary" id="remove-btn" href="#">Remove my profile</a>
+      <a class="btn secondary" href="?need=Teaching+mentor+or+peer+observer">Find a teaching mentor</a>
       <a class="btn secondary" href="#how">How it works</a>
     </div>
     <p class="grad">Looking for a graduate program? See <a href="https://jlib271.github.io/stem-ed-research-programs/">Graduate Programs</a>.</p>
@@ -94,6 +97,7 @@
 </header>
 <div class="wrap"><div class="join" role="note"><p><strong>You contact people through STEMEd+ Commons</strong>, so their email addresses are never shown here. Join STEMEd+ Commons free and sign in before you send a message. You can sign in with GitHub, Google, ORCID, or your institution.</p><p><a href="https://stemedplus.hcommons.org/" target="_blank" rel="noopener noreferrer">Visit STEMEd+ Commons<span class="vh"> (opens in a new tab)</span></a> · <a href="https://support.hcommons.org/profiles/login-and-registration/" target="_blank" rel="noopener noreferrer">How to join<span class="vh"> (opens in a new tab)</span></a></p></div></div>
 <main class="wrap">
+  <div class="circles" id="circles" role="note"><p><strong>Teaching mentors and peer observers.</strong> Choose <em>Teaching mentor or peer observer</em> under “I'm looking for” to find someone to talk through a course with, or to visit your class and give friendly, ungraded feedback. Offer it in your own profile if you would do the same for someone else. For a standing group, join a <span id="circle-links">teaching circle on <a href="https://stemedplus.org/stemed-groups/">STEMEd+ Groups</a></span>.</p></div>
   <section class="finder" role="search" aria-labelledby="finder-h">
     <div class="mine">
       <form id="me-form" class="me-row">
@@ -337,6 +341,10 @@
     el('nogithub').textContent = d.site.contact_email_note;
     el('stamp').textContent = 'Updated ' + d.generated.slice(0, 10) + '.';
     fill('need', d.vocab.collaboration); fill('offer', d.vocab.collaboration);
+    if (d.site.teaching_circles && d.site.teaching_circles.length) {
+      var cl = el('circle-links'); cl.textContent = 'teaching circle on STEMEd+ Commons: ';
+      d.site.teaching_circles.forEach(function (g, i) { if (i) cl.appendChild(document.createTextNode(', ')); var a = node('a', '', g.name); a.href = g.url; cl.appendChild(a); });
+    } else if (d.site.groups_url) { el('circle-links').querySelector('a').href = d.site.groups_url; }
     fill('method', d.vocab.methods); fill('discipline', d.disciplines);
     fill('stage', d.vocab.career_stages); fill('itype', d.vocab.institution_types);
     var params = new URLSearchParams(location.search);
