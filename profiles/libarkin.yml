@@ -19,8 +19,8 @@ offers:
 about: I am excited to be the Director of STEMEd+ Commons, a open scholarship system building new mechanisms
   for communities, teachers, and researchers to collaborate, bridge disciplines, and build stronger learning,
   better design, and more meaningful broader impacts.
-listed: &id001 2026-11-10
-confirmed: *id001
+listed: 2026-11-10
+confirmed: 2026-11-10
 pronouns: she/her
 institution: Michigan State University
 orcid: 0000-0003-2741-2737
@@ -32,3 +32,4 @@ institution_types:
 topics:
 - open science
 - psychometrics
+photo: https://hcommons.org/app/uploads/avatars/1027794/1680622545-bpfull.jpg
