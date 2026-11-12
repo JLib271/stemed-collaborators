@@ -23,7 +23,8 @@ body:
   id: username
   attributes:
     label: Your STEMEd+ Commons username
-    description: The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/
+    description: 'The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/.
+      No STEMEd+ Commons account yet? Join first, free: https://stemedplus.org/join-stemed/'
     placeholder: e.g. mlopez
   validations:
     required: true

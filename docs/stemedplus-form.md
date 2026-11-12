@@ -15,7 +15,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
 
 - Type: single line of text
 - Required: yes
-- Help text: The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/
+- Help text: The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/. No STEMEd+ Commons account yet? Join first, free: https://stemedplus.org/join-stemed/
 
 ## 2. Your name as you want it shown (optional)
 

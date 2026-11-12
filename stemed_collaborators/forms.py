@@ -80,7 +80,7 @@ def join_form() -> dict:
                 "you a private message on STEMEd+ Commons to confirm it is really you.\n\n"
                 "**Updating your profile?** Fill in the whole form again; the new answers replace the old ones. "
                 "Profiles are shown for one year after they are last confirmed, so send this form once a year to stay listed.")}},
-            _input("username", True, description="The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/",
+            _input("username", True, description="The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/. No STEMEd+ Commons account yet? Join first, free: https://stemedplus.org/join-stemed/",
                    placeholder="e.g. mlopez"),
             _input("name", False, description="Leave blank to use the name on your STEMEd+ Commons profile.",
                    placeholder="e.g. Maria Lopez"),
@@ -439,7 +439,7 @@ def website_form_spec() -> str:
             out.append("- Choices:")
             out.extend(f"    - {o}" for o in options)
         out.append("")
-    add("username", "single line of text", True, "The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/")
+    add("username", "single line of text", True, "The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/. No STEMEd+ Commons account yet? Join first, free: https://stemedplus.org/join-stemed/")
     add("name", "single line of text", False, "Leave blank to use the name on your STEMEd+ Commons profile.")
     add("pronouns", "single line of text", False)
     add("career_stage", "dropdown or radio buttons (choose one)", True, options=VOCAB["career_stages"])
