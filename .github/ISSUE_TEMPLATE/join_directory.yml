@@ -12,19 +12,13 @@ body:
       you through STEMEd+ Commons.
 
 
-      You need a free STEMEd+ Commons account first. Before you are listed, a maintainer sends you a private message on STEMEd+
-      Commons to confirm it is really you.
+      You need a free STEMEd+ Commons account first. Your name, institution, ORCID iD, and photo are taken from your Commons
+      profile unless you fill them in here. Before you are listed, a maintainer sends you a private message on STEMEd+ Commons
+      to confirm it is really you.
 
 
       **Updating your profile?** Fill in the whole form again; the new answers replace the old ones. Profiles are shown for
       one year after they are last confirmed, so send this form once a year to stay listed.'
-- type: input
-  id: name
-  attributes:
-    label: Your name as you want it shown
-    placeholder: e.g. Maria Lopez
-  validations:
-    required: true
 - type: input
   id: username
   attributes:
@@ -34,12 +28,11 @@ body:
   validations:
     required: true
 - type: input
-  id: commons_profile
+  id: name
   attributes:
-    label: Link to your STEMEd+ Commons profile
-    placeholder: https://stemedplus.profile.hcommons.org/members/yourname/
-  validations:
-    required: true
+    label: Your name as you want it shown (optional)
+    description: Leave blank to use the name on your STEMEd+ Commons profile.
+    placeholder: e.g. Maria Lopez
 - type: input
   id: pronouns
   attributes:
@@ -67,7 +60,8 @@ body:
   id: institution
   attributes:
     label: Institution or organization (optional)
-    description: Its full name, not an abbreviation, so people can find you from STEMEd+ Graduate Programs.
+    description: Leave blank to use the one on your STEMEd+ Commons profile. If you fill it in, use the full name, not an
+      abbreviation, so people can find you from STEMEd+ Graduate Programs.
     placeholder: e.g. University of Texas Rio Grande Valley
 - type: checkboxes
   id: institution_types
@@ -191,6 +185,7 @@ body:
   id: orcid
   attributes:
     label: ORCID iD (optional)
+    description: Leave blank to use the one on your STEMEd+ Commons profile, if any.
     placeholder: 0000-0002-1825-0097
 - type: checkboxes
   id: consent
@@ -199,7 +194,8 @@ body:
     options:
     - label: I am the person described in this form.
       required: true
-    - label: I agree that everything in this form will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.
+    - label: I agree that everything in this form, and my name, institution, ORCID iD, and photo from my STEMEd+ Commons profile,
+        will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.
       required: true
     - label: I understand a maintainer will message me on STEMEd+ Commons to confirm before I am listed, and that I can ask
         to be removed at any time.

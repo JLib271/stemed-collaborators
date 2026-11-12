@@ -11,29 +11,24 @@ default, often called "all fields"). Then paste that email into the GitHub templ
 Field names may leave out the part in brackets, such as "(optional)". Choices must keep their exact
 wording, but can be separated any way in the email (commas, new lines, or bullets).
 
-## 1. Your name as you want it shown
-
-- Type: single line of text
-- Required: yes
-
-## 2. Your STEMEd+ Commons username
+## 1. Your STEMEd+ Commons username
 
 - Type: single line of text
 - Required: yes
 - Help text: The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/
 
-## 3. Link to your STEMEd+ Commons profile
+## 2. Your name as you want it shown (optional)
 
-- Type: website address (URL)
-- Required: yes
-- Help text: e.g. https://stemedplus.profile.hcommons.org/members/yourname/
+- Type: single line of text
+- Required: no
+- Help text: Leave blank to use the name on your STEMEd+ Commons profile.
 
-## 4. Pronouns (optional)
+## 3. Pronouns (optional)
 
 - Type: single line of text
 - Required: no
 
-## 5. Career stage
+## 4. Career stage
 
 - Type: dropdown or radio buttons (choose one)
 - Required: yes
@@ -50,13 +45,13 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Staff or practitioner
     - Other
 
-## 6. Institution or organization (optional)
+## 5. Institution or organization (optional)
 
 - Type: single line of text
 - Required: no
-- Help text: Its full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.
+- Help text: Leave blank to use the one on your STEMEd+ Commons profile. If you fill it in, use the full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.
 
-## 7. Institution type (optional, choose any)
+## 6. Institution type (optional, choose any)
 
 - Type: checkboxes (choose any)
 - Required: no
@@ -71,7 +66,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Outside the US
     - Independent scholar
 
-## 8. Disciplines (choose at least one)
+## 7. Disciplines (choose at least one)
 
 - Type: checkboxes (at least one)
 - Required: yes
@@ -90,7 +85,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Science & Health Communication
     - Science Education
 
-## 9. Methods and expertise (choose at least one)
+## 8. Methods and expertise (choose at least one)
 
 - Type: checkboxes (at least one)
 - Required: yes
@@ -117,13 +112,13 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Outreach and public engagement
     - Professional learning design
 
-## 10. Topics you work on (optional)
+## 9. Topics you work on (optional)
 
 - Type: single line of text
 - Required: no
 - Help text: Separate topics with commas.
 
-## 11. What you can offer others (choose at least one)
+## 10. What you can offer others (choose at least one)
 
 - Type: checkboxes (at least one)
 - Required: yes
@@ -146,7 +141,7 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Professional learning or workshop facilitator
     - Teaching or curriculum partner
 
-## 12. What you are looking for (optional)
+## 11. What you are looking for (optional)
 
 - Type: checkboxes (choose any)
 - Required: no
@@ -169,26 +164,28 @@ wording, but can be separated any way in the email (commas, new lines, or bullet
     - Professional learning or workshop facilitator
     - Teaching or curriculum partner
 
-## 13. A few sentences about your work
+## 12. A few sentences about your work
 
 - Type: paragraph text, up to 400 characters
 - Required: yes
 - Help text: What you study, teach, or lead, and what kind of collaboration you want.
 
-## 14. ORCID iD (optional)
+## 13. ORCID iD (optional)
 
 - Type: single line of text
 - Required: no
-- Help text: e.g. 0000-0002-1825-0097
+- Help text: Leave blank to use the one on your STEMEd+ Commons profile, if any. e.g. 0000-0002-1825-0097
 
-## 15. Consent
+## 14. Consent
 
 - Type: checkboxes (all three required)
 - Required: yes
 - Choices:
     - I am the person described in this form.
-    - I agree that everything in this form will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.
+    - I agree that everything in this form, and my name, institution, ORCID iD, and photo from my STEMEd+ Commons profile, will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.
     - I understand a maintainer will message me on STEMEd+ Commons to confirm before I am listed, and that I can ask to be removed at any time.
 
-Above the form, say: everything you enter is public; your email address is never shown; a maintainer
-will message you on STEMEd+ Commons to confirm before you are listed.
+Above the form, say: you need a free STEMEd+ Commons account first; your name, institution, ORCID iD,
+and photo are taken from your Commons profile unless you fill them in here; everything is public; your
+email address is never shown; a maintainer will message you on STEMEd+ Commons to confirm before you
+are listed.

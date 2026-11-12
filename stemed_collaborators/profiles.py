@@ -35,12 +35,19 @@ LISTS = {
     "seeking": VOCAB["collaboration"],
     "institution_types": VOCAB["institution_types"],
 }
-OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed", "seeking", "reminded")
+OPTIONAL = ("pronouns", "institution", "institution_types", "topics", "orcid", "listed", "seeking", "reminded",
+            "photo")
 
 
 def is_commons_url(url: str) -> bool:
     m = re.match(r"^https://([^/]+)(/.*)?$", url or "")
     return bool(m) and any(m.group(1) == h or m.group(1).endswith("." + h) for h in COMMONS_HOSTS)
+
+
+def is_photo_url(url: str) -> bool:
+    """A Commons profile photo: an https image on hcommons.org, not the generic stand-in picture."""
+    return (bool(re.match(r"^https://([a-z0-9-]+\.)*hcommons\.org/[^\s\"'<>]+\.(jpe?g|png|gif|webp)$", url or "", re.I))
+            and "mystery" not in url.lower())
 
 
 def check(data: dict, slug: str) -> List[str]:
@@ -77,6 +84,8 @@ def check(data: dict, slug: str) -> List[str]:
         out.append(f"{slug}: topics must be a list of words or phrases")
     if isinstance(data.get("about"), str) and len(data["about"]) > ABOUT_MAX:
         out.append(f"{slug}: about is longer than {ABOUT_MAX} characters")
+    if data.get("photo") and not is_photo_url(str(data["photo"])):
+        out.append(f"{slug}: photo must be an https image on hcommons.org")
     if data.get("orcid") and not ORCID.match(str(data["orcid"])):
         out.append(f"{slug}: orcid should look like 0000-0002-1825-0097")
     rem = data.get("reminded")
@@ -133,6 +142,7 @@ def to_record(slug: str, data: dict, today: dt.date) -> dict:
         "seeking": data.get("seeking") or [],
         "about": data["about"].strip(),
         "orcid": data.get("orcid") or "",
+        "photo": data.get("photo") or "",
         "listed": (data.get("listed") or confirmed).isoformat(),
         "confirmed": confirmed.isoformat(),
         "expires": expires.isoformat(),

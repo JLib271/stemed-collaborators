@@ -20,10 +20,10 @@ from pathlib import Path
 
 import yaml
 
-from . import forms, profiles
+from . import commons, forms, profiles
 
 
-def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
+def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES, lookup=None):
     """Return (changed, username, reply)."""
     kind = forms.form_kind(body, labels)
     if kind == "remove":
@@ -51,7 +51,7 @@ def handle(body: str, labels, today: dt.date, folder: Path = profiles.PROFILES):
         previous = None
         if username and profiles.USERNAME.match(username) and (folder / f"{username}.yml").exists():
             previous = yaml.safe_load((folder / f"{username}.yml").read_text(encoding="utf-8"))
-        username, data, problems = forms.profile_from_issue(body, today, previous)
+        username, data, problems = forms.profile_from_issue(body, today, previous, lookup)
         if problems:
             return False, username, ("This form could not be listed yet. Please edit the issue to fix the following, "
                                      "and a maintainer will approve it again:\n\n" + "\n".join(f"- {p}" for p in problems))
@@ -75,7 +75,8 @@ def main(argv=None) -> int:
         labels = [str(l) for l in json.loads(os.environ.get("ISSUE_LABELS") or "[]")]
     except ValueError:
         labels = []
-    changed, username, reply = handle(os.environ.get("ISSUE_BODY", ""), labels, dt.date.today())
+    changed, username, reply = handle(os.environ.get("ISSUE_BODY", ""), labels, dt.date.today(),
+                                      lookup=commons.fetch)
     args.result.write_text(reply + "\n", encoding="utf-8")
     out = os.environ.get("GITHUB_OUTPUT")
     if out:

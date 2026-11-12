@@ -15,6 +15,11 @@ STEMEd+ Collaborators is part of [STEMEd+ Commons](https://stemedplus.hcommons.o
 - **Opt-in only.** People list themselves with the
   [Join or update the directory](https://github.com/JLib271/stemed-collaborators/issues/new?template=join_directory.yml)
   form. Everything on the form is public. Email addresses are never collected or shown.
+- **Filled in from Commons.** People give their STEMEd+ Commons username; their name, institution, ORCID iD,
+  and photo come from their public Commons profile unless they fill them in on the form
+  (`stemed_collaborators/commons.py`, reading `stemedplus.profile.hcommons.org/api/v1/members/<username>/`).
+  The same check turns away accounts that have not joined STEMEd+. If Commons does not answer, the form's
+  own answers are used, and a daily step adds photos later.
 - **Confirmed on Commons.** Before listing someone, a maintainer sends them a private message on STEMEd+ Commons
   to confirm the form is theirs. This also checks that the Commons profile link works for messaging.
 - **Search by need.** The page ranks people by what the searcher needs (kind of collaboration, method, topic)

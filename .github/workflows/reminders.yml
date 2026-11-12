@@ -1,6 +1,6 @@
 name: Yearly profile check
 
-# Every day: renew profiles whose owners replied KEEP on STEMEd+ Commons, send the 12-month and
+# Every day: add Commons profile photos to profiles without one, renew profiles whose owners replied KEEP on STEMEd+ Commons, send the 12-month and
 # 14-month reminders, and remove profiles not confirmed for 15 months (see stemed_collaborators/reminders.py).
 #
 # Messages are sent from the STEMEd+ Commons account in two repository secrets (Settings -> Secrets and
@@ -31,6 +31,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: Add Commons photos to profiles that have none
+        run: python -m stemed_collaborators.commons --backfill-photos
       - name: Renew, remind, and remove
         env:
           COMMONS_USER: ${{ secrets.COMMONS_USER }}
@@ -45,7 +47,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -A profiles
-            git commit -m "Yearly profile check $(date -u +%F)"
+            git commit -m "Daily profile check $(date -u +%F)"
             git push
             gh workflow run update.yml --repo "$GITHUB_REPOSITORY" --ref main
           fi

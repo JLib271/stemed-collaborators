@@ -268,3 +268,70 @@ class RemindersTest(unittest.TestCase):
         data = self.load("test-ben")
         self.assertEqual(data["confirmed"], TODAY)
         self.assertNotIn("reminded", data)
+
+
+class CommonsLookupTest(unittest.TestCase):
+    def info(self, **over):
+        d = {"username": "cara-f", "name": "Cara Formfill", "institutional_affiliation": "Example State University",
+             "orcid": "0000-0002-1825-0097", "avatar": "https://hcommons.org/app/uploads/avatars/1/abc-bpfull.jpg",
+             "memberships": {"STEMED+": True, "MLA": False}}
+        d.update(over)
+        return d
+
+    def test_blanks_filled_from_commons(self):
+        from stemed_collaborators import commons
+        body = filled_form(name="_No response_", institution="_No response_", orcid="_No response_",
+                           commons_profile="_No response_")
+        _, data, problems = forms.profile_from_issue(body, TODAY, lookup=lambda u: (commons.OK, self.info()))
+        self.assertEqual(problems, [])
+        self.assertEqual(data["name"], "Cara Formfill")
+        self.assertEqual(data["institution"], "Example State University")
+        self.assertEqual(data["orcid"], "0000-0002-1825-0097")
+        self.assertEqual(data["commons_profile"], "https://stemedplus.profile.hcommons.org/members/cara-f/")
+        self.assertTrue(data["photo"].endswith("abc-bpfull.jpg"))
+
+    def test_form_answers_win(self):
+        from stemed_collaborators import commons
+        _, data, _ = forms.profile_from_issue(filled_form(), TODAY, lookup=lambda u: (commons.OK, self.info()))
+        self.assertEqual((data["name"], data["institution"]), ("Cara Formfill", "Example University"))
+
+    def test_not_a_member_or_no_account(self):
+        from stemed_collaborators import commons
+        _, _, problems = forms.profile_from_issue(
+            filled_form(), TODAY, lookup=lambda u: (commons.OK, self.info(memberships={"STEMED+": False})))
+        self.assertTrue(any("has not joined STEMEd+" in p for p in problems))
+        _, _, problems = forms.profile_from_issue(filled_form(), TODAY, lookup=lambda u: (commons.MISSING, None))
+        self.assertTrue(any("No STEMEd+ Commons account" in p for p in problems))
+
+    def test_commons_down_falls_back_to_form(self):
+        from stemed_collaborators import commons
+        down = lambda u: (commons.UNAVAILABLE, None)  # noqa: E731
+        _, data, problems = forms.profile_from_issue(filled_form(), TODAY, lookup=down)
+        self.assertEqual(problems, [])
+        _, _, problems = forms.profile_from_issue(filled_form(name="_No response_"), TODAY, lookup=down)
+        self.assertTrue(any("name" in p for p in problems))
+
+    def test_whole_profile_link_as_username(self):
+        _, data, problems = forms.profile_from_issue(
+            filled_form(username="https://stemedplus.profile.hcommons.org/members/cara-f/"), TODAY)
+        self.assertEqual((data["username"], problems), ("cara-f", []))
+
+    def test_photo_urls(self):
+        self.assertTrue(profiles.is_photo_url("https://hcommons.org/app/uploads/avatars/1027794/1680622545-bpfull.jpg"))
+        self.assertFalse(profiles.is_photo_url("https://evil.example/x.jpg"))
+        self.assertFalse(profiles.is_photo_url("https://hcommons.org/mystery-man.jpg"))
+        self.assertFalse(profiles.is_photo_url('https://hcommons.org/a".jpg'))
+
+
+class BackfillTest(unittest.TestCase):
+    def test_backfill_photos(self):
+        import shutil
+        from stemed_collaborators import commons
+        with tempfile.TemporaryDirectory() as tmp:
+            for f in FIX.glob("*.yml"):
+                shutil.copy(f, tmp)
+            photo = "https://hcommons.org/app/uploads/avatars/9/x-bpfull.jpg"
+            lookup = lambda u: (commons.OK, {"avatar": photo}) if u == "test-ana" else (commons.UNAVAILABLE, None)  # noqa: E731
+            self.assertEqual(commons.backfill_photos(tmp, lookup), ["test-ana"])
+            self.assertEqual(yaml.safe_load((Path(tmp) / "test-ana.yml").read_text())["photo"], photo)
+            self.assertEqual(commons.backfill_photos(tmp, lookup), [])

@@ -47,6 +47,8 @@
   ol.list > li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; }
   .name { font-weight: 700; font-size: 1.06rem; } .pron { color: var(--muted); font-weight: 500; font-size: .88rem; }
   .meta { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+  .who { display: flex; gap: 12px; align-items: center; }
+  .who .photo { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--soft); }
   .why { margin-top: 10px; font-size: .86rem; background: var(--okbg); color: var(--ok); border-radius: 6px; padding: 6px 10px; }
   .why strong { font-weight: 700; } .why.mutual { background: var(--midbg); color: var(--mid); }
   .about { margin: 10px 0 0; font-size: .94rem; }
@@ -131,7 +133,7 @@
   <section class="how" id="how" aria-labelledby="how-h">
     <h2 id="how-h">How it works</h2>
     <ol>
-      <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form, on STEMEd+ Commons or on GitHub. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
+      <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form, on STEMEd+ Commons or on GitHub. Names, institutions, and photos come from each person's STEMEd+ Commons profile. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
       <li><strong>Already listed? See your matches.</strong> Type your STEMEd+ Commons username in "Show my matches" and everyone is ranked against your whole profile. Bookmark the link to come back to it.</li>
       <li><strong>Search by what you need and what you offer.</strong> "I'm looking for" and "I can offer" use the same list. Each card says why the person matches, and people who offer what you need and are looking for what you offer are marked as a two-way match.</li>
       <li><strong>Reach out on STEMEd+ Commons.</strong> "Message on STEMEd+ Commons" opens a new private message to the person there (sign in first if you are asked). "Copy a message starter" puts a short, editable introduction on your clipboard.</li>
@@ -234,9 +236,19 @@
 
   function card(m, c) {
     var p = m.p, li = document.createElement('li');
+    var head = node('div', 'who');
+    if (p.photo) {
+      var img = node('img', 'photo'); img.src = p.photo; img.alt = ''; img.loading = 'lazy';
+      img.referrerPolicy = 'no-referrer'; img.width = 56; img.height = 56;
+      img.addEventListener('error', function () { img.remove(); });
+      head.appendChild(img);
+    }
+    var txt = node('div');
     var h = node('div', 'name', p.name); if (p.pronouns) { h.appendChild(document.createTextNode(' ')); h.appendChild(node('span', 'pron', '(' + p.pronouns + ')')); }
-    li.appendChild(h);
-    li.appendChild(node('div', 'meta', [p.career_stage, p.institution].filter(Boolean).join(' · ')));
+    txt.appendChild(h);
+    txt.appendChild(node('div', 'meta', [p.career_stage, p.institution].filter(Boolean).join(' · ')));
+    head.appendChild(txt);
+    li.appendChild(head);
     if (m.why.length) {
       var w = node('div', 'why' + (m.mutual ? ' mutual' : ''));
       w.appendChild(node('strong', '', m.mutual ? 'Two-way match: ' : 'Why this match: '));

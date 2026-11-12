@@ -15,7 +15,7 @@ from typing import Dict, List, Tuple
 
 import yaml
 
-from . import profiles
+from . import commons, profiles
 from .disciplines import DISCIPLINES
 
 ROOT = profiles.ROOT
@@ -24,7 +24,7 @@ VOCAB = profiles.VOCAB
 
 # Form field id -> label shown on the form. The reader finds answers by these labels.
 LABELS: Dict[str, str] = {
-    "name": "Your name as you want it shown",
+    "name": "Your name as you want it shown (optional)",
     "username": "Your STEMEd+ Commons username",
     "commons_profile": "Link to your STEMEd+ Commons profile",
     "pronouns": "Pronouns (optional)",
@@ -42,7 +42,7 @@ LABELS: Dict[str, str] = {
 }
 CONSENT = [
     "I am the person described in this form.",
-    "I agree that everything in this form will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.",
+    "I agree that everything in this form, and my name, institution, ORCID iD, and photo from my STEMEd+ Commons profile, will be shown publicly on STEMEd+ Collaborators and kept in its GitHub repository.",
     "I understand a maintainer will message me on STEMEd+ Commons to confirm before I am listed, and that I can ask to be removed at any time.",
 ]
 NONE = "_No response_"
@@ -75,19 +75,20 @@ def join_form() -> dict:
             {"type": "markdown", "attributes": {"value": (
                 "Thanks for joining! Everything you enter here is **public**. Your email address is never shown: "
                 "people contact you through STEMEd+ Commons.\n\n"
-                "You need a free STEMEd+ Commons account first. Before you are listed, a maintainer sends you a "
-                "private message on STEMEd+ Commons to confirm it is really you.\n\n"
+                "You need a free STEMEd+ Commons account first. Your name, institution, ORCID iD, and photo are taken "
+                "from your Commons profile unless you fill them in here. Before you are listed, a maintainer sends "
+                "you a private message on STEMEd+ Commons to confirm it is really you.\n\n"
                 "**Updating your profile?** Fill in the whole form again; the new answers replace the old ones. "
                 "Profiles are shown for one year after they are last confirmed, so send this form once a year to stay listed.")}},
-            _input("name", True, placeholder="e.g. Maria Lopez"),
             _input("username", True, description="The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/",
                    placeholder="e.g. mlopez"),
-            _input("commons_profile", True, placeholder="https://stemedplus.profile.hcommons.org/members/yourname/"),
+            _input("name", False, description="Leave blank to use the name on your STEMEd+ Commons profile.",
+                   placeholder="e.g. Maria Lopez"),
             _input("pronouns", False, placeholder="e.g. she/her"),
             {"type": "dropdown", "id": "career_stage",
              "attributes": {"label": LABELS["career_stage"], "options": VOCAB["career_stages"]},
              "validations": {"required": True}},
-            _input("institution", False, description="Its full name, not an abbreviation, so people can find you from STEMEd+ Graduate Programs.", placeholder="e.g. University of Texas Rio Grande Valley"),
+            _input("institution", False, description="Leave blank to use the one on your STEMEd+ Commons profile. If you fill it in, use the full name, not an abbreviation, so people can find you from STEMEd+ Graduate Programs.", placeholder="e.g. University of Texas Rio Grande Valley"),
             _checkboxes("institution_types", VOCAB["institution_types"]),
             _checkboxes("disciplines", list(DISCIPLINES)),
             _checkboxes("methods", VOCAB["methods"]),
@@ -104,7 +105,8 @@ def join_form() -> dict:
                             "description": f"Up to {profiles.ABOUT_MAX} characters. What you study, teach, or lead, and what kind of collaboration you want.",
                             "placeholder": "I study how first-generation students ..."},
              "validations": {"required": True}},
-            _input("orcid", False, placeholder="0000-0002-1825-0097"),
+            _input("orcid", False, description="Leave blank to use the one on your STEMEd+ Commons profile, if any.",
+                   placeholder="0000-0002-1825-0097"),
             _checkboxes("consent", CONSENT, required=True),
         ],
     }
@@ -288,9 +290,13 @@ def _chosen(text: str, options: List[str]) -> List[str]:
     return [o for o in options if o in found]
 
 
-def _build(get, multi, consent_ok: bool, today: dt.date, previous: dict = None) -> Tuple[str, dict, List[str]]:
+def _build(get, multi, consent_ok: bool, today: dt.date, previous: dict = None,
+           lookup=None) -> Tuple[str, dict, List[str]]:
     problems = [] if consent_ok else ["All three consent boxes must be ticked."]
     username = get("username").lstrip("@").strip()
+    m = re.search(r"/members/([^/?#\s]+)", username)   # someone pasted their whole profile link
+    if m:
+        username = m.group(1)
     stage = get("career_stage")
     if stage not in VOCAB["career_stages"]:
         picked = _chosen(stage, VOCAB["career_stages"])
@@ -298,7 +304,7 @@ def _build(get, multi, consent_ok: bool, today: dt.date, previous: dict = None) 
     data = {
         "name": get("name"),
         "username": username,
-        "commons_profile": get("commons_profile"),
+        "commons_profile": get("commons_profile") or (commons.profile_url(username) if username else ""),
         "career_stage": stage,
         "disciplines": multi("disciplines", list(DISCIPLINES)),
         "methods": multi("methods", VOCAB["methods"]),
@@ -319,32 +325,61 @@ def _build(get, multi, consent_ok: bool, today: dt.date, previous: dict = None) 
     topics = [t.strip() for t in re.split(r"[,\n]", get("topics")) if t.strip()]
     if topics:
         data["topics"] = topics
+    problems += _from_commons(data, username, lookup)
     if data.get("orcid"):
         data["orcid"] = re.sub(r"^https?://orcid\.org/", "", data["orcid"])
     problems += [p.split(": ", 1)[1] if ": " in p else p for p in profiles.check(data, username or "?")]
     return username, data, problems
 
 
-def profile_from_issue(body: str, today: dt.date, previous: dict = None) -> Tuple[str, dict, List[str]]:
+def _from_commons(data: dict, username: str, lookup) -> List[str]:
+    """Fill what the form left blank from the member's public STEMEd+ Commons profile, and check that
+    they belong to STEMEd+. `lookup` is commons.fetch (None: skip, as in most tests)."""
+    if not lookup or not username or not profiles.USERNAME.match(username):
+        return []
+    status, info = lookup(username)
+    if status == commons.MISSING:
+        return [f"No STEMEd+ Commons account has the username `{username}`. It is the part after /members/ "
+                "in your Commons profile link."]
+    if status != commons.OK:
+        return []          # Commons did not answer: use the form's own answers
+    if commons.is_stemedplus_member(info) is False:
+        return ["This Commons account has not joined STEMEd+ yet. Join at https://stemedplus.org/join-stemed/ "
+                "and then send the form again."]
+    if not data.get("name") and (info.get("name") or "").strip():
+        data["name"] = info["name"].strip()
+    if not data.get("institution") and (info.get("institutional_affiliation") or "").strip():
+        data["institution"] = info["institutional_affiliation"].strip()
+    if not data.get("orcid") and (info.get("orcid") or "").strip():
+        data["orcid"] = info["orcid"].strip()
+    photo = (info.get("avatar") or "").strip()
+    if profiles.is_photo_url(photo):
+        data["photo"] = photo
+    return []
+
+
+def profile_from_issue(body: str, today: dt.date, previous: dict = None,
+                       lookup=None) -> Tuple[str, dict, List[str]]:
     """Return (username, profile data, problems) for a join/update form, or for a pasted
     stemedplus.org form email (the "Add someone from the STEMEd+ form" template)."""
     s = sections(body)
     if PASTE_LABEL in s:
-        return profile_from_paste(_unfence(s[PASTE_LABEL]), today, previous)
+        return profile_from_paste(_unfence(s[PASTE_LABEL]), today, previous, lookup)
     get = lambda key: _text(s.get(LABELS[key], ""))  # noqa: E731
     multi = lambda key, _opts: _ticked(s.get(LABELS[key], ""))  # noqa: E731
     consent_ok = len(_ticked(s.get(LABELS["consent"], ""))) == len(CONSENT)
-    return _build(get, multi, consent_ok, today, previous)
+    return _build(get, multi, consent_ok, today, previous, lookup)
 
 
-def profile_from_paste(text: str, today: dt.date, previous: dict = None) -> Tuple[str, dict, List[str]]:
+def profile_from_paste(text: str, today: dt.date, previous: dict = None,
+                       lookup=None) -> Tuple[str, dict, List[str]]:
     """Return (username, profile data, problems) for a pasted stemedplus.org form email."""
     s = plain_sections(text)
     get = lambda key: _text(s.get(key, ""))  # noqa: E731
     multi = lambda key, opts: _chosen(s.get(key, ""), opts)  # noqa: E731
     consent = " ".join(s.get("consent", "").lower().split())
     consent_ok = all(" ".join(c.lower().split())[:60] in consent for c in CONSENT)
-    return _build(get, multi, consent_ok, today, previous)
+    return _build(get, multi, consent_ok, today, previous, lookup)
 
 
 def form_kind(body: str, labels) -> str:
@@ -390,8 +425,11 @@ def website_form_spec() -> str:
         "wording, but can be separated any way in the email (commas, new lines, or bullets).",
         "",
     ]
-    def add(n, key, kind, required, note="", options=None):
-        out.append(f"## {n}. {LABELS[key]}")
+    n = [0]
+
+    def add(key, kind, required, note="", options=None):
+        n[0] += 1
+        out.append(f"## {n[0]}. {LABELS[key]}")
         out.append("")
         out.append(f"- Type: {kind}")
         out.append(f"- Required: {'yes' if required else 'no'}")
@@ -401,23 +439,24 @@ def website_form_spec() -> str:
             out.append("- Choices:")
             out.extend(f"    - {o}" for o in options)
         out.append("")
-    add(1, "name", "single line of text", True)
-    add(2, "username", "single line of text", True, "The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/")
-    add(3, "commons_profile", "website address (URL)", True, "e.g. https://stemedplus.profile.hcommons.org/members/yourname/")
-    add(4, "pronouns", "single line of text", False)
-    add(5, "career_stage", "dropdown or radio buttons (choose one)", True, options=VOCAB["career_stages"])
-    add(6, "institution", "single line of text", False, "Its full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.")
-    add(7, "institution_types", "checkboxes (choose any)", False, options=VOCAB["institution_types"])
-    add(8, "disciplines", "checkboxes (at least one)", True, options=list(DISCIPLINES))
-    add(9, "methods", "checkboxes (at least one)", True, options=VOCAB["methods"])
-    add(10, "topics", "single line of text", False, "Separate topics with commas.")
-    add(11, "offers", "checkboxes (at least one)", True, "Same list as the next question. Please fill in both.", VOCAB["collaboration"])
-    add(12, "seeking", "checkboxes (choose any)", False, "Leave blank if you only want to offer help right now.", VOCAB["collaboration"])
-    add(13, "about", f"paragraph text, up to {profiles.ABOUT_MAX} characters", True, "What you study, teach, or lead, and what kind of collaboration you want.")
-    add(14, "orcid", "single line of text", False, "e.g. 0000-0002-1825-0097")
-    add(15, "consent", "checkboxes (all three required)", True, options=CONSENT)
-    out.append("Above the form, say: everything you enter is public; your email address is never shown; a maintainer")
-    out.append("will message you on STEMEd+ Commons to confirm before you are listed.")
+    add("username", "single line of text", True, "The name after /members/ in your profile link, e.g. libarkin in stemedplus.profile.hcommons.org/members/libarkin/")
+    add("name", "single line of text", False, "Leave blank to use the name on your STEMEd+ Commons profile.")
+    add("pronouns", "single line of text", False)
+    add("career_stage", "dropdown or radio buttons (choose one)", True, options=VOCAB["career_stages"])
+    add("institution", "single line of text", False, "Leave blank to use the one on your STEMEd+ Commons profile. If you fill it in, use the full name, not an abbreviation (Michigan State University, not MSU), so people can find you from STEMEd+ Graduate Programs.")
+    add("institution_types", "checkboxes (choose any)", False, options=VOCAB["institution_types"])
+    add("disciplines", "checkboxes (at least one)", True, options=list(DISCIPLINES))
+    add("methods", "checkboxes (at least one)", True, options=VOCAB["methods"])
+    add("topics", "single line of text", False, "Separate topics with commas.")
+    add("offers", "checkboxes (at least one)", True, "Same list as the next question. Please fill in both.", VOCAB["collaboration"])
+    add("seeking", "checkboxes (choose any)", False, "Leave blank if you only want to offer help right now.", VOCAB["collaboration"])
+    add("about", f"paragraph text, up to {profiles.ABOUT_MAX} characters", True, "What you study, teach, or lead, and what kind of collaboration you want.")
+    add("orcid", "single line of text", False, "Leave blank to use the one on your STEMEd+ Commons profile, if any. e.g. 0000-0002-1825-0097")
+    add("consent", "checkboxes (all three required)", True, options=CONSENT)
+    out.append("Above the form, say: you need a free STEMEd+ Commons account first; your name, institution, ORCID iD,")
+    out.append("and photo are taken from your Commons profile unless you fill them in here; everything is public; your")
+    out.append("email address is never shown; a maintainer will message you on STEMEd+ Commons to confirm before you")
+    out.append("are listed.")
     return "\n".join(out) + "\n"
 
 
