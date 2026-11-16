@@ -47,16 +47,29 @@ def same(a: str, b: str) -> bool:
     return re.sub(r"[^a-z0-9]+", " ", a.lower()).strip() == re.sub(r"[^a-z0-9]+", " ", b.lower()).strip()
 
 
+def why_not(username: str, data: dict, config: dict) -> Optional[str]:
+    """Why a profile gets no card ("excluded", "not_member", "no_interests", "not_opted_in"), or None."""
+    required, opt_in, exclude = listing_rules(config)
+    if username.lower() in exclude:
+        return "excluded"
+    if commons.is_stemedplus_member(data) is False:
+        return "not_member"
+    all_interests = commons.interests(data)
+    if not [i for i in all_interests if not same(i, opt_in)]:
+        return "no_interests"
+    if required and not any(same(i, opt_in) for i in all_interests):
+        return "not_opted_in"
+    return None
+
+
 def to_card(username: str, data: dict, config: dict) -> Optional[dict]:
     """The card for one profile, or None when it should not be shown."""
-    required, opt_in, exclude = listing_rules(config)
-    if username.lower() in exclude or commons.is_stemedplus_member(data) is False:
+    if why_not(username, data, config):
         return None
+    _, opt_in, _ = listing_rules(config)
     all_interests = commons.interests(data)
     opted_in = any(same(i, opt_in) for i in all_interests)
     shown = [i for i in all_interests if not same(i, opt_in)]
-    if not shown or (required and not opted_in):
-        return None
     name = re.sub(r"\s+", " ", str(data.get("name") or "")).strip() or username
     photo = str(data.get("avatar") or "").strip()
     orcid = str(data.get("orcid") or "").strip()
@@ -78,9 +91,11 @@ def collect(usernames: Iterable[str], config: dict, read: Callable = commons.ite
     for username, status, data in read(names):
         if status == commons.OK:
             counts["answered"] += 1
-            card = to_card(username, data, config)
-            if card:
-                cards.append(card)
+            reason = why_not(username, data, config)
+            if reason:
+                counts[reason] = counts.get(reason, 0) + 1
+            else:
+                cards.append(to_card(username, data, config))
         else:
             counts[status] += 1
     cards.sort(key=lambda c: (c["name"].lower(), c["username"]))
@@ -116,4 +131,7 @@ def refresh(path: Path = DATA, config: Optional[dict] = None, list_members: Call
         return False, f"No change: {counts['listed']} of {counts['members']} members listed."
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(new, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    return True, f"Updated: {counts['listed']} of {counts['members']} members listed ({counts['answered']} profiles read)."
+    skipped = ", ".join(f"{k.replace('_', ' ')}: {v}" for k, v in counts.items()
+                        if k in ("no_interests", "not_member", "not_opted_in", "excluded"))
+    return True, (f"Updated: {counts['listed']} of {counts['members']} members listed "
+                  f"({counts['answered']} profiles read; not listed, {skipped or 'none'}).")
