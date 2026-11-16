@@ -1,8 +1,12 @@
-name: Check and publish
+name: Update and publish
 
-# Every day: refresh the shared disciplines, run the tests, check the profiles in profiles/,
-# and publish the site to GitHub Pages (profiles not confirmed for a year drop off).
-# Pull requests only run the checks. Turn on once: Settings -> Pages -> Source: GitHub Actions.
+# Every day: read STEMEd+ Commons profiles, save the cards in data/collaborators.json (only when something
+# changed, and never replacing a good copy with a broken read), and build the page.
+#
+# While config/site.json has "opt_in_required": false (preview), the page is NOT published to GitHub Pages,
+# because it lists everyone with interests, not only people who opted in. Download it instead: open the run,
+# then "find-collaborators-page" under Artifacts, unzip, and open index.html.
+# Set "opt_in_required": true to publish. Turn on once: Settings -> Pages -> Source: GitHub Actions.
 
 on:
   schedule:
@@ -16,32 +20,59 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      preview: ${{ steps.mode.outputs.preview }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install -r requirements.txt
-      - name: Refresh shared disciplines from HuMeta
-        run: python -m stemed_collaborators.stemedplus_disciplines --refresh
+      - name: Run tests
+        run: python -m unittest discover -s tests -t . -v
+      - name: Read STEMEd+ Commons profiles
+        if: github.event_name != 'pull_request'
+        run: python -m stemed_collaborators --refresh
+      - name: Save the cards if they changed
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ -n "$(git status --porcelain data)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git add data
+            git commit -m "Update cards from STEMEd+ Commons profiles"
+            git push
+          fi
       - name: Refresh the shared STEMEd+ look
         continue-on-error: true
         run: |
           git clone --depth 1 https://github.com/JLib271/stemedplus-theme.git "$RUNNER_TEMP/stemedplus-theme"
           python "$RUNNER_TEMP/stemedplus-theme/apply.py" .
-      - name: Run tests
-        run: python -m unittest discover -s tests -t . -v
-      - name: Check the profiles in profiles/
-        run: python -m stemed_collaborators --validate
+      - name: Build the page
+        run: python -m stemed_collaborators --out output
+      - name: Preview or publish?
+        id: mode
+        run: python -c "import json; r=json.load(open('config/site.json'))['listing']; print('preview=' + ('false' if r.get('opt_in_required') else 'true'))" >> "$GITHUB_OUTPUT"
+      - name: Keep the page as a download
+        uses: actions/upload-artifact@v5
+        with:
+          name: find-collaborators-page
+          path: output
+          retention-days: 14
+      - name: Prepare the page for GitHub Pages
+        if: steps.mode.outputs.preview == 'false' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: output
 
   publish:
-    needs: check
-    if: github.event_name != 'pull_request'
+    needs: update
+    if: needs.update.outputs.preview == 'false' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     concurrency:
@@ -51,25 +82,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-      - run: pip install -r requirements.txt
-      - name: Configure GitHub Pages
-        id: pages
-        uses: actions/configure-pages@v6
-      - name: Refresh shared disciplines from HuMeta
-        run: python -m stemed_collaborators.stemedplus_disciplines --refresh
-      - name: Refresh the shared STEMEd+ look
-        continue-on-error: true
-        run: |
-          git clone --depth 1 https://github.com/JLib271/stemedplus-theme.git "$RUNNER_TEMP/stemedplus-theme"
-          python "$RUNNER_TEMP/stemedplus-theme/apply.py" .
-      - name: Build the site
-        run: python -m stemed_collaborators --out output
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: output
       - id: deployment
         uses: actions/deploy-pages@v5

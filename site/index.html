@@ -3,382 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STEMEd+ Collaborators</title>
-<meta name="description" content="Find people to work with across STEM+ education research and practice: researchers, K-12 teachers, college instructors, and informal educators. Look for co-PIs, research-practice partners, study sites, mentors, and writing partners. Everyone listed asked to be here, and you contact them through STEMEd+ Commons.">
+<title>Find Collaborators · STEMEd+ Commons</title>
+<meta name="description" content="Find STEM+ education researchers and practitioners to work with, by the interests and skills on their STEMEd+ Commons profiles.">
 <style>
-  :root { --ink:#1d2433; --muted:#5b6475; --line:#dde2ea; --bg:#f7f8fa; --card:#fff; --accent:#1f5f8b; --soft:#e6f0f7; --softline:#c9dcea;
-          --mid:#7a4f00; --midbg:#fdf3dc; --ok:#1f6b3a; --okbg:#e7f4ec; }
+  :root { --green:#014704; --ink:#0f1a0f; --text:#2c362c; --muted:#4a564a; --line:#d3e3d3; --pale:#f2f7f2; --tag:#e6f1e6; --rust:#a24a2b; }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-  header { background: var(--card); border-bottom: 1px solid var(--line); }
-  header .wrap { padding-top: 26px; padding-bottom: 20px; }
-  h1 { font-size: 1.7rem; margin: 0 0 6px; letter-spacing: -0.01em; }
-  header p { margin: 0; color: var(--muted); max-width: 72ch; }
-  .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  .btn { display: inline-block; padding: 8px 14px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
-  /* Joining is rust, as on stemedplus.org; finding things stays green. */
-  .btn.join-cta { background: #993319; color: #fff; border: 1px solid #993319; }
-  .btn.secondary.join-cta { background: #fff; color: #993319; border: 1px solid #993319; }
-  header p.grad { margin-top: 12px; font-size: .95rem; }
-  .btn.secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
-  a { color: var(--accent); }
-  .join { background: var(--soft); border: 1px solid var(--softline); border-radius: 8px; padding: 10px 14px; font-size: .93rem; margin: 14px 0 0; }
-  .join p { margin: 4px 0; }
-  .circles { background: #fff; border: 1px solid #dde2ea; border-left: 4px solid #1d5b31; border-radius: 8px; padding: 10px 14px; margin: 14px 0 0; font-size: .93rem; }
-  .circles p { margin: 0; }
-  .finder { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 20px 0 8px; }
-  .finder h2 { font-size: 1.1rem; margin: 0 0 4px; } .finder .hint { color: var(--muted); font-size: .88rem; margin: 0 0 12px; }
-  .mine { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 14px; }
-  .mine label { font-size: .95rem; color: var(--ink); font-weight: 700; }
-  .me-inputs { display: flex; flex-wrap: wrap; gap: 8px; } .me-inputs input { flex: 1 1 260px; width: auto; } .me-inputs .btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
-  .me-on { margin: 0; background: var(--okbg); color: var(--ok); border-radius: 8px; padding: 10px 12px; font-size: .95rem; }
-  .me-missing { margin: 8px 0 0; color: var(--mid); font-size: .9rem; }
-  .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .controls .span2 { grid-column: span 2; }
-  .controls .group { grid-column: 1 / -1; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 700; margin: 6px 0 -4px; border-top: 1px solid var(--line); padding-top: 10px; }
-  .controls .group:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
-  label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
-  input, select { width: 100%; padding: 9px 10px; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
-  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin: 10px 0 12px; }
-  #count { color: var(--muted); font-size: .9rem; margin: 0; }
-  .at { margin: 10px 0 0; background: var(--soft); border: 1px solid var(--softline); border-radius: 8px; padding: 8px 12px; font-size: .92rem; }
-  button.link { font: inherit; font-size: .9rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
-  ol.list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
-  ol.list > li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; }
-  .name { font-weight: 700; font-size: 1.06rem; } .pron { color: var(--muted); font-weight: 500; font-size: .88rem; }
-  .meta { color: var(--muted); font-size: .88rem; margin-top: 2px; }
-  .who { display: flex; gap: 12px; align-items: center; }
-  .who .photo { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--soft); }
-  .why { margin-top: 10px; font-size: .86rem; background: var(--okbg); color: var(--ok); border-radius: 6px; padding: 6px 10px; }
-  .why strong { font-weight: 700; } .why.mutual { background: var(--midbg); color: var(--mid); }
-  .about { margin: 10px 0 0; font-size: .94rem; }
-  dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 10px 0 0; font-size: .88rem; }
-  dl.facts dt { color: var(--muted); font-weight: 600; } dl.facts dd { margin: 0; }
-  mark { background: #fff1b8; color: inherit; padding: 0 2px; border-radius: 3px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .tag { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: #eef0f3; font-weight: 600; }
-  .tag.st { background: var(--soft); color: var(--accent); }
-  .acts { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: auto; padding-top: 12px; font-size: .88rem; align-items: center; }
-  .acts .btn { padding: 6px 12px; font-size: .88rem; }
-  .acts button.link { font-size: .88rem; }
-  .copied { color: var(--ok); font-size: .84rem; }
-  .others { text-align: center; margin: 14px 0; }
-  .others button { font: inherit; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--card); color: var(--accent); cursor: pointer; }
-  .empty { padding: 26px; text-align: center; color: var(--muted); background: var(--card); border: 1px dashed var(--line); border-radius: 8px; }
-  section.how { margin-top: 28px; }
-  section.how h2 { font-size: 1.15rem; margin: 0 0 8px; }
-  section.how ol { margin: 0; padding-left: 20px; } section.how li { margin: 4px 0; }
-  footer { background: var(--card); border-top: 1px solid var(--line); padding: 20px 0 30px; font-size: .9rem; color: var(--muted); margin-top: 30px; }
-  footer h2 { font-size: 1rem; color: var(--ink); margin: 18px 0 6px; } footer h2:first-child { margin-top: 0; }
-  footer p { margin: 6px 0; }
-  [hidden] { display: none !important; }
-  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  @media (max-width: 860px) { .controls { grid-template-columns: 1fr; } .controls .span2 { grid-column: auto; } }
+  body { margin: 0; background: #ffffff; color: var(--text); font: 16px/1.5 Manrope, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--green); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .hero { background: var(--green); color: #ffffff; }
+  .hero .wrap { padding-top: 44px; padding-bottom: 40px; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: start; }
+  .kicker { margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #b8e0b8; }
+  h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -.01em; color: #ffffff; }
+  .hero p.lead { margin: 0; font-size: 18px; line-height: 1.55; color: #e7f1e7; max-width: 60ch; }
+  .invite { background: #ffffff; color: var(--text); border-radius: 16px; padding: 20px 22px; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  .invite h2 { margin: 0 0 8px; font-size: 19px; color: var(--green); }
+  .invite ol { margin: 0 0 14px; padding-left: 20px; line-height: 1.6; font-size: 15px; }
+  .invite li { margin: 2px 0; }
+  .invite .eg { color: var(--muted); font-size: 14px; }
+  .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-weight: 800; font-size: 15px; text-decoration: none; }
+  .btn.rust { background: var(--rust); color: #ffffff; }
+  .btn.line { border: 2px solid var(--green); color: var(--green); background: #ffffff; }
+  .preview { background: #fff7e6; border-bottom: 1px solid #f0d9a8; color: #5b4200; font-size: 14px; }
+  .preview .wrap { padding-top: 10px; padding-bottom: 10px; }
+  .finder { padding-top: 28px; padding-bottom: 8px; }
+  .search { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .search label { position: absolute; left: -9999px; }
+  .search input { flex: 1 1 360px; min-height: 52px; padding: 0 18px; font: inherit; font-size: 17px; border: 2px solid #9cc09c; border-radius: 999px; color: var(--ink); }
+  .search input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px #cfe5cf; }
+  .clear { font: inherit; font-weight: 700; background: none; border: none; color: var(--green); cursor: pointer; min-height: 44px; padding: 0 8px; text-decoration: underline; }
+  .popular { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .popular span.lbl { font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--green); margin-right: 4px; }
+  .tag { font: inherit; font-size: 13px; font-weight: 700; line-height: 1.3; padding: 5px 11px; border-radius: 999px; border: 1px solid #c9dfc9; background: var(--tag); color: var(--green); cursor: pointer; text-align: left; }
+  .tag:hover, .tag.hit { background: var(--green); border-color: var(--green); color: #ffffff; }
+  .count { margin: 22px 0 14px; font-size: 15px; color: var(--muted); }
+  .count strong { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding-bottom: 40px; }
+  .card { border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: #ffffff; }
+  .who { display: flex; gap: 14px; align-items: center; }
+  .who img, .who .initials { width: 60px; height: 60px; border-radius: 50%; flex: none; object-fit: cover; background: var(--pale); }
+  .who .initials { display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; color: var(--green); border: 1px solid var(--line); }
+  .who h3 { margin: 0; font-size: 18px; line-height: 1.25; color: var(--ink); }
+  .who p { margin: 2px 0 0; font-size: 14px; color: var(--muted); line-height: 1.35; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .more { font: inherit; font-size: 13px; font-weight: 700; background: none; border: none; color: var(--green); cursor: pointer; padding: 4px 2px; text-decoration: underline; }
+  .acts { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 16px; padding-top: 4px; border-top: 1px solid #e3eae3; padding-top: 12px; }
+  .acts a { font-size: 14px; font-weight: 800; text-decoration: none; }
+  .acts a:hover { text-decoration: underline; }
+  .empty { border: 2px dashed #9cc09c; border-radius: 16px; padding: 24px; text-align: center; color: var(--muted); grid-column: 1 / -1; }
+  .note { font-size: 13px; color: var(--muted); padding-bottom: 32px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--rust); outline-offset: 2px; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
 </style>
 <link rel="stylesheet" href="stemedplus-theme.css">
 </head>
 <body>
 <div class="sp-bar"><div class="sp-in"><a class="sp-logo" href="https://stemedplus.org/"><img src="stemedplus-commons-logo-white.png" alt="STEMEd+ Commons home" width="263" height="91"></a><input type="checkbox" id="sp-menu-toggle" class="sp-toggle"><label for="sp-menu-toggle" class="sp-burger"><span class="sp-burger-icon" aria-hidden="true"></span>Menu</label><nav class="sp-nav" aria-label="STEMEd+ Commons"><ul class="sp-top"><li class="sp-has"><a href="https://stemedplus.org/stemed-features/">Features</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://works.hcommons.org/collections/stemedplus/records?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest">STEMEd+ Library</a></li><li><a href="https://stemedplus.org/sites/">STEMEd+ Sites</a></li><li><a href="https://stemedplus.profile.hcommons.org/members/">STEMEd+ Members</a></li><li><a href="https://stemedplus.org/stemed-groups/">STEMEd+ Groups</a></li></ul></li><li class="sp-has sp-here"><a href="https://stemedplus.org/stemed-resources/">Resources</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://stemedplus.org/stemed-commons-frequently-asked-questions/">STEMEd+ Commons FAQ</a></li><li><a href="https://theseekershub.stemedplus.org/">The Seekers’ Hub: A Job Board</a></li><li><a href="https://stemedplus.org/stemed-collaborators/" aria-current="page">Find Collaborators</a></li><li><a href="https://jlib271.github.io/stemed-funding/">Find Funding</a></li><li><a href="https://jlib271.github.io/STEMEd-Digest/">STEMEd+ Digest</a></li><li><a href="https://jlib271.github.io/stem-ed-research-programs/">STEMEd+ Graduate Programs</a></li><li><a href="https://jlib271.github.io/stemed-conferences/">STEMEd+ Conferences</a></li><li><a href="https://jlib271.github.io/stemed-professional-learning/">Professional Learning: K-12, Informal Education</a></li><li><a href="https://jlib271.github.io/stemed-faculty-development/">STEMEd+ Faculty Development</a></li><li><a href="https://jlib271.github.io/stemed-deadlines/">STEMEd+ Deadlines</a></li></ul></li><li class="sp-has"><a href="https://stemedplus.org/about/">Learn More</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://stemedplus.org/about/">About</a></li><li><a href="https://stemedplus.org/learn-more/">Governance</a></li><li><a href="https://stemedplus.org/vision-research/">Vision &amp; Research</a></li><li><a href="https://support.hcommons.org/">Help &amp; Support</a></li></ul></li><li><a href="https://stemedplus.org/collaborate/">Partner with Us</a></li><li><a href="https://stemedplus.org/contact-us/">Contact Us</a></li><li><a href="https://stemedplus.org/join-stemed/">Join STEMEd+</a></li><li><a href="https://stemedplus.org/stemed-commons-frequently-asked-questions/">Get Started &amp; FAQs</a></li></ul></nav><a class="sp-login" href="https://stemedplus.org/wp-login.php">Log in</a></div></div>
-<header>
+<div class="preview" id="preview" hidden><div class="wrap"><strong>Preview.</strong> Everyone in STEMEd+ with academic interests on their profile is shown here for now. Before launch, only members who add the interest <strong class="optin-name"></strong> will be listed.</div></div>
+<section class="hero">
   <div class="wrap">
-    <h1 id="title">STEMEd+ Collaborators</h1>
-    <p id="tagline"></p>
-    <div class="links">
-      <a class="btn join-cta" id="join-btn" href="#">Join the directory</a>
-      <a class="btn secondary" id="update-btn" href="#">Update my profile</a>
-      <a class="btn secondary" id="remove-btn" href="#">Remove my profile</a>
-      <a class="btn secondary" href="?need=Teaching+mentor+or+peer+observer">Find a teaching mentor</a>
-      <a class="btn secondary" href="#how">How it works</a>
+    <div>
+      <p class="kicker">Find Collaborators</p>
+      <h1>Find people to work with</h1>
+      <p class="lead">Search STEMEd+ Commons members by the topics, methods, and skills on their profiles: researchers, K-12 teachers, college instructors, and informal educators. Then reach out through STEMEd+ Commons.</p>
     </div>
-    <p class="grad">Looking for a graduate program? See <a href="https://jlib271.github.io/stem-ed-research-programs/">Graduate Programs</a>.</p>
+    <aside class="invite" aria-labelledby="add-h">
+      <h2 id="add-h">Not here yet? Add your interests</h2>
+      <ol>
+        <li>Sign in and open your STEMEd+ Commons profile.</li>
+        <li>Choose <strong>Edit profile</strong>, then add <strong>Academic interests</strong>: your topics, plus skills and methods.<br><span class="eg">For example: "science identity", "qualitative interviews", "psychometrics", "teacher professional learning".</span></li>
+        <li class="optin-step" hidden>Add the interest <strong class="optin-name"></strong> so you're listed here.</li>
+        <li>Save. Your card appears here within a day.</li>
+      </ol>
+      <a class="btn rust" id="edit-link" href="#">Add interests to my profile</a>
+    </aside>
   </div>
-</header>
-<div class="wrap"><div class="join" role="note"><p><strong>You contact people through STEMEd+ Commons</strong>, so their email addresses are never shown here. Join STEMEd+ Commons free and sign in before you send a message. You can sign in with GitHub, Google, ORCID, or your institution.</p><p><a href="https://stemedplus.hcommons.org/" target="_blank" rel="noopener noreferrer">Visit STEMEd+ Commons<span class="vh"> (opens in a new tab)</span></a> · <a href="https://support.hcommons.org/profiles/login-and-registration/" target="_blank" rel="noopener noreferrer">How to join<span class="vh"> (opens in a new tab)</span></a></p></div></div>
-<main class="wrap">
-  <div class="circles" id="circles" role="note"><p><strong>Teaching mentors and peer observers.</strong> Choose <em>Teaching mentor or peer observer</em> under “I'm looking for” to find someone to talk through a course with, or to visit your class and give friendly, ungraded feedback. Offer it in your own profile if you would do the same for someone else. For a standing group, join a <span id="circle-links">teaching circle on <a href="https://stemedplus.org/stemed-groups/">STEMEd+ Groups</a></span>.</p></div>
-  <section class="finder" role="search" aria-labelledby="finder-h">
-    <div class="mine">
-      <form id="me-form" class="me-row">
-        <div id="me-off" class="me-off">
-          <label for="me">Already listed? Show my matches</label>
-          <div class="me-inputs"><input id="me" type="text" placeholder="Your STEMEd+ Commons username, e.g. libarkin" autocomplete="username"><button type="submit" class="btn">Show my matches</button></div>
-          <p class="hint" style="margin: 6px 0 0">Ranks everyone against your whole profile: what you are looking for, what you offer, your disciplines, and your topics.</p>
-        </div>
-      </form>
-      <p id="me-on" class="me-on" hidden>Showing matches for <strong id="me-name"></strong>, from everything in your profile. Use the boxes below to narrow them. · <button type="button" class="link" id="me-stop">Stop showing my matches</button></p>
-      <p id="me-missing" class="me-missing" hidden>No profile found for “<span id="me-missing-id"></span>”. Your username is the part after /members/ in your STEMEd+ Commons profile link.</p>
-    </div>
-    <h2 id="finder-h">Find a collaborator</h2>
-    <p class="hint">For research and practice alike: researchers, teachers, instructors, and informal educators. Say what you need; people who match the most come first, with the reasons shown on each card.</p>
-    <div class="controls">
-      <div class="group">Collaboration: fill in both to find two-way matches</div>
-      <div><label for="need">I'm looking for</label><select id="need"><option value="">Anything</option></select></div>
-      <div><label for="offer">I can offer</label><select id="offer"><option value="">Nothing specific</option></select></div>
-      <div class="group">Expertise (research methods and practice)</div>
-      <div><label for="method">With experience in</label><select id="method"><option value="">Any method or expertise</option></select></div>
-      <div class="span2"><label for="q">Topic or keyword</label><input id="q" type="search" placeholder="e.g. belonging, chemistry labs, middle school, museums" autocomplete="off"></div>
-      <div class="group">Who (narrows the list)</div>
-      <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All disciplines</option></select></div>
-      <div><label for="stage">Career stage</label><select id="stage"><option value="">Any career stage</option></select></div>
-      <div><label for="itype">Institution type</label><select id="itype"><option value="">Any institution type</option></select></div>
-    </div>
-  </section>
-  <p class="at" id="at-box" hidden>Showing people at <strong id="at-name"></strong> · <button type="button" class="link" id="at-clear">Show everyone</button></p>
-  <div class="bar">
-    <p id="count" aria-live="polite"></p>
-    <span><button type="button" class="link" id="share">Copy link to this search</button> · <button type="button" class="link" id="reset">Clear</button></span>
-  </div>
-  <ol class="list" id="results"></ol>
-  <div class="others" id="others-box" hidden><button type="button" id="others"></button></div>
-  <ol class="list" id="rest" hidden></ol>
+</section>
 
-  <section class="how" id="how" aria-labelledby="how-h">
-    <h2 id="how-h">How it works</h2>
-    <ol>
-      <li><strong>Everyone here opted in.</strong> People join with the "Join the directory" form, on STEMEd+ Commons or on GitHub. Names, institutions, and photos come from each person's STEMEd+ Commons profile. A maintainer checks that the STEMEd+ Commons profile is real before listing them.</li>
-      <li><strong>Already listed? See your matches.</strong> Type your STEMEd+ Commons username in "Show my matches" and everyone is ranked against your whole profile. Bookmark the link to come back to it.</li>
-      <li><strong>Search by what you need and what you offer.</strong> "I'm looking for" and "I can offer" use the same list. Each card says why the person matches, and people who offer what you need and are looking for what you offer are marked as a two-way match.</li>
-      <li><strong>Reach out on STEMEd+ Commons.</strong> "Message on STEMEd+ Commons" opens a new private message to the person there (sign in first if you are asked). "Copy a message starter" puts a short, editable introduction on your clipboard.</li>
-      <li><strong>Profiles stay current.</strong> Once a year, everyone gets a private message on STEMEd+ Commons asking whether to stay listed. Reply KEEP and you stay for another year. If there is no reply, a last reminder follows two months later, and the profile is removed three months after the first message. You can rejoin any time.</li>
-    </ol>
-  </section>
+<main class="wrap finder">
+  <div class="search" role="search">
+    <label for="q">Search by interest, skill, name, or institution</label>
+    <input id="q" type="search" placeholder="Search interests and skills, for example &quot;assessment&quot; or &quot;K-12&quot;" autocomplete="off">
+    <button class="clear" id="clear" type="button" hidden>Clear search</button>
+  </div>
+  <div class="popular" id="popular" aria-label="Popular interests"></div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <p class="note" id="note"></p>
 </main>
-<footer>
-  <div class="wrap">
-    <h2>About this directory</h2>
-    <p>STEMEd+ Collaborators is part of <a href="https://stemedplus.hcommons.org/">STEMEd+ Commons</a>. Listings are public and kept in <a id="repo-link" href="#">the directory's GitHub repository</a>. Only what people put in the form is listed. Email addresses are never shown.</p>
-    <p id="nogithub"></p>
-    <p>Disciplines come from the list shared across STEMEd+ Commons. <span id="stamp"></span></p>
-  </div>
-</footer>
+<footer class="sp-footer"><div class="sp-fin"><p><strong>This site is part of <a href="https://stemedplus.org/">STEMEd+ Commons</a>, a Commons within <a href="https://hcommons.org/">Knowledge Commons</a>. STEMEd+ Commons brings together STEM+ education communities to collectively build research insights and teaching innovations across disciplines. As an open access platform, STEMEd+ Commons helps ensure STEM+ education research and practice is accessible for all people, in all communities. This material is based upon work supported by the National Science Foundation under grants </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2226271">OAC-2226271</a><strong>, </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2321946">DRL-2321946</a><strong>, </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2531819">OAC-2531819</a> and by Michigan State University through the <a href="https://research.msu.edu/find-funding/msu-funding-opportunities/jenison-support">Jenison Fund</a>.</p></div></footer>
 <script>
+var DATA = /*__DATA__*/null;
 (function () {
-  'use strict';
-  var state = { d: null, showRest: false, at: '', me: null, meId: '' };
-  function el(id) { return document.getElementById(id); }
-  function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
-  function ext(a) { a.target = '_blank'; a.rel = 'noopener noreferrer'; a.appendChild(node('span', 'vh', ' (opens in a new tab)')); return a; }
-  function link(href, text, cls) { var a = node('a', cls || '', text); a.href = href; return ext(a); }
-  function issueUrl(template, title) { return state.d.site.repo_url + '/issues/new?template=' + template + (title ? '&title=' + encodeURIComponent(title) : ''); }
-  function fill(id, values) { var s = el(id); values.forEach(function (v) { var o = node('option', '', v); o.value = v; s.appendChild(o); }); }
-  function norm(s) { return (s || '').toLowerCase(); }
-  function messageUrl(p) {
-    var t = state.d.site.message_url_template;
-    return t ? t.replace('{username}', encodeURIComponent(p.id)) : p.commons_profile;
+  var D = DATA || { people: [], counts: {} };
+  var people = D.people || [];
+  var $ = function (id) { return document.getElementById(id); };
+  var q = $('q'), grid = $('grid'), count = $('count');
+  function el(tag, attrs, text) {
+    var n = document.createElement(tag);
+    for (var k in attrs || {}) { if (k === 'class') n.className = attrs[k]; else n.setAttribute(k, attrs[k]); }
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function norm(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9+]+/g, ' ').trim(); }
+
+  document.querySelectorAll('.optin-name').forEach(function (n) { n.textContent = '"' + (D.opt_in_interest || 'open to collaboration') + '"'; });
+  if (D.preview) $('preview').hidden = false; else document.querySelector('.optin-step').hidden = false;
+  $('edit-link').href = D.edit_profile || 'https://stemedplus.profile.hcommons.org/edit-profile/';
+
+  people.forEach(function (p) {
+    p._name = norm(p.name + ' ' + p.username);
+    p._inst = norm(p.institution);
+    p._ints = p.interests.map(norm);
+  });
+
+  // Popular interests: the most common, shown as one-click searches.
+  var freq = {}, label = {};
+  people.forEach(function (p) { p.interests.forEach(function (i, k) { var n = p._ints[k]; if (!n) return; freq[n] = (freq[n] || 0) + 1; label[n] = label[n] || i; }); });
+  var top = Object.keys(freq).filter(function (n) { return freq[n] > 1; }).sort(function (a, b) { return freq[b] - freq[a] || a.localeCompare(b); }).slice(0, 18);
+  if (top.length) {
+    var pop = $('popular'); pop.appendChild(el('span', { 'class': 'lbl' }, 'Popular'));
+    top.forEach(function (n) { var b = el('button', { 'class': 'tag', type: 'button' }, label[n]); b.addEventListener('click', function () { setQuery(label[n]); }); pop.appendChild(b); });
   }
 
-  var FIELDS = ['need', 'method', 'q', 'discipline', 'stage', 'itype', 'offer'];
-  function current() { var c = {}; FIELDS.forEach(function (f) { c[f] = el(f).value.trim(); }); return c; }
-
-  // Words of the keyword search that appear in a person's topics, about text, or methods.
-  function keywordHits(p, q) {
-    if (!q) return [];
-    var hay = norm([p.topics.join(' | '), p.about, p.methods.join(' | '), p.disciplines.join(' | '), p.institution].join(' | '));
-    return q.toLowerCase().split(/[\s,;]+/).filter(function (w) { return w.length > 1 && hay.indexOf(w) !== -1; });
-  }
-
-  // Score one person against the search. "Who" filters exclude; "what you need" ranks.
-  function score(p, c) {
-    if (state.me && p.id === state.me.id) return null;
-    if (state.at && norm(p.institution).replace(/\s+/g, ' ').indexOf(norm(state.at).replace(/\s+/g, ' ')) === -1) return null;
-    if (c.discipline && p.disciplines.indexOf(c.discipline) === -1) return null;
-    if (c.stage && p.career_stage !== c.stage) return null;
-    if (c.itype && p.institution_types.indexOf(c.itype) === -1) return null;
-    var why = [], you = [], s = 0, mutual = false, needHit = false;
-    function lc(v) { return v.charAt(0).toLowerCase() + v.slice(1); }
-    if (c.need && p.offers.indexOf(c.need) !== -1) { s += 4; needHit = true; why.push('can be a ' + lc(c.need)); you.push('listed yourself as a possible ' + lc(c.need)); }
-    if (c.method && p.methods.indexOf(c.method) !== -1) { s += 3; why.push('works with ' + c.method.toLowerCase()); you.push('work with ' + c.method.toLowerCase()); }
-    var hits = keywordHits(p, c.q);
-    if (hits.length) { s += 2 * hits.length; why.push('mentions ' + hits.map(function (h) { return '“' + h + '”'; }).join(', ')); you.push('work on ' + c.q.trim()); }
-    if (c.offer && p.seeking.indexOf(c.offer) !== -1) { s += 2; mutual = true; why.push('is looking for a ' + lc(c.offer) + ', which you offer'); you.push('are looking for a ' + lc(c.offer)); }
-    var give = [], get = [];
-    if (state.me) {
-      var me = state.me;
-      me.seeking.forEach(function (x) { if (p.offers.indexOf(x) !== -1) { s += 4; give.push(x); } });
-      me.offers.forEach(function (x) { if (p.seeking.indexOf(x) !== -1) { s += 3; get.push(x); } });
-      function a(x) { return 'a ' + lc(x); }
-      function list(xs) { return xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' or ' + xs[xs.length - 1]; }
-      if (give.length) { why.push('can be ' + list(give.map(a)) + ' (you are looking for this)'); you.push('can be ' + list(give.map(a)) + ', which I am looking for'); }
-      if (get.length) { why.push('is looking for ' + list(get.map(a)) + ' (you offer this)'); you.push('are looking for ' + list(get.map(a)) + ', which I can offer'); }
-      var both = p.disciplines.filter(function (x) { return me.disciplines.indexOf(x) !== -1; });
-      if (both.length && (give.length || get.length)) { s += both.length; why.push('also in ' + both.join(', ')); }
-      var mine = me.topics.map(norm), shared = p.topics.filter(function (t) { return mine.indexOf(norm(t)) !== -1; });
-      if (shared.length) { s += 2 * shared.length; why.push('also works on ' + shared.join(', ')); you.push('also work on ' + shared.join(', ')); }
-      if (give.length && get.length) { mutual = true; needHit = true; }
+  function score(p, words, phrase) {
+    if (!words.length) return 1;
+    var s = 0;
+    for (var w = 0; w < words.length; w++) {
+      var word = words[w], hit = 0;
+      for (var k = 0; k < p._ints.length; k++) { var t = p._ints[k]; if (t === phrase) hit = Math.max(hit, 6); else if ((' ' + t + ' ').indexOf(' ' + word) > -1) hit = Math.max(hit, 3); else if (t.indexOf(word) > -1) hit = Math.max(hit, 2); }
+      if (!hit && p._name.indexOf(word) > -1) hit = 2;
+      if (!hit && p._inst.indexOf(word) > -1) hit = 1;
+      if (!hit) return 0;
+      s += hit;
     }
-    return { p: p, s: s, why: why, you: you, mutual: mutual && needHit, hits: hits, give: give, get: get };
+    return s;
   }
 
-  function facts(dl, term, values) {
-    if (!values || !values.length) return;
-    dl.appendChild(node('dt', '', term)); dl.appendChild(node('dd', '', values.join('; ')));
-  }
-
-  function starter(p, c, m) {
-    var first = p.name.split(' ')[0];
-    if (/^(dr|prof|professor)\.?$/i.test(first)) first = p.name;
-    var lines = ['Hi ' + first + ',', ''];
-    var reason = m.you.length ? 'I found you in the STEMEd+ Collaborators directory: you ' + m.you.join(', and you ') + '.' :
-      'I found you in the STEMEd+ Collaborators directory.';
-    lines.push(reason);
-    lines.push('I am [your name, role, institution], and I am working on [one sentence about your project].');
-    if (c.need) lines.push('I am hoping to find a ' + c.need.charAt(0).toLowerCase() + c.need.slice(1) + (c.method ? ' with experience in ' + c.method.toLowerCase() : '') + '.');
-    if (m.get && m.get.length && !c.offer) lines.push('I would be glad to help as ' + m.get.map(function (x) { return 'a ' + x.charAt(0).toLowerCase() + x.slice(1); }).join(' or ') + '.');
-    if (c.offer && p.seeking.indexOf(c.offer) !== -1) lines.push('I would also be glad to be a ' + c.offer.charAt(0).toLowerCase() + c.offer.slice(1) + ' for you.');
-    lines.push('Would you be open to a 20-minute call in the next few weeks to see whether there is a fit?', '', 'Thank you,', '[your name]');
-    return lines.join('\n');
-  }
-
-  function copy(text, after) {
-    function done() { after.textContent = 'Copied. Paste it into your Commons message.'; setTimeout(function () { after.textContent = ''; }, 4000); }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { fallback(); });
-    else fallback();
-    function fallback() { var t = node('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) { after.textContent = 'Could not copy.'; } t.remove(); }
-  }
-
-  function card(m, c) {
-    var p = m.p, li = document.createElement('li');
-    var head = node('div', 'who');
-    if (p.photo) {
-      var img = node('img', 'photo'); img.src = p.photo; img.alt = ''; img.loading = 'lazy';
-      img.referrerPolicy = 'no-referrer'; img.width = 56; img.height = 56;
-      img.addEventListener('error', function () { img.remove(); });
-      head.appendChild(img);
+  function card(p, phrase, words) {
+    var c = el('article', { 'class': 'card' });
+    var who = el('div', { 'class': 'who' });
+    if (p.photo) { var img = el('img', { src: p.photo, alt: '', loading: 'lazy' }); img.onerror = function () { img.replaceWith(initials(p)); }; who.appendChild(img); }
+    else who.appendChild(initials(p));
+    var t = el('div'); t.appendChild(el('h3', null, p.name)); if (p.institution) t.appendChild(el('p', null, p.institution)); who.appendChild(t);
+    c.appendChild(who);
+    var tags = el('div', { 'class': 'tags' });
+    var order = p.interests.map(function (i, k) { var n = p._ints[k]; var hit = words.length && words.every(function (w) { return n.indexOf(w) > -1; }); return { i: i, hit: hit, k: k }; });
+    order.sort(function (a, b) { return (b.hit - a.hit) || (a.k - b.k); });
+    var limit = 8;
+    order.forEach(function (o, idx) {
+      var b = el('button', { 'class': 'tag' + (o.hit ? ' hit' : ''), type: 'button', title: 'Find others interested in ' + o.i }, o.i);
+      b.addEventListener('click', function () { setQuery(o.i); });
+      if (idx >= limit) b.hidden = true;
+      tags.appendChild(b);
+    });
+    if (order.length > limit) {
+      var m = el('button', { 'class': 'more', type: 'button' }, '+' + (order.length - limit) + ' more');
+      m.addEventListener('click', function () { tags.querySelectorAll('.tag[hidden]').forEach(function (b) { b.hidden = false; }); m.remove(); });
+      tags.appendChild(m);
     }
-    var txt = node('div');
-    var h = node('div', 'name', p.name); if (p.pronouns) { h.appendChild(document.createTextNode(' ')); h.appendChild(node('span', 'pron', '(' + p.pronouns + ')')); }
-    txt.appendChild(h);
-    txt.appendChild(node('div', 'meta', [p.career_stage, p.institution].filter(Boolean).join(' · ')));
-    head.appendChild(txt);
-    li.appendChild(head);
-    if (m.why.length) {
-      var w = node('div', 'why' + (m.mutual ? ' mutual' : ''));
-      w.appendChild(node('strong', '', m.mutual ? 'Two-way match: ' : 'Why this match: '));
-      w.appendChild(document.createTextNode(m.why.join('; ') + '.'));
-      li.appendChild(w);
-    }
-    li.appendChild(node('p', 'about', p.about));
-    var dl = node('dl', 'facts');
-    facts(dl, 'Can offer', p.offers);
-    if (p.seeking.length) facts(dl, 'Looking for', p.seeking); else facts(dl, 'Looking for', ['Not looking for anything right now; offering only']);
-    facts(dl, 'Expertise', p.methods);
-    facts(dl, 'Topics', p.topics);
-    li.appendChild(dl);
-    var t = node('div', 'tags');
-    p.disciplines.forEach(function (d) { t.appendChild(node('span', 'tag st', d)); });
-    p.institution_types.forEach(function (d) { t.appendChild(node('span', 'tag', d)); });
-    li.appendChild(t);
-    var acts = node('div', 'acts');
-    acts.appendChild(link(messageUrl(p), 'Message on STEMEd+ Commons', 'btn'));
-    var b = node('button', 'link', 'Copy a message starter'); b.type = 'button';
-    var note = node('span', 'copied'); note.setAttribute('aria-live', 'polite');
-    b.addEventListener('click', function () { copy(starter(p, c, m), note); });
-    acts.appendChild(b);
-    if (p.orcid) acts.appendChild(link('https://orcid.org/' + p.orcid, 'ORCID'));
-    acts.appendChild(link(issueUrl('report_profile.yml', 'Problem with profile: ' + p.id), 'Report a problem'));
-    acts.appendChild(note);
-    li.appendChild(acts);
-    return li;
+    c.appendChild(tags);
+    var acts = el('div', { 'class': 'acts' });
+    acts.appendChild(el('a', { href: p.profile }, 'View profile →'));
+    if (D.message_url_template) acts.appendChild(el('a', { href: D.message_url_template.replace('{username}', encodeURIComponent(p.username)) }, 'Message on STEMEd+ Commons'));
+    if (p.orcid) acts.appendChild(el('a', { href: 'https://orcid.org/' + p.orcid }, 'ORCID'));
+    c.appendChild(acts);
+    return c;
+  }
+  function initials(p) {
+    var parts = p.name.split(/\s+/).filter(Boolean);
+    return el('span', { 'class': 'initials', 'aria-hidden': 'true' }, ((parts[0] || '?')[0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase());
   }
 
   function render() {
-    var c = current(), people = state.d.people;
-    var ranking = !!(c.need || c.method || c.q || c.offer || state.me);
-    var scored = people.map(function (p) { return score(p, c); }).filter(Boolean);
-    scored.sort(function (a, b) { return b.s - a.s || (b.mutual - a.mutual) || a.p.name.localeCompare(b.p.name); });
-    var hits = ranking ? scored.filter(function (m) { return m.s > 0; }) : scored;
-    var rest = ranking ? scored.filter(function (m) { return m.s === 0; }) : [];
-    var box = el('results'), restBox = el('rest');
-    box.textContent = ''; restBox.textContent = '';
+    var raw = q.value.trim(), phrase = norm(raw), words = phrase ? phrase.split(' ') : [];
+    $('clear').hidden = !raw;
+    var list = people.map(function (p) { return { p: p, s: score(p, words, phrase) }; }).filter(function (x) { return x.s > 0; });
+    if (words.length) list.sort(function (a, b) { return b.s - a.s || a.p.name.localeCompare(b.p.name); });
+    grid.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    list.forEach(function (x) { frag.appendChild(card(x.p, phrase, words)); });
+    grid.appendChild(frag);
     if (!people.length) {
-      box.appendChild(node('li', 'empty', 'No one is listed yet. Be the first: use "Join the directory" above.'));
-    } else if (!hits.length && state.at && !scored.length) {
-      box.appendChild(node('li', 'empty', 'No one from ' + state.at + ' has joined yet. Know someone there? Send them this directory.'));
-    } else if (!hits.length) {
-      box.appendChild(node('li', 'empty', ranking ? 'No one matches what you need yet. Try fewer choices, or look at the other people below.' : 'No one matches these choices. Try fewer.'));
-    }
-    hits.forEach(function (m) { box.appendChild(card(m, c)); });
-    rest.forEach(function (m) { restBox.appendChild(card(m, c)); });
-    var n = people.length;
-    el('count').textContent = !n ? '' : state.me && !(c.need || c.method || c.q || c.offer)
-      ? hits.length + ' of ' + (n - 1) + ' people match your profile'
-      : ranking
-      ? hits.length + ' of ' + n + ' people match what you need'
-      : scored.length + ' of ' + n + ' people';
-    el('others-box').hidden = !rest.length;
-    el('others').textContent = (state.showRest ? 'Hide ' : 'Show ') + rest.length + ' other ' + (rest.length === 1 ? 'person' : 'people') + ' who fit your "who" choices';
-    restBox.hidden = !rest.length || !state.showRest;
-    el('me-on').hidden = !state.me;
-    el('me-off').hidden = !!state.me;
-    if (state.me) el('me-name').textContent = state.me.name;
-    el('me-missing').hidden = !(state.meId && !state.me);
-    el('me-missing-id').textContent = state.meId;
-    el('at-box').hidden = !state.at;
-    el('at-name').textContent = state.at;
-    var params = new URLSearchParams();
-    if (state.at) params.set('at', state.at);
-    if (state.meId) params.set('me', state.meId);
-    FIELDS.forEach(function (f) { if (c[f]) params.set(f, c[f]); });
-    var qs = params.toString();
-    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
-  }
-
-  function init(d) {
-    state.d = d;
-    el('tagline').textContent = d.site.tagline;
-    el('join-btn').href = d.site.join_form_url || issueUrl('join_directory.yml', 'Join: ');
-    if (d.site.join_form_url) {
-      var gh = link(issueUrl('join_directory.yml', 'Join: '), 'Join with GitHub', 'btn secondary join-cta');
-      el('join-btn').parentNode.insertBefore(gh, el('join-btn').nextSibling);
+      count.textContent = '';
+      grid.appendChild(el('div', { 'class': 'empty' }, 'No one is listed yet. Add your interests to your STEMEd+ Commons profile to be the first.'));
+    } else if (!list.length) {
+      count.textContent = '';
+      var e = el('div', { 'class': 'empty' }); e.appendChild(document.createTextNode('No one matches "' + raw + '" yet. Try a broader word, or browse '));
+      var a = el('a', { href: (D.directory || '') + '?interest=' + encodeURIComponent(raw) }, 'all STEMEd+ members with this interest'); e.appendChild(a); e.appendChild(document.createTextNode('.'));
+      grid.appendChild(e);
     } else {
-      el('nogithub').hidden = true;
+      count.innerHTML = '';
+      var s = el('strong', null, list.length + (list.length === 1 ? ' person' : ' people'));
+      count.appendChild(s);
+      count.appendChild(document.createTextNode(words.length ? ' matching "' + raw + '"' : ' with interests on their profiles'));
     }
-    el('update-btn').href = d.site.join_form_url || issueUrl('join_directory.yml', 'Update: ');
-    el('remove-btn').href = issueUrl('remove_profile.yml', 'Remove: ');
-    el('repo-link').href = d.site.repo_url;
-    el('nogithub').textContent = d.site.contact_email_note;
-    el('stamp').textContent = 'Updated ' + d.generated.slice(0, 10) + '.';
-    fill('need', d.vocab.collaboration); fill('offer', d.vocab.collaboration);
-    if (d.site.teaching_circles && d.site.teaching_circles.length) {
-      var cl = el('circle-links'); cl.textContent = 'teaching circle on STEMEd+ Commons: ';
-      d.site.teaching_circles.forEach(function (g, i) { if (i) cl.appendChild(document.createTextNode(', ')); var a = node('a', '', g.name); a.href = g.url; cl.appendChild(a); });
-    } else if (d.site.groups_url) { el('circle-links').querySelector('a').href = d.site.groups_url; }
-    fill('method', d.vocab.methods); fill('discipline', d.disciplines);
-    fill('stage', d.vocab.career_stages); fill('itype', d.vocab.institution_types);
-    var params = new URLSearchParams(location.search);
-    FIELDS.forEach(function (f) { if (params.get(f)) el(f).value = params.get(f); });
-    state.at = (params.get('at') || '').trim();
-    function setMe(id) {
-      state.meId = (id || '').trim().replace(/^@/, '').toLowerCase();
-      state.me = null;
-      d.people.forEach(function (p) { if (p.id.toLowerCase() === state.meId) state.me = p; });
-      state.showRest = false;
-      render();
-    }
-    el('me-form').addEventListener('submit', function (e) { e.preventDefault(); setMe(el('me').value); });
-    el('me-stop').addEventListener('click', function () { el('me').value = ''; setMe(''); });
-    if (params.get('me')) { el('me').value = params.get('me'); state.meId = params.get('me').trim().toLowerCase();
-      d.people.forEach(function (p) { if (p.id.toLowerCase() === state.meId) state.me = p; }); }
-    el('at-clear').addEventListener('click', function () { state.at = ''; render(); });
-    FIELDS.forEach(function (f) { el(f).addEventListener(f === 'q' ? 'input' : 'change', render); });
-    el('others').addEventListener('click', function () { state.showRest = !state.showRest; render(); });
-    el('reset').addEventListener('click', function () { FIELDS.forEach(function (f) { el(f).value = ''; }); state.showRest = false; state.at = ''; render(); });
-    el('share').addEventListener('click', function () {
-      var b = el('share');
-      (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(
-        function () { b.textContent = 'Link copied'; setTimeout(function () { b.textContent = 'Copy link to this search'; }, 2500); },
-        function () { b.textContent = 'Copy the address bar'; });
-    });
-    render();
   }
-
-  fetch('collaborators.json').then(function (r) { return r.json(); }).then(init).catch(function () {
-    el('results').appendChild(node('li', 'empty', 'The directory could not be loaded. Please try again later.'));
-  });
+  var timer;
+  function setQuery(v) { q.value = v; render(); history.replaceState(null, '', v ? '#q=' + encodeURIComponent(v) : location.pathname); q.focus(); window.scrollTo({ top: q.getBoundingClientRect().top + window.pageYOffset - 20 }); }
+  q.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { render(); history.replaceState(null, '', q.value.trim() ? '#q=' + encodeURIComponent(q.value.trim()) : location.pathname); }, 120); });
+  $('clear').addEventListener('click', function () { setQuery(''); });
+  var m = location.hash.match(/^#q=(.*)$/); if (m) q.value = decodeURIComponent(m[1]);
+  render();
+  var c = D.counts || {};
+  if (D.updated) $('note').textContent = 'Updated daily from STEMEd+ Commons profiles. Last update ' + D.updated.slice(0, 10) + (c.members ? ': ' + (c.listed || people.length) + ' of ' + c.members + ' STEMEd+ members are listed.' : '.');
 })();
 </script>
-<footer class="sp-footer"><div class="sp-fin"><p><strong>This site is part of <a href="https://stemedplus.org/">STEMEd+ Commons</a>, a Commons within <a href="https://hcommons.org/">Knowledge Commons</a>. STEMEd+ Commons brings together STEM+ education communities to collectively build research insights and teaching innovations across disciplines. As an open access platform, STEMEd+ Commons helps ensure STEM+ education research and practice is accessible for all people, in all communities. This material is based upon work supported by the National Science Foundation under grants </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2226271">OAC-2226271</a><strong>, </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2321946">DRL-2321946</a><strong>, </strong><a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2531819">OAC-2531819</a> and by Michigan State University through the <a href="https://research.msu.edu/find-funding/msu-funding-opportunities/jenison-support">Jenison Fund</a>.</p></div></footer>
 </body>
 </html>
