@@ -3,7 +3,7 @@
     python -m stemed_collaborators --refresh      read Commons and update data/collaborators.json
 
 Who gets a card (config/site.json, "listing"):
-  * The member is in the STEMEd+ member directory and their profile has at least one academic interest
+  * The member is in the STEMEd+ member directory (which decides membership) and their profile has at least one academic interest
     besides the opt-in interest.
   * When "opt_in_required" is true, their academic interests must also include the opt-in interest
     (for example "open to collaboration"). While it is false (preview), everyone with interests counts as
@@ -48,12 +48,13 @@ def same(a: str, b: str) -> bool:
 
 
 def why_not(username: str, data: dict, config: dict) -> Optional[str]:
-    """Why a profile gets no card ("excluded", "not_member", "no_interests", "not_opted_in"), or None."""
+    """Why a profile gets no card ("excluded", "no_interests", "not_opted_in"), or None.
+
+    Membership comes from the STEMEd+ member directory itself. The profile's own "memberships" flag is not
+    used: it says false for most people the directory lists as STEMEd+ members."""
     required, opt_in, exclude = listing_rules(config)
     if username.lower() in exclude:
         return "excluded"
-    if commons.is_stemedplus_member(data) is False:
-        return "not_member"
     all_interests = commons.interests(data)
     if not [i for i in all_interests if not same(i, opt_in)]:
         return "no_interests"
@@ -132,6 +133,6 @@ def refresh(path: Path = DATA, config: Optional[dict] = None, list_members: Call
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(new, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     skipped = ", ".join(f"{k.replace('_', ' ')}: {v}" for k, v in counts.items()
-                        if k in ("no_interests", "not_member", "not_opted_in", "excluded"))
+                        if k in ("no_interests", "not_opted_in", "excluded"))
     return True, (f"Updated: {counts['listed']} of {counts['members']} members listed "
                   f"({counts['answered']} profiles read; not listed, {skipped or 'none'}).")
