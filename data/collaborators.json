@@ -1,10 +1,12 @@
 {
- "updated": "2026-11-16T23:26:03Z",
+ "updated": "2026-11-16T23:28:23Z",
  "counts": {
   "members": 915,
   "answered": 915,
   "missing": 0,
   "unavailable": 0,
+  "not_member": 846,
+  "no_interests": 58,
   "listed": 11
  },
  "people": [
