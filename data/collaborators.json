@@ -1,0 +1,191 @@
+{
+ "updated": "2026-11-16T23:26:03Z",
+ "counts": {
+  "members": 915,
+  "answered": 915,
+  "missing": 0,
+  "unavailable": 0,
+  "listed": 11
+ },
+ "people": [
+  {
+   "username": "evelynboyd",
+   "name": "Abby Boyd",
+   "institution": "University Of Mississippi",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1063613/1764621222-bpfull.jpg",
+   "interests": [
+    "Chemistry Education Research",
+    "environmental education"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/evelynboyd/"
+  },
+  {
+   "username": "amandam3",
+   "name": "Amanda Manzanares",
+   "institution": "Denver Museum of Nature and Science",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/facff82b3572e83d7f769356f4c9fa53e941b42f838b8c0504690e4bfb830191?s=150",
+   "interests": [
+    "Collaborative research",
+    "Earth Sciences",
+    "STEM education",
+    "Interdisciplinary research",
+    "Geology",
+    "Educational Psychology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/amandam3/"
+  },
+  {
+   "username": "bonnie",
+   "name": "Bonnie Russell",
+   "institution": "Michigan State University",
+   "orcid": "0000-0002-0374-0384",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/65ac907c31b1494ebd64fe199ceb247c.jpg",
+   "interests": [
+    "Digital humanities",
+    "oer",
+    "Library and Information science",
+    "Accessibility",
+    "pop culture studies",
+    "fandom studies",
+    "Film studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/bonnie/"
+  },
+  {
+   "username": "bshmaefsky",
+   "name": "Brian Robert Shmaefsky",
+   "institution": "Lone Star College- Kingwood",
+   "orcid": "0000-0001-7221-1542",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065030/1775843051-bpfull.jpg",
+   "interests": [
+    "environmental physiology",
+    "Environmental justice",
+    "nature-based remediation"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/bshmaefsky/"
+  },
+  {
+   "username": "bhoppmatt",
+   "name": "Brooke Hoppstock-Mattson",
+   "institution": "University Of British Columbia",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/59edba5b4d771ad998683d174bb92749eefd3e1fdb2f3f02d2687bff31acc7f4?s=150",
+   "interests": [
+    "Biogeochemistry",
+    "Geology",
+    "Environmental science",
+    "science communication",
+    "Data Analysis"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/bhoppmatt/"
+  },
+  {
+   "username": "eroan",
+   "name": "Elizabeth Roan",
+   "institution": "Texas State University",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065107/1776265599-bpfull.jpg",
+   "interests": [
+    "Mathematics Education",
+    "Teaching and learning of mathematical modeling"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/eroan/"
+  },
+  {
+   "username": "drlauraguertin",
+   "name": "Laura Guertin",
+   "institution": "Penn State Brandywine",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065111/1776272953-bpfull.jpg",
+   "interests": [
+    "Geology",
+    "Oceanography",
+    "Marine geology",
+    "science pedagogy",
+    "pedagogy and learning",
+    "scicomm",
+    "science art",
+    "Data Art",
+    "Data visualization",
+    "Earth Science",
+    "Maritime history",
+    "marine science",
+    "oer",
+    "Educational Technology",
+    "quilting",
+    "Storytelling",
+    "Podcasting",
+    "Podcasts",
+    "Oral history"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/drlauraguertin/"
+  },
+  {
+   "username": "mrgundlach",
+   "name": "Michael Gundlach",
+   "institution": "Utah Valley University",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065093/1776192133-bpfull.jpg",
+   "interests": [
+    "Calculus"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/mrgundlach/"
+  },
+  {
+   "username": "mikethicke",
+   "name": "Michael Thicke",
+   "institution": "Michigan State University",
+   "orcid": "0000-0003-1401-2056",
+   "photo": "https://hcommons.org/app/uploads/avatars/1026032/61b26ed8cc42a-bpfull.jpg",
+   "interests": [
+    "Social epistemology",
+    "Philosophy of science",
+    "epistemology of the social sciences"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/mikethicke/"
+  },
+  {
+   "username": "rlrupnow",
+   "name": "Rachel Rupnow",
+   "institution": "Northern Illinois University",
+   "orcid": "0000-0001-6022-9630",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065072/1776102248-bpfull.jpg",
+   "interests": [
+    "STEM Teaching and Learning",
+    "Mathematics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/rlrupnow/"
+  },
+  {
+   "username": "schopie1",
+   "name": "Scott Schopieray",
+   "institution": "Michigan State University",
+   "orcid": "0000-0002-8143-2408",
+   "photo": "https://hcommons.org/app/uploads/avatars/1010283/5b60a6828bc4b-bpfull.jpg",
+   "interests": [
+    "Data visualization",
+    "Digital humanities research and methodology",
+    "Distance education",
+    "Museum education",
+    "Research computing",
+    "Scholarship of teaching and learning",
+    "Educational Technology",
+    "Educational Psychology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/schopie1/"
+  }
+ ]
+}
