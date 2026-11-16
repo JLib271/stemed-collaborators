@@ -1,15 +1,28 @@
 {
- "updated": "2026-11-16T23:28:23Z",
+ "updated": "2026-11-16T23:30:27Z",
  "counts": {
   "members": 915,
   "answered": 915,
   "missing": 0,
   "unavailable": 0,
-  "not_member": 846,
-  "no_interests": 58,
-  "listed": 11
+  "no_interests": 828,
+  "listed": 87
  },
  "people": [
+  {
+   "username": "aaronmckim",
+   "name": "Aaron McKim",
+   "institution": "Michigan State University",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1033646/1738336114-bpfull.jpg",
+   "interests": [
+    "Agricultural Education",
+    "Teacher Retention",
+    "Teacher education"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/aaronmckim/"
+  },
   {
    "username": "evelynboyd",
    "name": "Abby Boyd",
@@ -22,6 +35,116 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/evelynboyd/"
+  },
+  {
+   "username": "okela",
+   "name": "Abdelmohsen Hamed Okela",
+   "institution": "Minia University, Hertfordshire University in Egypt, and the Islamic University of Minnesota (Online)",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/0964422294f94afcaaf34e9016b65018.jpg",
+   "interests": [
+    "artificial intelligence (AI)",
+    "Journalism Studies",
+    "Digital Literacy",
+    "mobile media",
+    "Digital media",
+    "Media and mass communicati",
+    "Teaching and learning in higher education",
+    "New Media Studies",
+    "Media Literacy",
+    "Social media"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/okela/"
+  },
+  {
+   "username": "abhishek1008",
+   "name": "Abhishek Jha",
+   "institution": "Independent Researcher",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/c1bcbb38ac6346d4966d151451e7fccf.jpg",
+   "interests": [
+    "Digital humanities",
+    "Machine learning"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/abhishek1008/"
+  },
+  {
+   "username": "Abolfazl_Fereydoni",
+   "name": "Abolfazl Fereydoni",
+   "institution": "SUT",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/3bfd057fd2a84f0f9aded24340c50433.jpg",
+   "interests": [
+    "Physics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Abolfazl_Fereydoni/"
+  },
+  {
+   "username": "adrianwadowski",
+   "name": "Adrian Wadowski",
+   "institution": "CartHacker LLC",
+   "orcid": "0009-0005-3393-7953",
+   "photo": "https://www.gravatar.com/avatar/238ecee75d722dd8486de2ecc2990223dd3d4047a77f92fd60de48a1fcc7e916?s=150",
+   "interests": [
+    "Statistics",
+    "Open data",
+    "Commerce",
+    "Consumer behaviour"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/adrianwadowski/"
+  },
+  {
+   "username": "Alejandro_Pineda",
+   "name": "Alejandro Pineda",
+   "institution": "Keio University",
+   "orcid": "0000-0002-6896-1911",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/6905062850754259aebcac1d33565831.jpg",
+   "interests": [
+    "Urban planning",
+    "Urban studies",
+    "Geographic Information System",
+    "Japanese studies",
+    "Architecture"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Alejandro_Pineda/"
+  },
+  {
+   "username": "abal",
+   "name": "Alexandra Bal",
+   "institution": "Toronto Metropolitan Institute",
+   "orcid": "0000-0001-8737-095X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/72380abfeba64e6a9c5558abeb41d674.jpg",
+   "interests": [
+    "New media",
+    "regeneration",
+    "Media theory",
+    "Media and Communication Studies",
+    "History of media studies",
+    "New Media Studies",
+    "Media Literacy"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/abal/"
+  },
+  {
+   "username": "alfredo_merlet_echavarria",
+   "name": "Alfredo Agustin Merlet Echavarria",
+   "institution": "Universidad del Alba; Universidad de Sevilla; IACC",
+   "orcid": "0009-0007-8558-164X",
+   "photo": "https://www.gravatar.com/avatar/21f77b47c02620134b889f3641ba515fecdbd535484abce083cefc15e4e0a075?s=150",
+   "interests": [
+    "Business Management and Accounting",
+    "financial decision-making",
+    "artificial intelligence (AI)",
+    "Economics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/alfredo_merlet_echavarria/"
   },
   {
    "username": "amandam3",
@@ -39,6 +162,149 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/amandam3/"
+  },
+  {
+   "username": "dolganov",
+   "name": "Anna Dolganov",
+   "institution": "Austrian Academy of Sciences",
+   "orcid": "0000-0002-1316-4026",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/b66df521245b4622ba86af475a457311.jpg",
+   "interests": [
+    "digital classics",
+    "Roman North Africa",
+    "Later Roman Empire",
+    "Roman Near East",
+    "Roman Egypt",
+    "Classical rhetoric",
+    "Roman Oratory",
+    "Rome",
+    "Roman Army",
+    "Ancient Greece",
+    "Classical Literature",
+    "Classics",
+    "Roman Law",
+    "Roman Republic",
+    "Greek and Roman Classics",
+    "Roman administration",
+    "Ancient history",
+    "Ancient Rome",
+    "Greco-Roman World",
+    "Roman Empire",
+    "Classical Studies",
+    "Roman history",
+    "Early Roman Empire",
+    "History",
+    "Ancient Greek",
+    "Eastern Roman Empire",
+    "artificial intelligence (AI)",
+    "Digital humanities",
+    "Papyrology",
+    "Digital humanities research and methodology",
+    "Greek and Roman epigraphy",
+    "papyri",
+    "Greek epigraphy",
+    "Legal history",
+    "Digital epigraphy",
+    "Latin epigraphy",
+    "Manuscript studies",
+    "Epigraphy"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/dolganov/"
+  },
+  {
+   "username": "ArndtStelter",
+   "name": "Arndt Stelter",
+   "institution": "Zooniverse",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/038bbfb444a44c92a5d5b1480e064a26.jpg",
+   "interests": [
+    "Astrophysics",
+    "Climatology",
+    "geomorphology",
+    "planetary science",
+    "Cosmology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/ArndtStelter/"
+  },
+  {
+   "username": "bodor",
+   "name": "Attila Bodor",
+   "institution": "Eötvös Loránd University, Budapest | German Bible Society, Stuttgart",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1065333/1778916460-bpfull.jpg",
+   "interests": [
+    "Biblical studies",
+    "Textual criticism",
+    "Digital humanities",
+    "Hebrew Bible"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/bodor/"
+  },
+  {
+   "username": "ayan_dh",
+   "name": "Ayan Chatterjee",
+   "institution": "Jadavpur University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/f86ebf2c0b484a51935f64d589e62a5e.jpg",
+   "interests": [
+    "built environment",
+    "Architecture",
+    "Digital humanities",
+    "Digital archiving"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/ayan_dh/"
+  },
+  {
+   "username": "benjamincollado",
+   "name": "Benjamín Collado Hinarejos",
+   "institution": "Independent Researcher",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/2d1384dbb78c966a7129451f7b35df4b99a8ae0c287655e7a9240a72d4396c18?s=150",
+   "interests": [
+    "Protohistoria península iberica",
+    "Cultura ibérica"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/benjamincollado/"
+  },
+  {
+   "username": "bennygjohnson",
+   "name": "Benny G. Johnson",
+   "institution": "VitalSource Technologies",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/e8c233c4b4d74a859691e636632fc1f8.jpg",
+   "interests": [
+    "Artifical Intelligence (AI)",
+    "Machine learning",
+    "Digital learning resources",
+    "Teaching and learning in higher education",
+    "Learning technologies",
+    "Online Learning and Pedagogy"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/bennygjohnson/"
+  },
+  {
+   "username": "krabina",
+   "name": "Bernhard Krabina",
+   "institution": "KMA Knowledge Management Associates",
+   "orcid": "0000-0002-6871-3037",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/81603c70a90c441da16d579f08567724.jpg",
+   "interests": [
+    "open knowledge",
+    "public management",
+    "Open Government Data",
+    "Wikidata",
+    "Knowledge management",
+    "Wikipedia",
+    "Collaboration"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/krabina/"
   },
   {
    "username": "bonnie",
@@ -89,6 +355,181 @@
    "profile": "https://stemedplus.profile.hcommons.org/members/bhoppmatt/"
   },
   {
+   "username": "ChronicRhyno",
+   "name": "CʜʀᴏɴɪᴄRʜʏɴᴏ",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/e61636bd11d2449d958bd72704945466.jpg",
+   "interests": [
+    "Critical pedagogy",
+    "Postcolonial theory",
+    "Cultural identity",
+    "Digital humanities",
+    "Digital humanities research and methodology",
+    "Typography",
+    "Library and Archival Studies",
+    "Poetry and Poetics",
+    "Research methods",
+    "Lexicography",
+    "Prosopography",
+    "Cartography",
+    "bibliography and scholarly editing",
+    "Avant-garde poetry",
+    "Ludwig Wittgenstein",
+    "Text encoding",
+    "Old English",
+    "Writing systems",
+    "Teaching writing",
+    "Creative writing: poetry",
+    "Postcolonial English literature",
+    "Second-Language Teaching and Learning",
+    "William Blake",
+    "Samuel Johnson",
+    "Writing across the curriculum",
+    "Phenomenology",
+    "Technical/Professional Writing",
+    "Old English literature",
+    "Prosody",
+    "Syntax",
+    "Continental philosophy",
+    "Theories of reading and writing",
+    "Open source software",
+    "Medieval Art and Architecture",
+    "Literary Analysis",
+    "Paleography",
+    "Computational Literary Studies",
+    "Parchment",
+    "Software Development",
+    "Rhythm and Meter",
+    "Doctoral writing",
+    "History of Typography",
+    "History and philosophy of mathematics",
+    "Complex systems",
+    "Linguistic typology",
+    "Beowulf",
+    "Transdisciplinary research",
+    "English for research publication purposes",
+    "Calligraphy",
+    "Samuel Beckett",
+    "Software Engineering",
+    "Interdisciplinary literary studies",
+    "Natural Language Processing",
+    "Literary therory and criticism",
+    "Programming languages and cultures of software development",
+    "Language Arts",
+    "Language Attitudes and Identity",
+    "Methodology Research Design",
+    "knowledge organization systems",
+    "Illuminated Manuscripts",
+    "Creative coding",
+    "visual thinking",
+    "Linguistics syntax",
+    "Syntax-Semantics Interface",
+    "computational thinking",
+    "Synesthesia",
+    "color theory",
+    "Higher Education Research",
+    "Phenomenology of Literature",
+    "Language Education Educational Administration Curriculum and Instruction Educational Research",
+    "metaresearch",
+    "Crypto-Steganography",
+    "ColorSpace"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/ChronicRhyno/"
+  },
+  {
+   "username": "dbroughton79",
+   "name": "David Broughton",
+   "institution": "Independent Researcher",
+   "orcid": "0009-0000-6392-7557",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/536dbf0d53f844309226cc4413fce138.jpg",
+   "interests": [
+    "symbology",
+    "Leonardo da Vinci Studies",
+    "Iconography",
+    "Renaissance studies",
+    "Art history",
+    "Renaissance Art History"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/dbroughton79/"
+  },
+  {
+   "username": "djpang",
+   "name": "Der Jiun PANG",
+   "institution": "University of Malaya Wales",
+   "orcid": "0000-0002-8137-2820",
+   "photo": "https://www.gravatar.com/avatar/cb783868e9ff266d82a6ee6ec1c99d2880f8ddf625dae6a8101430beb48be218?s=150",
+   "interests": [
+    "LLM",
+    "Project Management",
+    "Machine Learning",
+    "Deep Learning"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/djpang/"
+  },
+  {
+   "username": "derekjansen",
+   "name": "Derek Jansen",
+   "institution": "Grad Coach",
+   "orcid": "0009-0003-4348-3575",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/55bc1eeb9b2e492b91fcc75aab6aea51.jpg",
+   "interests": [
+    "Qualitative Research Methods",
+    "Research methods",
+    "Design Research Methods"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/derekjansen/"
+  },
+  {
+   "username": "dhruvsharmagwl",
+   "name": "Dhruv Sharma",
+   "institution": "Vikrant University",
+   "orcid": "0009-0007-2568-361X",
+   "photo": "https://www.gravatar.com/avatar/9a223358e138ea6fd0253604ccb88d77d4b11555379eec8444d75318a3bfa315?s=150",
+   "interests": [
+    "Artifical Intelligence (AI)",
+    "Finance",
+    "Marketing",
+    "Consumer behaviour"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/dhruvsharmagwl/"
+  },
+  {
+   "username": "dpanagiotakopoulos",
+   "name": "Dimitrios Panagiotakopoulos",
+   "institution": "University of West Attica",
+   "orcid": "0000-0001-7087-772X",
+   "photo": "https://www.gravatar.com/avatar/6dc44623995acf7d3c56aaaf1a5369d75643314d587adce38c1abab95c579334?s=150",
+   "interests": [
+    "Visual communication",
+    "Media and Communication Studies",
+    "metaverse"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/dpanagiotakopoulos/"
+  },
+  {
+   "username": "dcuster",
+   "name": "Dylan Custer",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/be9320f86a0189ff82da7b22a62a7feaa271630a5e5b974b39787f57770c867a?s=150",
+   "interests": [
+    "Music Theory and Analysis",
+    "Schenkerian analysis",
+    "Band",
+    "Karl L. King",
+    "March Music"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/dcuster/"
+  },
+  {
    "username": "eroan",
    "name": "Elizabeth Roan",
    "institution": "Texas State University",
@@ -100,6 +541,433 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/eroan/"
+  },
+  {
+   "username": "emiliaisemmalee",
+   "name": "Emilia A. Ottoo",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/f685a3d2320746ca98828bfafcf91bd7.jpg",
+   "interests": [
+    "African studies",
+    "Music",
+    "Globalization",
+    "Political Science",
+    "Film and Media Studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/emiliaisemmalee/"
+  },
+  {
+   "username": "martzeric",
+   "name": "Eric Martz",
+   "institution": "Grand Canyon University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/d6104c99730c4062877665cee574ccb4.jpg",
+   "interests": [
+    "Experimental Psychology",
+    "cognitive psychology",
+    "Semiotics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/martzeric/"
+  },
+  {
+   "username": "ericahaugtvedt",
+   "name": "Erica Haugtvedt",
+   "institution": "South Dakota Mines",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/6329aadda62b4e08b1ab0a366f0ded27.jpg",
+   "interests": [
+    "history of computing",
+    "Transmedia Storytelling",
+    "Seriality",
+    "Narrative theory",
+    "Cognitive literary studies",
+    "Victorian periodicals",
+    "Victorian Popular Fiction"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/ericahaugtvedt/"
+  },
+  {
+   "username": "Florian_Rost",
+   "name": "Florian Rost",
+   "institution": "Carl-von-Ossietzky-Universität Oldenburg",
+   "orcid": "0009-0000-0102-9137",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/ced1a2e75392496a8548a5331a5fc20a.jpg",
+   "interests": [
+    "industrial waste treatment",
+    "computational chemistry",
+    "Chemistry Education Research",
+    "chemistry",
+    "Organic Chemistry"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Florian_Rost/"
+  },
+  {
+   "username": "GME",
+   "name": "George Mensah Essilfie",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/0b56a559a305e0a35db16cba22829fab9ec4eca1c3c72599979bd18f9b87d86c?s=150",
+   "interests": [
+    "choral music",
+    "Ethnomusicology",
+    "practice-based research",
+    "Ethnodoxology",
+    "African musical Arts",
+    "Music Composition"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/GME/"
+  },
+  {
+   "username": "GerhardG",
+   "name": "Gerhard Nebe-von-Caron",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/e0b80b730d974bdfb9a747fb6cb1439a.jpg",
+   "interests": [
+    "Microbiology",
+    "Cell Biology",
+    "Antimicrobial Resistance",
+    "Christian theology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/GerhardG/"
+  },
+  {
+   "username": "Giulia_Suzzi",
+   "name": "Giulia Suzzi",
+   "institution": "",
+   "orcid": "0009-0002-6388-4328",
+   "photo": "https://www.gravatar.com/avatar/9d529a70bbf3d964226c775af99350bcf0c1e289236420540cc073c659eab771?s=150",
+   "interests": [
+    "philosophy of literature",
+    "Medical humanities",
+    "Philosophy of Psychiatry",
+    "Phenomenology",
+    "Narrative identity",
+    "Posthumanism",
+    "Identity Studies",
+    "Speculative fiction",
+    "science fiction studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Giulia_Suzzi/"
+  },
+  {
+   "username": "Shtamler",
+   "name": "Hagay Shtamler",
+   "institution": "Michlalah Jerusalem College, Efrata College",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/cdce32ed620b4ac997e6d64b7e86ea91.jpg",
+   "interests": [
+    "Jewish apocalyptic literature",
+    "philosophy of psychology",
+    "Jewish history",
+    "Medieval Jewish studies",
+    "Jewish thought",
+    "Ancient philosophy",
+    "medieval philosophy",
+    "History of modern philosophy",
+    "History of philosophy",
+    "History of 19th and 20th C. Philosophy",
+    "postmodern philosophy",
+    "Modern Jewish Thought",
+    "Jewish Theology",
+    "Ancient Jewish History.",
+    "Modern Jewish History",
+    "Philosophy of the 18th century",
+    "History and Philosophy of Psychology",
+    "Jewish Philosophy",
+    "Philosophy",
+    "Medieval Jews",
+    "Jewish-Christian relations",
+    "German philosophy",
+    "Philosophy of religion",
+    "Jewish cultural history",
+    "Jewish and Christian heresiology",
+    "Nineteenth-century philosophy",
+    "Philosophy of history",
+    "Josephus. Jewish Oral Law (Torah Sheb'al Peh",
+    "Medieval philosophy and theology",
+    "Contemporary European philosophy",
+    "Jewish studies",
+    "Jewish mysticism",
+    "German Jewish history",
+    "Philosophy and literature",
+    "Early modern philosophy"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Shtamler/"
+  },
+  {
+   "username": "hmcdermott",
+   "name": "Harry M McDermott",
+   "institution": "University of Arizona",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/c905d26a1d04658c27d386c19a3b1960fd0426c5f660021e8fb93556b5ac5a46?s=150",
+   "interests": [
+    "Underserved Populations",
+    "Public health",
+    "healthcare"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/hmcdermott/"
+  },
+  {
+   "username": "iram-gonzalez",
+   "name": "Iram Gonzalez",
+   "institution": "University of Nevada, Las Vegas",
+   "orcid": "0009-0002-8989-169X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/020cbb344dfa4e36b02f4c8b1c273cdb.jpg",
+   "interests": [
+    "Chicana/o and Latina/o literature",
+    "Digital humanities",
+    "Marxism",
+    "Latin American literature",
+    "Hemispheric American literature",
+    "Modernisms",
+    "Cultural studies",
+    "psychoanalysis",
+    "Literary theory",
+    "Phenomenology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/iram-gonzalez/"
+  },
+  {
+   "username": "Duntrune_936",
+   "name": "J. Michael Mills",
+   "institution": "Evangelical Lutheran Church in America, Northern Great Lakes Synod",
+   "orcid": "0009-0002-1504-9643",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/1690883062bb4a758ad19e377402cfb6.jpg",
+   "interests": [
+    "community archives",
+    "pastoral care",
+    "Transitional Ministry",
+    "end-of-life care",
+    "rural religion",
+    "Congregational Studies",
+    "Lutheran Studies",
+    "religion and place",
+    "Public Theology",
+    "digital public humanities",
+    "Public humanities"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Duntrune_936/"
+  },
+  {
+   "username": "jacobkahn",
+   "name": "Jacob J. Kahn, MBA, MS, PMP, SPC",
+   "institution": "Board of Directors (Nominating & Governance), Harvard Aerospace and Defense Alumni Organization | Former General Partner and current Limited Partner, Phoenix Fund I",
+   "orcid": "0009-0000-6709-6957",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/206ea91b49b5408b9a32eb28d177fdec.jpg",
+   "interests": [
+    "Digital transformation",
+    "Financial oversight",
+    "Private equity",
+    "Board of directors",
+    "Defense and aerospace",
+    "Data analytics",
+    "Private company governance",
+    "Internal controls",
+    "Sarbanes-Oxley compliance",
+    "Investment committees",
+    "Venture capital",
+    "Fiduciary duty",
+    "Enterprise risk management",
+    "Nonprofit governance",
+    "Corporate governance",
+    "Endowments and foundations",
+    "Audit committees",
+    "accounting",
+    "AI Governance"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/jacobkahn/"
+  },
+  {
+   "username": "Jeanvy29",
+   "name": "Jeanvy Felipas-Damag",
+   "institution": "Associate Professor",
+   "orcid": "0009-0000-6040-7337",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/31ff82c5d270457c8e8c3e72841d5d6e.jpg",
+   "interests": [
+    "Finance",
+    "Business writing",
+    "Business Management and Accounting",
+    "financial history",
+    "financial decision-making",
+    "Financial Statements Analysis",
+    "Financial Reporting",
+    "Business management",
+    "Corporate Finance",
+    "Financing MSMEs",
+    "Business Analytics",
+    "Business data"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Jeanvy29/"
+  },
+  {
+   "username": "jp201404231",
+   "name": "Jerónimo Paiva",
+   "institution": "CEOS.PP, Polytechnic Institute of Porto",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/3b3bdacadd98a6613cb8cdd6793d7ef5fd80c044c9e3275228c1d1d92aa235bf?s=150",
+   "interests": [
+    "Cross-Cultural Research (Global South)",
+    "Artificial Intelligence in Higher Education",
+    "Python/R)",
+    "Augmented and Virtual Reality in Education",
+    "Generative AI in Teaching and Learning",
+    "NVivo",
+    "Technology Acceptance Models (UTAUT",
+    "Human-Computer Interaction",
+    "Mixed-Methods Research (SEM-PLS",
+    "Digital Transformation in Public Organizations"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/jp201404231/"
+  },
+  {
+   "username": "jkenigson1",
+   "name": "Jonathan Kenigson",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/f5d3866ecc3144f9b6c8db4b79bfd234.jpg",
+   "interests": [
+    "Healthcare information",
+    "Healthcare innovation",
+    "artificial intelligence (AI)",
+    "applied math",
+    "Statistical Analysis",
+    "Economics",
+    "Statistics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/jkenigson1/"
+  },
+  {
+   "username": "kfitz",
+   "name": "Kathleen Fitzpatrick",
+   "institution": "Michigan State University",
+   "orcid": "0000-0002-5251-0307",
+   "photo": "https://hcommons.org/app/uploads/avatars/60/1768834159-bpfull.jpg",
+   "interests": [
+    "Scholarly communication",
+    "Media studies",
+    "Digital humanities",
+    "Technology and culture",
+    "Critical university studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kfitz/"
+  },
+  {
+   "username": "kjbaur",
+   "name": "Kayla Joan Baur",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/b6615c86342f4b4aa92e01518a81c800.jpg",
+   "interests": [
+    "Native American and Indigenous Studies",
+    "Humanities careers",
+    "Native American literature",
+    "Cultural rhetorics",
+    "Women's rhetoric"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kjbaur/"
+  },
+  {
+   "username": "kevin_petrosenko",
+   "name": "Kevin Petrosenko",
+   "institution": "Florida State University",
+   "orcid": "0009-0009-8168-8831",
+   "photo": "https://www.gravatar.com/avatar/66ea9562d8210029a2e677ec4f8eb7c56387f110d79362cfa7d0f5e8729621fe?s=150",
+   "interests": [
+    "criminology",
+    "human ethology",
+    "human behavioral ecology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kevin_petrosenko/"
+  },
+  {
+   "username": "khalidzeghari",
+   "name": "Khalid Ahmed Zeghari Tétouani",
+   "institution": "Sheikh Abdulrahman Bayoumi Academy – Al-Ibrahimiyah, Egypt",
+   "orcid": "0009-0008-2122-9943",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/2abf9e5072a346a59aa4779a10d3db17.jpg",
+   "interests": [
+    "Arabic Literature Classical Arabic Literature Islamic Heritage Hadith Studies Hadith Criticism Hadith Methodology History of Hadith Scholarship Biographical Literature (Ṭabaqāt) Evaluation of Hadith Narrators Islamic Intellectual History Qur"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/khalidzeghari/"
+  },
+  {
+   "username": "kea6465",
+   "name": "Konstantin Ashrafyan",
+   "institution": "Independent researcher",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/bfd3d2ec6a084770bb9fde1a29bb4621.jpg",
+   "interests": [
+    "Native American and Indigenous Studies",
+    "Native American studies",
+    "Native American history",
+    "16th century Spain",
+    "Roman history",
+    "Romani studies in Spain",
+    "Roman North Africa",
+    "spanish florida",
+    "Roman Army"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kea6465/"
+  },
+  {
+   "username": "kris92",
+   "name": "Kristian Pandža",
+   "institution": "University of Banja Luka - Faculty of Philology",
+   "orcid": "0000-0002-7416-1988",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/f16cdcfc3c3f49c2bdec042693c8df8f.jpg",
+   "interests": [
+    "German studies",
+    "Comparative literature",
+    "Film and Media Studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kris92/"
+  },
+  {
+   "username": "larissab1",
+   "name": "Larissa Baca",
+   "institution": "Michigan State University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/c64846e0ae9647c8baa6099263dd465f.jpg",
+   "interests": [
+    "Design (graphic)",
+    "Rhetoric",
+    "Composition",
+    "Technology in the classroom",
+    "Technology in the teaching of writing",
+    "Sound studies",
+    "nature writing and the environmental humanities",
+    "User experience",
+    "Open access",
+    "pop culture studies",
+    "Instructional design",
+    "UX design",
+    "Digital humanities"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/larissab1/"
   },
   {
    "username": "drlauraguertin",
@@ -132,6 +1000,245 @@
    "profile": "https://stemedplus.profile.hcommons.org/members/drlauraguertin/"
   },
   {
+   "username": "luis_pauperio",
+   "name": "Luís Paupério",
+   "institution": "",
+   "orcid": "0000-0003-0717-4313",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/7e6e41b66b344450b27662067475e758.jpg",
+   "interests": [
+    "Writing",
+    "Literature",
+    "Artistic Gestures",
+    "Art Education Theory",
+    "Translation studies",
+    "Critical theory",
+    "Philosophy of Education"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/luis_pauperio/"
+  },
+  {
+   "username": "mahir_publishing",
+   "name": "MAHIR Publishing",
+   "institution": "Multidisciplinary Association for Humanities and International Research (MAHIR)",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/9abb7309b5ce49b4a17566b3b27e096a.jpg",
+   "interests": [
+    "Education",
+    "Religion",
+    "Humanities"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/mahir_publishing/"
+  },
+  {
+   "username": "luciaaaa",
+   "name": "Manlu(Lucia) Zhang",
+   "institution": "Edinburgh College of Art, University of Edinburgh",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/79270dcf42ea4d62b2f20f5333277ada.jpg",
+   "interests": [
+    "Exhibition Studies",
+    "Curating",
+    "listening",
+    "Sound studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/luciaaaa/"
+  },
+  {
+   "username": "Manuel-Bautista-Gonzalez",
+   "name": "Manuel A. Bautista González",
+   "institution": "Faculty of History, University of Oxford",
+   "orcid": "0000-0002-4618-3987",
+   "photo": "https://www.gravatar.com/avatar/75bfb1606db1ba6cd34f08be80eed041b296c98b611aa5f30d30705de85f909f?s=150",
+   "interests": [
+    "financial history",
+    "Economic history",
+    "Business history",
+    "Digital humanities",
+    "International payments",
+    "United States",
+    "Mexico",
+    "GIS",
+    "Latin America",
+    "History of capitalism",
+    "social network analysis"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Manuel-Bautista-Gonzalez/"
+  },
+  {
+   "username": "astromath987",
+   "name": "Marco Giuseppe Toma",
+   "institution": "External Affiliate non Resident Researcher/Wordnews.it: Author",
+   "orcid": "0000-0002-6815-460X",
+   "photo": "https://www.gravatar.com/avatar/058b9b644ea83cc9caacd28d2aaa333bcc2f30180f7643c76d08658a7527538d?s=150",
+   "interests": [
+    "Architecture",
+    "Human rights",
+    "Postcolonial studies",
+    "Jewish studies",
+    "Philosophy",
+    "Creative writing",
+    "Law",
+    "Art",
+    "Linguistics",
+    "Humanities",
+    "Poetry & Poetics",
+    "Mathematics",
+    "Anthropology",
+    "Computer science",
+    "Literary journalism",
+    "International relations",
+    "Information science",
+    "Data science",
+    "criminology",
+    "East Asia",
+    "Marketing",
+    "Astronomy",
+    "Cognitive science",
+    "demonology",
+    "Occultism",
+    "computational linguistics",
+    "Paletnology",
+    "Orientalisms",
+    "Archeology",
+    "Ethiopian Cultures",
+    "Esoterism",
+    "Religions",
+    "Botanics",
+    "Etology",
+    "Parapsychology",
+    "Astrobiology",
+    "European Languages and Literatures",
+    "AfroAsiatic Languages",
+    "West Cultures Languages and Literatures",
+    "cognitive Neurosciences",
+    "Non Fiction narrative",
+    "Ufology",
+    "Massoneria",
+    "IT",
+    "Agrarian Science",
+    "Soil Science",
+    "Christianism",
+    "Holocaust",
+    "Edward Said Modern Arab Studies",
+    "Iranistica",
+    "Islamistica",
+    "Arabistica",
+    "Ortodox Churches",
+    "Environment Science",
+    "Africanistica",
+    "Lettere",
+    "Martial Arts",
+    "ethnology",
+    "Biostatistic",
+    "Bioinformatic",
+    "Immunology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/astromath987/"
+  },
+  {
+   "username": "MM22",
+   "name": "Marino Marinović",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/eb2e6a5f2dd440ba8993d2073d24aba1.jpg",
+   "interests": [
+    "coding",
+    "Digital humanities",
+    "programming"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/MM22/"
+  },
+  {
+   "username": "martin_eve",
+   "name": "Martin Paul Eve",
+   "institution": "Birkbeck, University of London | Knowledge Commons, MESH Research, Michigan State University",
+   "orcid": "0000-0002-5589-8511",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/77bc022172c74bf28f4cf91396aff509.jpg",
+   "interests": [
+    "Digital humanities",
+    "Postmodernism",
+    "Scholarly communication",
+    "21st-century textual studies",
+    "Thomas Pynchon",
+    "David Foster Wallace",
+    "Don DeLillo",
+    "Contemporary Fiction",
+    "Textual criticism",
+    "Michel Foucault",
+    "Ludwig Wittgenstein",
+    "Theodor W. Adorno"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/martin_eve/"
+  },
+  {
+   "username": "MRLingafelt",
+   "name": "Matthew Lingafelt",
+   "institution": "United Lutheran Seminary",
+   "orcid": "0009-0001-2127-9851",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/d51ef4440cdc4de096e733f943eeab38.jpg",
+   "interests": [
+    "Human-Robot Interaction",
+    "AI Ethics",
+    "AI Governance",
+    "data privacy",
+    "Public Theology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/MRLingafelt/"
+  },
+  {
+   "username": "mobashir_rahman",
+   "name": "Md. Mobashir Rahman",
+   "institution": "University of Rajshahi Bangladesh",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/26455917a50843f8ace8e467f94614a6.jpg",
+   "interests": [
+    "Indigenous studies",
+    "Sustainable development",
+    "Folklore",
+    "cultural and visual studies",
+    "Global modernism",
+    "agricultural history",
+    "Cultural studies",
+    "Agricultural Innovation Systems"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/mobashir_rahman/"
+  },
+  {
+   "username": "Miatta",
+   "name": "Miatta Upson",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/673fcec898cd4e4c8a33c968f968825e.jpg",
+   "interests": [
+    "Food and Nutrition",
+    "agriculture",
+    "community-based sustainability"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Miatta/"
+  },
+  {
+   "username": "everettm",
+   "name": "Michael Everett",
+   "institution": "Michigan State University",
+   "orcid": "0000-0002-2526-5764",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/b50b5665c8e648dfb5c13e70bdfdd3db.jpg",
+   "interests": [
+    "Conservation Education"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/everettm/"
+  },
+  {
    "username": "mrgundlach",
    "name": "Michael Gundlach",
    "institution": "Utah Valley University",
@@ -158,6 +1265,144 @@
    "profile": "https://stemedplus.profile.hcommons.org/members/mikethicke/"
   },
   {
+   "username": "mherridge",
+   "name": "Michelle Herridge",
+   "institution": "University of North Texas",
+   "orcid": "0000-0002-6056-4161",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/21fc30e7820a4fd7a718df7110e993d8.jpg",
+   "interests": [
+    "Assessment",
+    "Professional development",
+    "Chemistry Education Research",
+    "Curriculum Development"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/mherridge/"
+  },
+  {
+   "username": "Miguel_Alvarez-Fernandez",
+   "name": "Miguel Álvarez Fernández",
+   "institution": "Independent researcher; Radio Clásica / Radio Nacional de España (RTVE) — director and presenter of «Ars Sonora»",
+   "orcid": "0000-0002-6857-3564",
+   "photo": "https://www.gravatar.com/avatar/64ba3d6143dc7eee37bf04fab9af6c0b1614041aca1aac3656d033fb4509889c?s=150",
+   "interests": [
+    "Electroacoustic Music",
+    "Sound studies",
+    "Musicology",
+    "philosophy of music",
+    "Aesthetics",
+    "radio studies",
+    "sound art",
+    "experimental music"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Miguel_Alvarez-Fernandez/"
+  },
+  {
+   "username": "JenokaB",
+   "name": "Mike Cantley",
+   "institution": "United Lutheran Seminary",
+   "orcid": "0009-0004-1537-239X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/8616252d1ddc4741b8de7ebccc20d7b7.jpg",
+   "interests": [
+    "music and healing arts",
+    "ecumenical discipleship and teamwork",
+    "the kingdom of God and the common good",
+    "the global Body of Christ",
+    "public humanities"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/JenokaB/"
+  },
+  {
+   "username": "melmutazali",
+   "name": "Mohamedelmutaz Ali",
+   "institution": "Independent Researcher",
+   "orcid": "0009-0006-9285-8398",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/7528f3d93c46402aa15a07153e7e9de4.jpg",
+   "interests": [
+    "oral surgery",
+    "systematic reviews",
+    "evidence based dentistry"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/melmutazali/"
+  },
+  {
+   "username": "monicaross",
+   "name": "Monica A. Ross",
+   "institution": "University of California, Berkeley",
+   "orcid": "0000-0002-2787-4088",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/3d0ed090f3334166b1a88dd2c66dcca4.jpg",
+   "interests": [
+    "Critical pedagogy",
+    "Digital humanities",
+    "Interdisciplinary cultural studies",
+    "Mad Studies",
+    "Marxism",
+    "Literary theory",
+    "Science and technology studies (STS)",
+    "Philosophy and literature",
+    "Identity"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/monicaross/"
+  },
+  {
+   "username": "irshad",
+   "name": "Muhammad Kashif Irshad",
+   "institution": "IrshadOS, Lahore, Pakistan",
+   "orcid": "0009-0008-9161-9875",
+   "photo": "https://www.gravatar.com/avatar/6ba2909d1248e5921605f78966d843b74a2b5186433a0000bdb3974739abb7c0?s=150",
+   "interests": [
+    "pakistan",
+    "Islamic studies",
+    "Islamic law",
+    "Islamic finance",
+    "Insurance",
+    "Law and religion"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/irshad/"
+  },
+  {
+   "username": "penyuan",
+   "name": "Pen-Yuan Hsing",
+   "institution": "",
+   "orcid": "0000-0002-5394-879X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/d379cc00a49648c58bcdb3d77cf737e8.jpg",
+   "interests": [
+    "metaresearch",
+    "Open Research",
+    "open source hardware",
+    "open source"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/penyuan/"
+  },
+  {
+   "username": "f_delgiorgio_solfa",
+   "name": "Prof. Dr. Federico Del Giorgio Solfa",
+   "institution": "National University of La Plata (UNLP)",
+   "orcid": "0000-0002-0962-531X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/84f7cfb8478b4c9ea93198efcf8f1813.jpg",
+   "interests": [
+    "History of Industrial Design",
+    "Design Policy",
+    "benchmarking",
+    "Project Management",
+    "Territorial Development",
+    "public management",
+    "Local Development",
+    "Design Management",
+    "Industrial Design",
+    "Latin America",
+    "Innovation"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/f_delgiorgio_solfa/"
+  },
+  {
    "username": "rlrupnow",
    "name": "Rachel Rupnow",
    "institution": "Northern Illinois University",
@@ -169,6 +1414,121 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/rlrupnow/"
+  },
+  {
+   "username": "ramkry",
+   "name": "RAMKUMAR YARAGARLA",
+   "institution": "I Hug Trees",
+   "orcid": "0009-0003-4290-0541",
+   "photo": "https://hcommons.org/app/uploads/avatars/1059023/1732432511-bpfull.jpg",
+   "interests": [
+    "Management of Innovation",
+    "Biodiversity Informatics",
+    "Environment and Climate change"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/ramkry/"
+  },
+  {
+   "username": "rebeccapietri",
+   "name": "Rebecca Pietri",
+   "institution": "Yale University",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/f2a41876408fe4af0f722ab2459c34033f6690616ab02c904471eecabda0feca?s=150",
+   "interests": [
+    "Humanities careers",
+    "Critical pedagogy",
+    "artificial intelligence (AI)",
+    "Costume",
+    "Theatre and Performance Studies",
+    "Digital humanites",
+    "Black studies",
+    "Black feminist theory",
+    "Digital humanities research and methodology",
+    "Archives",
+    "Digital humanities",
+    "Historically/Culturally Informed Performance Practice",
+    "Artificial intelligence",
+    "Performance studies",
+    "Performance",
+    "black performance theory",
+    "Artifical Intelligence (AI)",
+    "Black visual culture",
+    "Black popular culture"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/rebeccapietri/"
+  },
+  {
+   "username": "rpsetiawan",
+   "name": "Rezza Prasetyo Setiawan",
+   "institution": "",
+   "orcid": "0000-0001-9919-8747",
+   "photo": "https://www.gravatar.com/avatar/a5d0a680af7ad3a1e21c4f3e931e92afcfffb75184c5e2a503c12cd72d3e3754?s=150",
+   "interests": [
+    "Relational Ontology",
+    "Relational Theology",
+    "New Materialisms",
+    "Ecotheology",
+    "Religious studies",
+    "Evironmental Humanities"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/rpsetiawan/"
+  },
+  {
+   "username": "rbaquero",
+   "name": "Ricardo Baquero",
+   "institution": "Universidad Nacional de Quilmes. Argentina",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/55ba72d903dc4ccca98c308505363322.jpg",
+   "interests": [
+    "Digital culture",
+    "psicología educa",
+    "psicología del desarrollo",
+    "psicología cultural",
+    "Critical pedagogy",
+    "History of the book and the digital humanities",
+    "Pedagogy",
+    "Education",
+    "Postcolonial theory",
+    "Philosophy",
+    "Technology and culture",
+    "Cultural studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/rbaquero/"
+  },
+  {
+   "username": "r1ddhic",
+   "name": "Riddhi Goyal",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/35673992eeb45285f160deb916757b223536e178292bf833aa3dc238064cf7ca?s=150",
+   "interests": [
+    "Critical pedagogy",
+    "participatory research",
+    "Sociology of Mental Health",
+    "Critical AI Studies",
+    "Qualitative Research Methods"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/r1ddhic/"
+  },
+  {
+   "username": "nakamura196",
+   "name": "Satoru Nakamura",
+   "institution": "The University of Tokyo",
+   "orcid": "0000-0001-8245-7925",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/2ce2ba68ceb04b0895a05fcddc8493f7.jpg",
+   "interests": [
+    "Text encoding",
+    "Linked open data",
+    "Digital humanities",
+    "Digital archives"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/nakamura196/"
   },
   {
    "username": "schopie1",
@@ -188,6 +1548,147 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/schopie1/"
+  },
+  {
+   "username": "SMi1984",
+   "name": "Sven Mildner",
+   "institution": "Germania Magna Research Project",
+   "orcid": "0009-0005-8248-4866",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/7a2d9a8e5f25424e9f40b015b34b86d5.jpg",
+   "interests": [
+    "Geology",
+    "GIS",
+    "Geography",
+    "Cartography",
+    "Ancient Maps",
+    "Germania Magna",
+    "Ptolemy",
+    "Geodynamics",
+    "Open Science",
+    "Cartometry",
+    "Historical GIS"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/SMi1984/"
+  },
+  {
+   "username": "Tass_Holmes",
+   "name": "Tass Holmes",
+   "institution": "",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/a1eb4669c8546bd705510413e29ce350cc8fae783ff1b21398e82bfd7f1738b6?s=150",
+   "interests": [
+    "Conservation ethics",
+    "Sustainability",
+    "Complementary and alternative medicine",
+    "Conservation",
+    "Biodiversity",
+    "Childbirth",
+    "Environmental justice"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Tass_Holmes/"
+  },
+  {
+   "username": "huangwanhong39",
+   "name": "Wanhong HUANG",
+   "institution": "Serendip Commons Society",
+   "orcid": "0000-0001-9540-7425",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/193e001848fa4fdebddfa047e5aa115e.jpg",
+   "interests": [
+    "Philosophy of law",
+    "Social and Political Philosophy",
+    "Philosophy",
+    "Literature and philosophy",
+    "Philosophy of language",
+    "Philosophy of history",
+    "philosophy of knowledge",
+    "Philosophy of information",
+    "Applied philosophy",
+    "Philosophy of logic",
+    "Philosophy of educational technology",
+    "Political philosophy",
+    "Political and Social Philosophy",
+    "music and philosophy"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/huangwanhong39/"
+  },
+  {
+   "username": "zpanas",
+   "name": "Z Panas",
+   "institution": "Pratt Institute",
+   "orcid": "",
+   "photo": "https://www.gravatar.com/avatar/ef2b579885fbcfb0dde083ec44d3a0348020c287cb89109614f027d1d804e340?s=150",
+   "interests": [
+    "Digital humanities",
+    "Fan studies",
+    "Creative writing",
+    "Open source software",
+    "Video games",
+    "Digital preservation",
+    "Software preservation"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/zpanas/"
+  },
+  {
+   "username": "stewa719",
+   "name": "Zachary Stewart",
+   "institution": "Michigan State University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/42d409861ac445aca437c200e6c755b9.jpg",
+   "interests": [
+    "Algebraic combinatorics",
+    "Cluster algebras",
+    "Mathematics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/stewa719/"
+  },
+  {
+   "username": "zmushkudiani",
+   "name": "Zurab Mushkudiani",
+   "institution": "Georgian International University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/1b0dd5828d0040b3993a452b24e01deb.jpg",
+   "interests": [
+    "Science and technology studies (STS)",
+    "Pedagogy of literature",
+    "Teaching and learning in higher education",
+    "Cultural studies",
+    "Interdisciplinary cultural studies",
+    "Pedagogy",
+    "Literature",
+    "Research methods",
+    "Intercultural communication",
+    "Education",
+    "linguistics and education",
+    "Language"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/zmushkudiani/"
+  },
+  {
+   "username": "BAKR",
+   "name": "أ.د. بكر بن محمد آل عابد — Prof. BAKR ABED",
+   "institution": "Department of Tafsir and Quranic Sciences, College of the Holy Quran, Islamic University of Madinah, Madinah, Saudi Arabia",
+   "orcid": "0000-0003-2779-0834",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/7cbd707304f9489996dab99735414d3b.jpg",
+   "interests": [
+    "Project Management",
+    "Artificial intelligence",
+    "الذكاء الاصطناعي",
+    "International Publishing",
+    "الدراسات البينيّة مع التخصصات الأخرى",
+    "النشر الدولي",
+    "إدارة المشاريع",
+    "الدراسات الإسلامية",
+    "Interdisciplinary Studies with Other Disciplines",
+    "Islamic studies"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/BAKR/"
   }
  ]
 }
