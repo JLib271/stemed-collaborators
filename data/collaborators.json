@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-17T19:16:21Z",
+ "updated": "2026-11-18T18:59:47Z",
  "counts": {
-  "members": 919,
-  "answered": 919,
+  "members": 925,
+  "answered": 925,
   "missing": 0,
   "unavailable": 0,
-  "no_interests": 832,
-  "listed": 87
+  "no_interests": 837,
+  "listed": 88
  },
  "people": [
   {
@@ -901,7 +901,7 @@
   },
   {
    "username": "khalidzeghari",
-   "name": "Khalid Ahmed Zeghari Tétouani",
+   "name": "Khalid Ahmed Zeghari",
    "institution": "Sheikh Abdulrahman Bayoumi Academy – Al-Ibrahimiyah, Egypt",
    "orcid": "0009-0008-2122-9943",
    "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/2abf9e5072a346a59aa4779a10d3db17.jpg",
@@ -1364,6 +1364,23 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/irshad/"
+  },
+  {
+   "username": "nicollhellen",
+   "name": "Nicoll-Hellen",
+   "institution": "Artesane Studio Magazine",
+   "orcid": "0009-0001-7760-676X",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/1f4e2e29c8a84bb5b9ecbae039d5319e.jpg",
+   "interests": [
+    "Hermeneutics",
+    "Comparative Theology",
+    "Continental Philosophhy",
+    "Propaganda Studies",
+    "Critical and Cultural Theory",
+    "Cognitive Aesthetics"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/nicollhellen/"
   },
   {
    "username": "penyuan",
