@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-19T05:27:49Z",
+ "updated": "2026-11-19T17:16:10Z",
  "counts": {
-  "members": 948,
-  "answered": 948,
+  "members": 960,
+  "answered": 960,
   "missing": 0,
   "unavailable": 0,
-  "no_interests": 860,
-  "listed": 88,
-  "directory_says": 948
+  "no_interests": 871,
+  "listed": 89,
+  "directory_says": 960
  },
  "people": [
   {
@@ -853,6 +853,23 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/jkenigson1/"
+  },
+  {
+   "username": "kailynpillai",
+   "name": "Kailyn Pillai",
+   "institution": "Michigan State University",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/80a94c726359476f8e8b22e5a3fce6a1.jpg",
+   "interests": [
+    "trauma analysis",
+    "juvenile estimation",
+    "Forensic anthropology",
+    "population affinity",
+    "biological profile estimation",
+    "bioarchaeology"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/kailynpillai/"
   },
   {
    "username": "kfitz",
