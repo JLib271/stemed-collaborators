@@ -57,7 +57,9 @@
   .summary { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink); }
   .looking { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
   .looking strong { color: var(--ink); }
-  .orgs-cta { margin: 10px 0 0; font-size: 14px; }
+  .orgs-cta { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid #e3eae3; font-size: 14px; }
+  .invite .for { margin: -4px 0 10px; font-size: 14px; color: var(--muted); }
+  .invite .btns { display: flex; flex-wrap: wrap; gap: 8px; }
   .empty { border: 2px dashed #9cc09c; border-radius: 16px; padding: 24px; text-align: center; color: var(--muted); grid-column: 1 / -1; }
   .note { font-size: 13px; color: var(--muted); padding-bottom: 32px; }
   a:focus-visible, button:focus-visible { outline: 3px solid var(--rust); outline-offset: 2px; }
@@ -75,15 +77,17 @@
       <p class="lead">Search STEMEd+ Commons members by the topics, methods, and skills on their profiles: researchers, K-12 teachers, college instructors, and informal educators. Then reach out through STEMEd+ Commons.</p>
     </div>
     <aside class="invite" aria-labelledby="add-h">
-      <h2 id="add-h">Not here yet? Add your interests</h2>
+      <h2 id="add-h">Not listed yet? Add yourself</h2>
+      <p class="for">For individuals. Your card comes from your STEMEd+ Commons profile.</p>
       <ol>
-        <li>Sign in and open your STEMEd+ Commons profile.</li>
-        <li>Choose <strong>Edit profile</strong>, then add <strong>Academic interests</strong>: your topics, plus skills and methods.<br><span class="eg">For example: "science identity", "qualitative interviews", "psychometrics", "teacher professional learning".</span></li>
+        <li><strong>New to STEMEd+?</strong> <a id="join-link" href="https://stemedplus.org/join-stemed/">Join for free</a> first. Sign in with Google, ORCID, GitHub, or your institution.</li>
+        <li>Sign in and open your profile. Choose <strong>Edit profile</strong>.</li>
+        <li>Add <strong>Academic interests</strong>: your topics, plus skills and methods.<br><span class="eg">For example: "science identity", "qualitative interviews", "psychometrics", "teacher professional learning".</span></li>
         <li class="optin-step" hidden>Add the interest <strong class="optin-name"></strong> so you're listed here.</li>
         <li>Save. Your card appears here within a day.</li>
       </ol>
-      <a class="btn rust" id="edit-link" href="#">Add interests to my profile</a>
-      <p class="orgs-cta">Is your organization open to collaboration? <a id="org-contact" href="https://stemedplus.org/contact-us/">Contact us to add an organization card →</a></p>
+      <div class="btns"><a class="btn rust" id="edit-link" href="#">Add interests to my profile</a><a class="btn line" href="https://stemedplus.org/join-stemed/">Join STEMEd+</a></div>
+      <p class="orgs-cta"><strong>For organizations:</strong> open to collaboration? <a id="org-contact" href="https://stemedplus.org/contact-us/">Contact us to add an organization card →</a></p>
     </aside>
   </div>
 </section>
