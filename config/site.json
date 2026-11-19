@@ -2,12 +2,11 @@
   "title": "Find Collaborators",
   "site_url": "https://jlib271.github.io/stemed-collaborators/",
   "repo_url": "https://github.com/JLib271/stemed-collaborators",
-  "message_url_template": "https://stemedplus.org/members/me/messages/compose/?r={username}",
   "publish": true,
   "listing": {
     "opt_in_required": false,
     "opt_in_interest": "open to collaboration",
     "exclude": [],
-    "_help": "Everyone in the STEMEd+ member directory with academic interests on their profile gets a card: the cards show only public profile fields, and contact happens through STEMEd+ Commons messaging. Set opt_in_required to true only if you ever want to list just members whose interests include opt_in_interest. Add usernames to exclude for anyone who asks to be left out."
+    "_help": "Everyone in the STEMEd+ member directory with academic interests on their profile gets a card: the cards show only public profile fields; people get in touch through the contact links on each profile. Set opt_in_required to true only if you ever want to list just members whose interests include opt_in_interest. Add usernames to exclude for anyone who asks to be left out."
   }
 }

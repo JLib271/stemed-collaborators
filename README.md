@@ -17,7 +17,8 @@ updates itself every day.
    everyone else with it, and the most common interests are listed as one-click searches.
 5. **Getting listed.** The page invites people to sign in, open **Edit profile**, and add academic
    interests, including their skills and methods. Their card appears at the next daily update.
-6. **Contact.** Each card links to the person's profile and to a STEMEd+ Commons private message.
+6. **Contact.** Each card links to the person's profile, where they list the ways to reach them. (Knowledge
+   Commons no longer has direct messages.)
 
 Only public profile fields are used. Nothing is collected from people directly.
 
@@ -32,7 +33,7 @@ file in `site/` or an https address. The page has an Everyone / People / Organiz
 ## Who is listed (config/site.json)
 
 Everyone in the STEMEd+ member directory with academic interests on their profile gets a card. Cards show
-only public profile fields, and contact happens through STEMEd+ Commons messaging. To come off the page, a
+only public profile fields; people get in touch through the contact links on each profile. To come off the page, a
 member removes their academic interests, or a maintainer adds their username to `listing.exclude`.
 
 `listing.opt_in_required` (default `false`) can list only members whose interests include

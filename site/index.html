@@ -74,7 +74,7 @@
     <div>
       <p class="kicker">Find Collaborators</p>
       <h1>Find people and organizations to work with</h1>
-      <p class="lead">Search STEMEd+ Commons members by the topics, methods, and skills on their profiles: researchers, K-12 teachers, college instructors, and informal educators. Then reach out through STEMEd+ Commons.</p>
+      <p class="lead">Search STEMEd+ Commons members by the topics, methods, and skills on their profiles: researchers, K-12 teachers, college instructors, and informal educators. Then visit their profile to get in touch.</p>
     </div>
     <aside class="invite" aria-labelledby="add-h">
       <h2 id="add-h">Not listed yet? Add yourself</h2>
@@ -83,6 +83,7 @@
         <li><strong>New to STEMEd+?</strong> <a id="join-link" href="https://stemedplus.org/join-stemed/">Join for free</a> first. Sign in with Google, ORCID, GitHub, or your institution.</li>
         <li>Sign in and open your profile. Choose <strong>Edit profile</strong>.</li>
         <li>Add <strong>Academic interests</strong>: your topics, plus skills and methods.<br><span class="eg">For example: "science identity", "qualitative interviews", "psychometrics", "teacher professional learning".</span></li>
+        <li>Add a way to reach you, such as your website, email, or Mastodon, so people who find you can get in touch.</li>
         <li class="optin-step" hidden>Add the interest <strong class="optin-name"></strong> so you're listed here.</li>
         <li>Save. Your card appears here within a day.</li>
       </ol>
@@ -215,8 +216,7 @@ var DATA = /*__DATA__*/null;
     }
     c.appendChild(tags);
     var acts = el('div', { 'class': 'acts' });
-    acts.appendChild(el('a', { href: p.profile }, 'View profile →'));
-    if (D.message_url_template) acts.appendChild(el('a', { href: D.message_url_template.replace('{username}', encodeURIComponent(p.username)) }, 'Message on STEMEd+ Commons'));
+    acts.appendChild(el('a', { href: p.profile }, 'View profile and contact →'));
     if (p.orcid) acts.appendChild(el('a', { href: 'https://orcid.org/' + p.orcid }, 'ORCID'));
     c.appendChild(acts);
     return c;

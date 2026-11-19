@@ -37,7 +37,7 @@ def read(names):
 
 
 def config(required=False, exclude=()):
-    return {"message_url_template": "https://stemedplus.org/members/me/messages/compose/?r={username}",
+    return {
             "listing": {"opt_in_required": required, "opt_in_interest": "open to collaboration", "exclude": list(exclude)}}
 
 

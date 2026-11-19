@@ -53,7 +53,6 @@ def page_data(config: dict, data: dict) -> dict:
         "opt_in_interest": opt_in,
         "edit_profile": commons.EDIT_PROFILE,
         "directory": commons.BASE + "/members/",
-        "message_url_template": config.get("message_url_template", ""),
         "join_url": config.get("join_url", ""),
         "people": data.get("people") or [],
         "organizations": load_organizations(),
