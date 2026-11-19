@@ -6,7 +6,7 @@ Who gets a card (config/site.json, "listing"):
   * The member is in the STEMEd+ member directory (which decides membership) and their profile has at least one academic interest
     besides the opt-in interest.
   * When "opt_in_required" is true, their academic interests must also include the opt-in interest
-    (for example "open to collaboration"). While it is false (preview), everyone with interests counts as
+    (for example "open to collaboration"). While it is false (the default), everyone with interests counts as
     opted in, and the page says so.
   * Usernames in "exclude" never get a card (for anyone who asks to be left out).
 

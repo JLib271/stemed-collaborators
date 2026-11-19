@@ -3,10 +3,9 @@ name: Update and publish
 # Every day: read STEMEd+ Commons profiles, save the cards in data/collaborators.json (only when something
 # changed, and never replacing a good copy with a broken read), and build the page.
 #
-# While config/site.json has "opt_in_required": false (preview), the page is NOT published to GitHub Pages,
-# because it lists everyone with interests, not only people who opted in. Download it instead: open the run,
-# then "find-collaborators-page" under Artifacts, unzip, and open index.html.
-# Set "opt_in_required": true to publish. Turn on once: Settings -> Pages -> Source: GitHub Actions.
+# The page is published to GitHub Pages while config/site.json has "publish": true. Set it to false to stop
+# publishing; each run also keeps the page as a download (Artifacts: "find-collaborators-page").
+# Turn on once: Settings -> Pages -> Source: GitHub Actions. On a free plan the repository must be public.
 
 on:
   schedule:
@@ -53,9 +52,9 @@ jobs:
           python "$RUNNER_TEMP/stemedplus-theme/apply.py" .
       - name: Build the page
         run: python -m stemed_collaborators --out output
-      - name: Preview or publish?
+      - name: Publish?
         id: mode
-        run: python -c "import json; r=json.load(open('config/site.json'))['listing']; print('preview=' + ('false' if r.get('opt_in_required') else 'true'))" >> "$GITHUB_OUTPUT"
+        run: python -c "import json; c=json.load(open('config/site.json')); print('preview=' + ('false' if c.get('publish') else 'true'))" >> "$GITHUB_OUTPUT"
       - name: Keep the page as a download
         uses: actions/upload-artifact@v5
         with:

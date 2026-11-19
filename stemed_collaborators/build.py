@@ -24,7 +24,7 @@ def page_data(config: dict, data: dict) -> dict:
     return {
         "updated": data.get("updated"),
         "counts": data.get("counts") or {},
-        "preview": not required,
+        "preview": not required,  # true: everyone with interests is listed (the opt-in step is not shown)
         "opt_in_interest": opt_in,
         "edit_profile": commons.EDIT_PROFILE,
         "directory": commons.BASE + "/members/",
@@ -47,7 +47,7 @@ def build(out: Path, config: dict = None, data: dict = None) -> dict:
     for name in ASSETS:
         shutil.copyfile(ROOT / "site" / name, out / name)
     print(f"Wrote the page with {len(payload['people'])} card(s)"
-          f"{' (preview: everyone with interests counts as opted in)' if payload['preview'] else ''}.")
+          f"{'' if payload['preview'] else ' (opt-in required)'}.")
     return payload
 
 

@@ -21,28 +21,20 @@ updates itself every day.
 
 Only public profile fields are used. Nothing is collected from people directly.
 
-## Opt-in (config/site.json → `listing`)
+## Who is listed (config/site.json)
 
-| Setting | What it does |
-|---|---|
-| `opt_in_required: false` | **Preview (now).** Everyone in STEMEd+ with interests counts as opted in. The page says so in a yellow bar, and it is **not published** to GitHub Pages. |
-| `opt_in_required: true` | **Launch.** Only members whose academic interests include `opt_in_interest` are listed. The invitation then asks people to add it. That interest is not shown on cards. |
-| `opt_in_interest` | The interest that means "list me". Default `open to collaboration`. |
-| `exclude` | Usernames never listed, for anyone who asks to be left out. |
+Everyone in the STEMEd+ member directory with academic interests on their profile gets a card. Cards show
+only public profile fields, and contact happens through STEMEd+ Commons messaging. To come off the page, a
+member removes their academic interests, or a maintainer adds their username to `listing.exclude`.
 
-Leaving is simple: remove the opt-in interest (or all interests) from your profile. The card goes at the
-next update.
-
-## Seeing the page during preview
-
-Open **Actions → Update and publish →** the latest run → **find-collaborators-page** under Artifacts.
-Unzip it and open `index.html`: the cards are built into the page, so it works straight from your computer.
+`listing.opt_in_required` (default `false`) can list only members whose interests include
+`listing.opt_in_interest` ("open to collaboration"); the page then asks people to add it.
 
 ## Publishing
 
 `.github/workflows/update.yml` runs daily, on every push to `main`, and from the Actions tab. It saves the
-cards in `data/collaborators.json` when they change, builds the page, and publishes it to GitHub Pages once
-`opt_in_required` is `true`. Turn on once: **Settings → Pages → Source: GitHub Actions**. On a free GitHub
+cards in `data/collaborators.json` when they change, builds the page, and publishes it to GitHub Pages while
+`publish` in `config/site.json` is `true`. Turn on once: **Settings → Pages → Source: GitHub Actions**. On a free GitHub
 account, Pages needs the repository to be public.
 
 ## When Commons doesn't answer

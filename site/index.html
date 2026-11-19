@@ -24,8 +24,6 @@
   .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-weight: 800; font-size: 15px; text-decoration: none; }
   .btn.rust { background: var(--rust); color: #ffffff; }
   .btn.line { border: 2px solid var(--green); color: var(--green); background: #ffffff; }
-  .preview { background: #fff7e6; border-bottom: 1px solid #f0d9a8; color: #5b4200; font-size: 14px; }
-  .preview .wrap { padding-top: 10px; padding-bottom: 10px; }
   .finder { padding-top: 28px; padding-bottom: 8px; }
   .search { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
   .search label { position: absolute; left: -9999px; }
@@ -59,7 +57,6 @@
 </head>
 <body>
 <div class="sp-bar"><div class="sp-in"><a class="sp-logo" href="https://stemedplus.org/"><img src="stemedplus-commons-logo-white.png" alt="STEMEd+ Commons home" width="263" height="91"></a><input type="checkbox" id="sp-menu-toggle" class="sp-toggle"><label for="sp-menu-toggle" class="sp-burger"><span class="sp-burger-icon" aria-hidden="true"></span>Menu</label><nav class="sp-nav" aria-label="STEMEd+ Commons"><ul class="sp-top"><li class="sp-has"><a href="https://stemedplus.org/stemed-features/">Features</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://works.hcommons.org/collections/stemedplus/records?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest">STEMEd+ Library</a></li><li><a href="https://stemedplus.org/sites/">STEMEd+ Sites</a></li><li><a href="https://stemedplus.profile.hcommons.org/members/">STEMEd+ Members</a></li><li><a href="https://stemedplus.org/stemed-groups/">STEMEd+ Groups</a></li></ul></li><li class="sp-has sp-here"><a href="https://stemedplus.org/stemed-resources/">Resources</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://stemedplus.org/stemed-commons-frequently-asked-questions/">STEMEd+ Commons FAQ</a></li><li><a href="https://theseekershub.stemedplus.org/">The Seekers’ Hub: A Job Board</a></li><li><a href="https://stemedplus.org/stemed-collaborators/" aria-current="page">Find Collaborators</a></li><li><a href="https://jlib271.github.io/stemed-funding/">Find Funding</a></li><li><a href="https://jlib271.github.io/STEMEd-Digest/">STEMEd+ Digest</a></li><li><a href="https://jlib271.github.io/stem-ed-research-programs/">STEMEd+ Graduate Programs</a></li><li><a href="https://jlib271.github.io/stemed-conferences/">STEMEd+ Conferences</a></li><li><a href="https://jlib271.github.io/stemed-professional-learning/">Professional Learning: K-12, Informal Education</a></li><li><a href="https://jlib271.github.io/stemed-faculty-development/">STEMEd+ Faculty Development</a></li><li><a href="https://jlib271.github.io/stemed-deadlines/">STEMEd+ Deadlines</a></li></ul></li><li class="sp-has"><a href="https://stemedplus.org/about/">Learn More</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://stemedplus.org/about/">About</a></li><li><a href="https://stemedplus.org/learn-more/">Governance</a></li><li><a href="https://stemedplus.org/vision-research/">Vision &amp; Research</a></li><li><a href="https://support.hcommons.org/">Help &amp; Support</a></li></ul></li><li><a href="https://stemedplus.org/collaborate/">Partner with Us</a></li><li><a href="https://stemedplus.org/contact-us/">Contact Us</a></li><li><a href="https://stemedplus.org/join-stemed/">Join STEMEd+</a></li><li><a href="https://stemedplus.org/stemed-commons-frequently-asked-questions/">Get Started &amp; FAQs</a></li></ul></nav><a class="sp-login" href="https://stemedplus.org/wp-login.php">Log in</a></div></div>
-<div class="preview" id="preview" hidden><div class="wrap"><strong>Preview.</strong> Everyone in STEMEd+ with academic interests on their profile is shown here for now. Before launch, only members who add the interest <strong class="optin-name"></strong> will be listed.</div></div>
 <section class="hero">
   <div class="wrap">
     <div>
@@ -108,7 +105,7 @@ var DATA = /*__DATA__*/null;
   function norm(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9+]+/g, ' ').trim(); }
 
   document.querySelectorAll('.optin-name').forEach(function (n) { n.textContent = '"' + (D.opt_in_interest || 'open to collaboration') + '"'; });
-  if (D.preview) $('preview').hidden = false; else document.querySelector('.optin-step').hidden = false;
+  if (!D.preview) document.querySelector('.optin-step').hidden = false;
   $('edit-link').href = D.edit_profile || 'https://stemedplus.profile.hcommons.org/edit-profile/';
 
   people.forEach(function (p) {
