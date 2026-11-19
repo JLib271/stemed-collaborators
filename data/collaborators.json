@@ -1,12 +1,13 @@
 {
- "updated": "2026-11-19T01:23:32Z",
+ "updated": "2026-11-19T01:30:51Z",
  "counts": {
   "members": 927,
   "answered": 927,
   "missing": 0,
   "unavailable": 0,
   "no_interests": 839,
-  "listed": 88
+  "listed": 88,
+  "directory_says": 946
  },
  "people": [
   {
