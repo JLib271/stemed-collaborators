@@ -48,6 +48,16 @@
   .acts { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 16px; padding-top: 4px; border-top: 1px solid #e3eae3; padding-top: 12px; }
   .acts a { font-size: 14px; font-weight: 800; text-decoration: none; }
   .acts a:hover { text-decoration: underline; }
+  .show { display: inline-flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+  .show button { font: inherit; font-weight: 700; font-size: 14px; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #9cc09c; background: #ffffff; color: var(--green); cursor: pointer; }
+  .show button[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #ffffff; }
+  .card.org { border: 2px solid var(--green); background: #f7fbf7; }
+  .kind { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #ffffff; background: var(--green); border-radius: 999px; padding: 2px 9px; margin-bottom: 4px; }
+  .who img.logo { width: 84px; height: 60px; border-radius: 10px; object-fit: contain; background: #ffffff; border: 1px solid var(--line); padding: 4px; }
+  .summary { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink); }
+  .looking { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .looking strong { color: var(--ink); }
+  .orgs-cta { margin: 10px 0 0; font-size: 14px; }
   .empty { border: 2px dashed #9cc09c; border-radius: 16px; padding: 24px; text-align: center; color: var(--muted); grid-column: 1 / -1; }
   .note { font-size: 13px; color: var(--muted); padding-bottom: 32px; }
   a:focus-visible, button:focus-visible { outline: 3px solid var(--rust); outline-offset: 2px; }
@@ -61,7 +71,7 @@
   <div class="wrap">
     <div>
       <p class="kicker">Find Collaborators</p>
-      <h1>Find people to work with</h1>
+      <h1>Find people and organizations to work with</h1>
       <p class="lead">Search STEMEd+ Commons members by the topics, methods, and skills on their profiles: researchers, K-12 teachers, college instructors, and informal educators. Then reach out through STEMEd+ Commons.</p>
     </div>
     <aside class="invite" aria-labelledby="add-h">
@@ -73,6 +83,7 @@
         <li>Save. Your card appears here within a day.</li>
       </ol>
       <a class="btn rust" id="edit-link" href="#">Add interests to my profile</a>
+      <p class="orgs-cta">Is your organization open to collaboration? <a id="org-contact" href="https://stemedplus.org/contact-us/">Contact us to add an organization card →</a></p>
     </aside>
   </div>
 </section>
@@ -82,6 +93,11 @@
     <label for="q">Search by interest, skill, name, or institution</label>
     <input id="q" type="search" placeholder="Search interests and skills, for example &quot;assessment&quot; or &quot;K-12&quot;" autocomplete="off">
     <button class="clear" id="clear" type="button" hidden>Clear search</button>
+  </div>
+  <div class="show" role="group" aria-label="Show">
+    <button type="button" data-show="all" aria-pressed="true">Everyone</button>
+    <button type="button" data-show="people" aria-pressed="false">People</button>
+    <button type="button" data-show="orgs" aria-pressed="false">Organizations</button>
   </div>
   <div class="popular" id="popular" aria-label="Popular interests"></div>
   <p class="count" id="count" aria-live="polite"></p>
@@ -94,6 +110,11 @@ var DATA = /*__DATA__*/null;
 (function () {
   var D = DATA || { people: [], counts: {} };
   var people = D.people || [];
+  var orgs = (D.organizations || []).map(function (o) {
+    return { kind: 'org', name: o.name, username: '', institution: '', interests: o.interests || [], summary: o.summary,
+             looking_for: o.looking_for, logo: o.logo, website: o.website, contact: o.contact };
+  });
+  var show = 'all';
   var $ = function (id) { return document.getElementById(id); };
   var q = $('q'), grid = $('grid'), count = $('count');
   function el(tag, attrs, text) {
@@ -108,6 +129,11 @@ var DATA = /*__DATA__*/null;
   if (!D.preview) document.querySelector('.optin-step').hidden = false;
   $('edit-link').href = D.edit_profile || 'https://stemedplus.profile.hcommons.org/edit-profile/';
 
+  orgs.forEach(function (p) {
+    p._name = norm(p.name);
+    p._inst = norm(p.summary + ' ' + (p.looking_for || ''));
+    p._ints = p.interests.map(norm);
+  });
   people.forEach(function (p) {
     p._name = norm(p.name + ' ' + p.username);
     p._inst = norm(p.institution);
@@ -137,7 +163,31 @@ var DATA = /*__DATA__*/null;
     return s;
   }
 
+  function orgCard(p, phrase, words) {
+    var c = el('article', { 'class': 'card org' });
+    var who = el('div', { 'class': 'who' });
+    if (p.logo) { var img = el('img', { 'class': 'logo', src: p.logo, alt: '' }); img.onerror = function () { img.replaceWith(initials(p)); }; who.appendChild(img); }
+    else who.appendChild(initials(p));
+    var t = el('div'); t.appendChild(el('span', { 'class': 'kind' }, 'Organization')); t.appendChild(el('h3', null, p.name)); who.appendChild(t);
+    c.appendChild(who);
+    c.appendChild(el('p', { 'class': 'summary' }, p.summary));
+    if (p.looking_for) { var lf = el('p', { 'class': 'looking' }); lf.appendChild(el('strong', null, 'Looking for: ')); lf.appendChild(document.createTextNode(p.looking_for)); c.appendChild(lf); }
+    var tags = el('div', { 'class': 'tags' });
+    p.interests.forEach(function (i, k) {
+      var hit = words.length && words.every(function (w) { return p._ints[k].indexOf(w) > -1; });
+      var b = el('button', { 'class': 'tag' + (hit ? ' hit' : ''), type: 'button', title: 'Find others interested in ' + i }, i);
+      b.addEventListener('click', function () { setQuery(i); });
+      tags.appendChild(b);
+    });
+    if (p.interests.length) c.appendChild(tags);
+    var acts = el('div', { 'class': 'acts' });
+    acts.appendChild(el('a', { href: p.contact }, 'Contact to collaborate →'));
+    if (p.website) acts.appendChild(el('a', { href: p.website }, 'Website'));
+    c.appendChild(acts);
+    return c;
+  }
   function card(p, phrase, words) {
+    if (p.kind === 'org') return orgCard(p, phrase, words);
     var c = el('article', { 'class': 'card' });
     var who = el('div', { 'class': 'who' });
     if (p.photo) { var img = el('img', { src: p.photo, alt: '', loading: 'lazy' }); img.onerror = function () { img.replaceWith(initials(p)); }; who.appendChild(img); }
@@ -175,13 +225,15 @@ var DATA = /*__DATA__*/null;
   function render() {
     var raw = q.value.trim(), phrase = norm(raw), words = phrase ? phrase.split(' ') : [];
     $('clear').hidden = !raw;
-    var list = people.map(function (p) { return { p: p, s: score(p, words, phrase) }; }).filter(function (x) { return x.s > 0; });
-    if (words.length) list.sort(function (a, b) { return b.s - a.s || a.p.name.localeCompare(b.p.name); });
+    var pool = (show === 'people' ? [] : orgs).concat(show === 'orgs' ? [] : people);
+    var list = pool.map(function (p) { return { p: p, s: score(p, words, phrase) }; }).filter(function (x) { return x.s > 0; });
+    // Organizations first, then people; with a search, best matches first within each.
+    list.sort(function (a, b) { return ((b.p.kind === 'org') - (a.p.kind === 'org')) || (words.length ? b.s - a.s : 0) || a.p.name.localeCompare(b.p.name); });
     grid.innerHTML = '';
     var frag = document.createDocumentFragment();
     list.forEach(function (x) { frag.appendChild(card(x.p, phrase, words)); });
     grid.appendChild(frag);
-    if (!people.length) {
+    if (!pool.length) {
       count.textContent = '';
       grid.appendChild(el('div', { 'class': 'empty' }, 'No one is listed yet. Add your interests to your STEMEd+ Commons profile to be the first.'));
     } else if (!list.length) {
@@ -191,15 +243,25 @@ var DATA = /*__DATA__*/null;
       grid.appendChild(e);
     } else {
       count.innerHTML = '';
-      var s = el('strong', null, list.length + (list.length === 1 ? ' person' : ' people'));
-      count.appendChild(s);
-      count.appendChild(document.createTextNode(words.length ? ' matching "' + raw + '"' : ' with interests on their profiles'));
+      var no = list.filter(function (x) { return x.p.kind === 'org'; }).length, np = list.length - no, parts = [];
+      if (np) parts.push(np + (np === 1 ? ' person' : ' people'));
+      if (no) parts.push(no + (no === 1 ? ' organization' : ' organizations'));
+      count.appendChild(el('strong', null, parts.join(' and ')));
+      count.appendChild(document.createTextNode(words.length ? ' matching "' + raw + '"' : ' open to collaboration'));
     }
   }
   var timer;
   function setQuery(v) { q.value = v; render(); history.replaceState(null, '', v ? '#q=' + encodeURIComponent(v) : location.pathname); q.focus(); window.scrollTo({ top: q.getBoundingClientRect().top + window.pageYOffset - 20 }); }
   q.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { render(); history.replaceState(null, '', q.value.trim() ? '#q=' + encodeURIComponent(q.value.trim()) : location.pathname); }, 120); });
   $('clear').addEventListener('click', function () { setQuery(''); });
+  document.querySelectorAll('.show button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      show = b.dataset.show;
+      document.querySelectorAll('.show button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+  if (D.contact_url) $('org-contact').href = D.contact_url;
   var m = location.hash.match(/^#q=(.*)$/); if (m) q.value = decodeURIComponent(m[1]);
   render();
   var c = D.counts || {};

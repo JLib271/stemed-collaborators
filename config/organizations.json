@@ -1,0 +1,14 @@
+{
+  "_help": "Organizations open to collaboration, shown as cards on Find Collaborators next to people. Organizations ask to be added through https://stemedplus.org/contact-us/. Required: name, summary, contact. logo: a file in site/ or an https address; leave it out to show initials. interests: short tags people can search and click.",
+  "organizations": [
+    {
+      "name": "STEMEd+ Commons",
+      "logo": "stemedplus-commons-logo.png",
+      "summary": "Open to collaborations that strengthen the digital presence, infrastructure, and connectivity of STEM+ education communities.",
+      "looking_for": "Societies, centers, networks, and research projects to partner on hosting groups and sites, open repositories and DOIs, and shared tools.",
+      "interests": ["digital infrastructure", "open scholarship", "community building", "open repositories", "STEM+ education research"],
+      "website": "https://stemedplus.org/",
+      "contact": "https://stemedplus.org/contact-us/"
+    }
+  ]
+}

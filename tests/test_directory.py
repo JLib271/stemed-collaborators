@@ -124,3 +124,22 @@ class Page(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Organizations(unittest.TestCase):
+    def test_stemedplus_card_is_valid(self):
+        orgs = build.load_organizations()
+        self.assertEqual(orgs[0]["name"], "STEMEd+ Commons")
+        self.assertEqual(orgs[0]["contact"], "https://stemedplus.org/contact-us/")
+
+    def test_required_fields(self):
+        path = Path(tempfile.mkdtemp()) / "orgs.json"
+        path.write_text(json.dumps({"organizations": [{"name": "X", "contact": "https://x.org/"}]}))
+        with self.assertRaises(SystemExit):
+            build.load_organizations(path)
+
+    def test_contact_must_be_https(self):
+        path = Path(tempfile.mkdtemp()) / "orgs.json"
+        path.write_text(json.dumps({"organizations": [{"name": "X", "summary": "s", "contact": "mailto:a@b.org"}]}))
+        with self.assertRaises(SystemExit):
+            build.load_organizations(path)

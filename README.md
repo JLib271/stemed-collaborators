@@ -12,7 +12,7 @@ updates itself every day.
    [STEMEd+ member directory](https://stemedplus.profile.hcommons.org/members/) for usernames.
 2. **What they've shared.** For each member it reads their public profile: name, institution, ORCID iD,
    photo, and **academic interests**.
-3. **Who gets a card.** Members with at least one academic interest, as long as they've opted in (below).
+3. **Who gets a card.** Members with at least one academic interest.
 4. **Search.** The page searches interests, skills, names, and institutions. Clicking an interest shows
    everyone else with it, and the most common interests are listed as one-click searches.
 5. **Getting listed.** The page invites people to sign in, open **Edit profile**, and add academic
@@ -20,6 +20,14 @@ updates itself every day.
 6. **Contact.** Each card links to the person's profile and to a STEMEd+ Commons private message.
 
 Only public profile fields are used. Nothing is collected from people directly.
+
+## Organizations (config/organizations.json)
+
+Organizations open to collaboration get their own cards, shown first and marked "Organization": a summary,
+what they are looking for, searchable interest tags, a "Contact to collaborate" link, and their website.
+Organizations ask to be added through the [STEMEd+ contact page](https://stemedplus.org/contact-us/), which the
+page links to; a maintainer then adds an entry. Required: `name`, `summary`, `contact` (https). A `logo` is a
+file in `site/` or an https address. The page has an Everyone / People / Organizations switch.
 
 ## Who is listed (config/site.json)
 
