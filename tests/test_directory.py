@@ -9,7 +9,8 @@ PAGE1 = """<div class="member-grid">
 <div class="member-card"><p class="name"><a href="/members/ana/" class="member-card-link">Ana</a></p></div>
 <div class="member-card"><p class="name"><a href="https://stemedplus.profile.hcommons.org/members/ben.k/" class="member-card-link">Ben</a></p></div>
 <div class="member-card"><p class="name"><a href="/members/cy/" class="member-card-link">Cy</a></p></div>
-</div><a href="?per_page=96&amp;cursor=abc%3D">Next >></a>"""
+<div class="member-card"><p class="name"><a href="/members/eve%40example.org/" class="member-card-link">Eve</a></p></div>
+</div><span class="member-count">5 members</span><a href="?per_page=96&amp;cursor=abc%3D">Next >></a>"""
 PAGE2 = """<div class="member-card"><a href="/members/dee/" class="member-card-link">Dee</a></div>
 <div class="member-card"><a href="/members/ana/" class="member-card-link">Ana</a></div>"""
 
@@ -43,7 +44,12 @@ def config(required=False, exclude=()):
 class Directory(unittest.TestCase):
     def test_reads_every_page_once(self):
         names = commons.directory_usernames(get=fake_get, pause=0)
-        self.assertEqual(names, ["ana", "ben.k", "cy", "dee"])
+        self.assertEqual(names, ["ana", "ben.k", "cy", "eve@example.org", "dee"])
+        self.assertEqual(commons.directory_usernames.total, 5)
+
+    def test_unusual_usernames_are_quoted(self):
+        self.assertEqual(commons.profile_url("eve@example.org"),
+                         "https://stemedplus.profile.hcommons.org/members/eve%40example.org/")
 
     def test_next_link_resolves_relative_cursor(self):
         self.assertEqual(commons.next_page(PAGE1, commons.DIRECTORY),

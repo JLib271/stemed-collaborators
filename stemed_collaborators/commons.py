@@ -25,8 +25,11 @@ API = BASE + "/api/v1/members/{username}/"
 PROFILE = BASE + "/members/{username}/"
 EDIT_PROFILE = BASE + "/edit-profile/"
 
-USERNAME = re.compile(r"^[A-Za-z0-9_.-]{1,60}$")
+# Commons usernames are mostly letters, digits, dots, dashes, and underscores, but some hold other
+# characters (for example @ or +), so anything without a slash or a space is accepted and quoted in URLs.
+USERNAME = re.compile(r"^[^/\s?#]{1,100}$")
 CARD_LINK = re.compile(r'<a\s+href="([^"]+)"\s+class="member-card-link"')
+TOTAL = re.compile(r'class="member-count">\s*([\d,]+) member')
 NEXT_LINK = re.compile(r'<a\s+href="([^"]*cursor=[^"]*)"\s*>\s*Next')
 
 OK, MISSING, UNAVAILABLE = "ok", "missing", "unavailable"
@@ -34,7 +37,7 @@ USER_AGENT = "stemed-collaborators (https://github.com/JLib271/stemed-collaborat
 
 
 def profile_url(username: str) -> str:
-    return PROFILE.format(username=username)
+    return PROFILE.format(username=urllib.parse.quote(username, safe=""))
 
 
 def http_get(url: str, accept: str = "application/json", timeout: float = 20) -> Tuple[int, str]:
@@ -54,8 +57,9 @@ def usernames_on_page(page: str) -> List[str]:
     found = []
     for href in CARD_LINK.findall(page):
         path = urllib.parse.urlparse(html.unescape(href)).path.strip("/").split("/")
-        if len(path) >= 2 and path[-2] == "members" and USERNAME.match(path[-1]) and path[-1] not in found:
-            found.append(path[-1])
+        name = urllib.parse.unquote(path[-1]) if path else ""
+        if len(path) >= 2 and path[-2] == "members" and USERNAME.match(name) and name not in found:
+            found.append(name)
     return found
 
 
@@ -64,9 +68,18 @@ def next_page(page: str, current_url: str) -> Optional[str]:
     return urllib.parse.urljoin(current_url, html.unescape(m.group(1))) if m else None
 
 
+def directory_total(page: str) -> Optional[int]:
+    """The member count the directory states ("946 members"), or None."""
+    m = TOTAL.search(page)
+    return int(m.group(1).replace(",", "")) if m else None
+
+
 def directory_usernames(get: Callable = http_get, max_pages: int = 200, pause: float = 0.5) -> List[str]:
-    """Every username in the STEMEd+ member directory. Raises RuntimeError if the directory can't be read."""
+    """Every username in the STEMEd+ member directory. Raises RuntimeError if the directory can't be read.
+
+    The count the directory states is kept in directory_usernames.total, so a run can report any gap."""
     url, seen, names = DIRECTORY, set(), []
+    directory_usernames.total = None
     for _ in range(max_pages):
         if url in seen:
             break
@@ -74,6 +87,8 @@ def directory_usernames(get: Callable = http_get, max_pages: int = 200, pause: f
         status, page = get(url, accept="text/html")
         if status != 200:
             raise RuntimeError(f"member directory answered {status or 'nothing'} at {url}")
+        if directory_usernames.total is None:
+            directory_usernames.total = directory_total(page)
         for name in usernames_on_page(page):
             if name not in names:
                 names.append(name)
@@ -90,7 +105,7 @@ def fetch(username: str, get: Callable = http_get) -> Tuple[str, Optional[dict]]
     """("ok", data), ("missing", None) when Commons has no such member, or ("unavailable", None)."""
     if not username or not USERNAME.match(username):
         return MISSING, None
-    status, body = get(API.format(username=urllib.parse.quote(username)))
+    status, body = get(API.format(username=urllib.parse.quote(username, safe="")))
     if status == 404:
         return MISSING, None
     if status != 200:

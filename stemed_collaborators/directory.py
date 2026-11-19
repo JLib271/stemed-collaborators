@@ -121,6 +121,9 @@ def refresh(path: Path = DATA, config: Optional[dict] = None, list_members: Call
     except RuntimeError as exc:
         return False, f"Kept the last good copy: {exc}."
     cards, counts = collect(usernames, config, read)
+    stated = getattr(list_members, "total", None)
+    if stated:
+        counts["directory_says"] = stated
     if counts["answered"] < MIN_ANSWERED * max(1, counts["members"]):
         return False, (f"Kept the last good copy: only {counts['answered']} of {counts['members']} profiles answered.")
     if old["people"] and not force and len(cards) < MIN_KEPT * len(old["people"]):
@@ -134,5 +137,7 @@ def refresh(path: Path = DATA, config: Optional[dict] = None, list_members: Call
     path.write_text(json.dumps(new, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     skipped = ", ".join(f"{k.replace('_', ' ')}: {v}" for k, v in counts.items()
                         if k in ("no_interests", "not_opted_in", "excluded"))
+    gap = counts.get("directory_says", counts["members"]) - counts["members"]
+    note = f" The directory says {counts['directory_says']} members; {gap} were not read." if gap > 0 else ""
     return True, (f"Updated: {counts['listed']} of {counts['members']} members listed "
-                  f"({counts['answered']} profiles read; not listed, {skipped or 'none'}).")
+                  f"({counts['answered']} profiles read; not listed, {skipped or 'none'}).{note}")
