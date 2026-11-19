@@ -30,6 +30,7 @@ EDIT_PROFILE = BASE + "/edit-profile/"
 USERNAME = re.compile(r"^[^/\s?#]{1,100}$")
 CARD_LINK = re.compile(r'<a\s+href="([^"]+)"\s+class="member-card-link"')
 TOTAL = re.compile(r'class="member-count">\s*([\d,]+) member')
+PREV_LINK = re.compile(r'<a\s+href="([^"]*dir=prev[^"]*)"')
 NEXT_LINK = re.compile(r'<a\s+href="([^"]*cursor=[^"]*)"\s*>\s*Next')
 
 OK, MISSING, UNAVAILABLE = "ok", "missing", "unavailable"
@@ -74,14 +75,12 @@ def directory_total(page: str) -> Optional[int]:
     return int(m.group(1).replace(",", "")) if m else None
 
 
-def directory_usernames(get: Callable = http_get, max_pages: int = 200, pause: float = 0.5) -> List[str]:
-    """Every username in the STEMEd+ member directory. Raises RuntimeError if the directory can't be read.
-
-    The count the directory states is kept in directory_usernames.total, so a run can report any gap."""
-    url, seen, names = DIRECTORY, set(), []
-    directory_usernames.total = None
+def _crawl(start: str, follow: Callable[[str, str], Optional[str]], names: List[str], get: Callable,
+           max_pages: int, pause: float) -> str:
+    """Read pages from start, following links with follow(page, url); add usernames to names. Returns the last URL."""
+    url, seen, last = start, set(), start
     for _ in range(max_pages):
-        if url in seen:
+        if not url or url in seen:
             break
         seen.add(url)
         status, page = get(url, accept="text/html")
@@ -92,10 +91,29 @@ def directory_usernames(get: Callable = http_get, max_pages: int = 200, pause: f
         for name in usernames_on_page(page):
             if name not in names:
                 names.append(name)
-        url = next_page(page, url)
-        if not url:
-            break
-        time.sleep(pause)
+        last, url = url, follow(page, url)
+        if url:
+            time.sleep(pause)
+    return last
+
+
+def prev_page(page: str, current_url: str) -> Optional[str]:
+    m = PREV_LINK.search(page)
+    return urllib.parse.urljoin(current_url, html.unescape(m.group(1))) if m else None
+
+
+def directory_usernames(get: Callable = http_get, max_pages: int = 200, pause: float = 0.5) -> List[str]:
+    """Every username in the STEMEd+ member directory. Raises RuntimeError if the directory can't be read.
+
+    The directory sorts members in its database but pages through them with a comparison that orders
+    capital letters differently, so paging forward skips some members (among those who never signed in).
+    Paging back from the last page reaches them, so both directions are read and combined.
+    The count the directory states is kept in directory_usernames.total, so a run can report any gap."""
+    names: List[str] = []
+    directory_usernames.total = None
+    last = _crawl(DIRECTORY, next_page, names, get, max_pages, pause)
+    if directory_usernames.total is None or len(names) < directory_usernames.total:
+        _crawl(last, prev_page, names, get, max_pages, pause)
     if not names:
         raise RuntimeError("member directory had no member cards (the page layout may have changed)")
     return names

@@ -60,6 +60,19 @@ class Directory(unittest.TestCase):
             commons.directory_usernames(get=lambda u, accept=None: (200, "<p>nothing</p>"), pause=0)
 
 
+class BackwardPaging(unittest.TestCase):
+    def test_members_skipped_going_forward_are_found_going_back(self):
+        pages = {
+            "first": '<a href="/members/a/" class="member-card-link">A</a><span class="member-count">3 members</span>'
+                     '<a href="?per_page=96&amp;cursor=x">Next >></a>',
+            "last": '<a href="/members/c/" class="member-card-link">C</a><a href="?per_page=96&amp;cursor=y&amp;dir=prev"><< Previous</a>',
+            "back": '<a href="/members/b/" class="member-card-link">B</a><a href="/members/a/" class="member-card-link">A</a>',
+        }
+        def get(url, accept=None):
+            return 200, pages["back" if "dir=prev" in url else "last" if "cursor=x" in url else "first"]
+        self.assertEqual(sorted(commons.directory_usernames(get=get, pause=0)), ["a", "b", "c"])
+
+
 class Cards(unittest.TestCase):
     def names(self, cfg):
         cards, counts = directory.collect(["ana", "ben.k", "cy", "dee", "nobody"], cfg, read)
