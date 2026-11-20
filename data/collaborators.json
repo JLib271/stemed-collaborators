@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-20T18:43:09Z",
+ "updated": "2026-11-20T21:24:13Z",
  "counts": {
-  "members": 967,
-  "answered": 967,
+  "members": 964,
+  "answered": 964,
   "missing": 0,
   "unavailable": 0,
-  "no_interests": 878,
-  "listed": 89,
-  "directory_says": 967
+  "no_interests": 874,
+  "listed": 90,
+  "directory_says": 964
  },
  "people": [
   {
@@ -853,6 +853,24 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/jkenigson1/"
+  },
+  {
+   "username": "libarkin",
+   "name": "Julie C Libarkin",
+   "institution": "Michigan State University",
+   "orcid": "",
+   "photo": "https://hcommons.org/app/uploads/avatars/1027794/1680622545-bpfull.jpg",
+   "interests": [
+    "Open Educational Practices",
+    "psychometrics",
+    "Research Evaluation",
+    "community engagement",
+    "Education",
+    "Open access",
+    "Assessment"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/libarkin/"
   },
   {
    "username": "kailynpillai",
