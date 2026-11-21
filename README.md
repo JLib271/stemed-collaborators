@@ -1,6 +1,6 @@
 # Find Collaborators (STEMEd+ Commons)
 
-Find people to work with across STEM+ teaching and research, by the interests and skills on their
+Find people to work with across STEM+ teaching and STEM+ education research, by the interests and skills on their
 **STEMEd+ Commons profiles**. Part of [STEMEd+ Commons](https://stemedplus.org/).
 
 There is no separate sign-up. People are listed by filling in their own Commons profile, and the page
