@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-20T21:24:13Z",
+ "updated": "2026-11-21T13:37:39Z",
  "counts": {
-  "members": 964,
-  "answered": 964,
+  "members": 968,
+  "answered": 968,
   "missing": 0,
   "unavailable": 0,
-  "no_interests": 874,
-  "listed": 90,
-  "directory_says": 964
+  "no_interests": 877,
+  "listed": 91,
+  "directory_says": 968
  },
  "people": [
   {
@@ -513,6 +513,20 @@
    ],
    "opted_in": false,
    "profile": "https://stemedplus.profile.hcommons.org/members/dpanagiotakopoulos/"
+  },
+  {
+   "username": "Ayush_gaur",
+   "name": "Dr. Ayush Gaur",
+   "institution": "ALIGARH MUSLIM UNIVERSITY, ALIGARH, UTTAR PRADESH",
+   "orcid": "",
+   "photo": "https://kcommons-newprofiles.s3.amazonaws.com/media/profile_images/ac81c831e08046f9926508aa0acab370.jpg",
+   "interests": [
+    "Literary theory",
+    "Environmental humanities",
+    "climate change"
+   ],
+   "opted_in": false,
+   "profile": "https://stemedplus.profile.hcommons.org/members/Ayush_gaur/"
   },
   {
    "username": "dcuster",
