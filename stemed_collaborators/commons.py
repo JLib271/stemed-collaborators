@@ -34,7 +34,7 @@ PREV_LINK = re.compile(r'<a\s+href="([^"]*dir=prev[^"]*)"')
 NEXT_LINK = re.compile(r'<a\s+href="([^"]*cursor=[^"]*)"\s*>\s*Next')
 
 OK, MISSING, UNAVAILABLE = "ok", "missing", "unavailable"
-USER_AGENT = "stemed-collaborators (https://github.com/JLib271/stemed-collaborators)"
+USER_AGENT = "stemed-collaborators (https://github.com/stemedplus/stemed-collaborators)"
 
 
 def profile_url(username: str) -> str:

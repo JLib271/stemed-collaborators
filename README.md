@@ -59,6 +59,6 @@ is real, run `python -m stemed_collaborators --refresh --force` once.
 - `stemed_collaborators/directory.py`: decides who gets a card and keeps the last good copy.
 - `stemed_collaborators/build.py`: builds `index.html` with the cards built in.
 - `site/index.html`: the page (search, cards, invitation). The green band and footer come from
-  [stemedplus-theme](https://github.com/JLib271/stemedplus-theme); don't edit them here.
+  [stemedplus-theme](https://github.com/stemedplus/stemedplus-theme); don't edit them here.
 - `data/collaborators.json`: the saved cards.
 - `tests/`: `python -m unittest discover -s tests -t .`
